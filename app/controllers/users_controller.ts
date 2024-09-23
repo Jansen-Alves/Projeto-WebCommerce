@@ -12,6 +12,11 @@ const users = [
     name: 'John Doe',
     email: 'doe@gmail.com',
   },
+  {
+    id:3,
+    name: 'Jana Doe',
+    email: 'doenna@gmail.com',
+  }
 ]
 
 export default class UsersController {
