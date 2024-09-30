@@ -25,7 +25,9 @@ router
     .group(() => {
       router.get('/', [ProductsController, 'index']).as('lista')
       router.get('/:id', [ProductsController, 'show']).where('id', router.matchers.number()).as('show')
-      router.get('/create', [ProductsController, 'create']).as('create')
+      router.post('/', [ProductsController, 'store']).as('create')
+      router.delete('/:id', [ProductsController, 'destroy']).as('destroy')
+      router.patch('/:id', [ProductsController, 'update']).as('update')
     })
     .prefix('product')
     .as('products')
