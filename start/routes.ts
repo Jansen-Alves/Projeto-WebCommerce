@@ -21,6 +21,12 @@ router
   .prefix('users')
   .as('users')
 
+
+    router.get('/paginas', async ({ view }) =>{
+      const produtos = [{name: 'Placa-mãe'}, { name: 'RAM'}]
+      return view.render('pages/home', { email: 'j.alves@gmail.com', products: produtos })
+    })
+  
   router
     .group(() => {
       router.get('/', [ProductsController, 'index']).as('lista')
