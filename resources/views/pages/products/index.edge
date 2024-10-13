@@ -1,13 +1,5 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Aula de HTML</title>
-  </head>
-  <body>
-    <nav>
-      <a>Produtos</a>
-      <a>{{ email }}</a>
-    </nav>
+@layouts.app()
+   
     <main>
       <div>
         Lista de Produtos
@@ -17,14 +9,27 @@
         <ul>
           @each(product in product)
             <li>
-              <a href="{{`/product/${product.id}`}}">{{product.nome}} - {{product.price}}</a>
+              <a href="{{route('products.show',{id: product.id}) }}">{{product.nome}} - {{product.price}}</a>
             </li>
           @end
         </ul>
+        @button({name: 'escreva'})
+        aloou
+        @end
+
+        @modal()
+          @slot('header')
+            Cabeçalho
+          @end
+          
+          @slot('main')
+            Corpo
+          @end
+          
+         
+
+        @end
       </div>
-    </main>
-  </body>
-</html>
+      </main>
 
-
-
+@end

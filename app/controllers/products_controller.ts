@@ -16,17 +16,18 @@ export default class ProductsController {
      query.where('nome', 'like', `%${payload.nome}%`)
   } 
     const product = await query.paginate(page,limit)
-    return view.render('pages/products/index',{product:product})
+    return view.render('pages/products/index', {product})
   }
+
+
   async show({view, params}: HttpContext) {
     const product = await Product.findOrFail(params.id)
     //const product = await data.json()
     return view.render('pages/products/show', {product})
   }
 
-  async create({ params }: HttpContext){
-    const product = await Product.create({nome: 'lapis'})
-    return product
+  async create({view, params }: HttpContext){
+    return view.render('pages/products/create')
   }
   async store({request}: HttpContext){
     const payload = request.only(['nome', 'price', 'description'])

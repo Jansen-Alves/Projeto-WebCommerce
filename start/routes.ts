@@ -22,7 +22,7 @@ router
   .as('users')
 
 
-    router.get('/', async ({ view }) =>{
+   /* router.get('/', async ({ view }) =>{
       const produtos = [{name: 'Placa-mãe'}, { name: 'RAM'}]
       return view.render('pages/home', { email: 'j.alves@gmail.com', products: produtos })
     })
@@ -32,13 +32,14 @@ router
     router.post('/logado', ({request}) =>{
       console.log(request.all())
       return 'Você esta logado'
-    })
+    })*/
   
   router
     .group(() => {
       router.get('/', [ProductsController, 'index']).as('lista')
       router.get('/:id', [ProductsController, 'show']).where('id', router.matchers.number()).as('show')
-      router.post('/', [ProductsController, 'store']).as('create')
+      router.get('/new/', [ProductsController, 'create']).as('create')
+      router.post('/', [ProductsController, 'store']).as('store')
       router.delete('/:id', [ProductsController, 'destroy']).as('destroy')
       router.patch('/:id', [ProductsController, 'update']).as('update')
     })

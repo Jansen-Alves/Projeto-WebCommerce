@@ -1,0 +1,9 @@
+<form 
+@if(!method)
+method = "POST"
+@else
+method = "{{method}}"
+@end
+action = "{{action}}">
+    {{{await $slots.main()}}}
+</form>
