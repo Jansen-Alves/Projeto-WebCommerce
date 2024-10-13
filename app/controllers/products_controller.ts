@@ -3,7 +3,7 @@ import type { HttpContext } from '@adonisjs/core/http'
 
 
 export default class ProductsController {
-  async index({ request}: HttpContext) {
+  async index({ view,request}: HttpContext) {
     const page = request.input('page', 1)
     const limit = 10
     //requere todo os rows da tabela Product
@@ -16,12 +16,12 @@ export default class ProductsController {
      query.where('nome', 'like', `%${payload.nome}%`)
   } 
     const product = await query.paginate(page,limit)
-    return product
+    return view.render('pages/products/index',{product:product})
   }
-  async show({params}: HttpContext) {
-    const data = await Product.findOrFail(params.id)
+  async show({view, params}: HttpContext) {
+    const product = await Product.findOrFail(params.id)
     //const product = await data.json()
-    return data
+    return view.render('pages/products/show', {product})
   }
 
   async create({ params }: HttpContext){

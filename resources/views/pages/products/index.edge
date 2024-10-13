@@ -15,9 +15,9 @@
       <div>
         <div>Produto A</div>
         <ul>
-          @each(product in products)
+          @each(product in product)
             <li>
-              <a href="#">{{product.name}}</a>
+              <a href="{{`/product/${product.id}`}}">{{product.nome}} - {{product.price}}</a>
             </li>
           @end
         </ul>
@@ -25,4 +25,6 @@
     </main>
   </body>
 </html>
+
+
 

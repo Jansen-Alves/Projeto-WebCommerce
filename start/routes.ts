@@ -22,9 +22,16 @@ router
   .as('users')
 
 
-    router.get('/paginas', async ({ view }) =>{
+    router.get('/', async ({ view }) =>{
       const produtos = [{name: 'Placa-mãe'}, { name: 'RAM'}]
       return view.render('pages/home', { email: 'j.alves@gmail.com', products: produtos })
+    })
+    router.get('/login', ({view}) =>{
+      return view.render('pages/login')
+    })
+    router.post('/logado', ({request}) =>{
+      console.log(request.all())
+      return 'Você esta logado'
     })
   
   router
