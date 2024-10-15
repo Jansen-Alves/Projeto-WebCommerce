@@ -36,7 +36,7 @@ router
   
   router
     .group(() => {
-      router.get('/', [ProductsController, 'index']).as('lista')
+      router.get('/', [ProductsController, 'index']).as('index')
       router.get('/:id', [ProductsController, 'show']).where('id', router.matchers.number()).as('show')
       router.get('/new/', [ProductsController, 'create']).as('create')
       router.post('/', [ProductsController, 'store']).as('store')
