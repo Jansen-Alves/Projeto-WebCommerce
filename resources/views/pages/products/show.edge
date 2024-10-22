@@ -1,5 +1,13 @@
 @layouts.app()
-    <div><a>Produto:</a></div>
-   <div><a>{{product.nome}}</a></div>
-<div><a href=""> preco:</a> {{product.price}} </div>
+<style>
+    .nomeProd{
+        color: yellow
+    }
+</style>
+    <div>
+        <div class="bg-slate-200"><a>Produto:</a>
+        <a>-{{product.nome}}</a></div>
+        
+        <div><a> preco:</a> {{product.price}} </div>
+    </div>
 @end

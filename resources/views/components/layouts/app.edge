@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html 
-<head>
+<html>
+  <head>
     <title>HTML app</title>
-</head>
-<body>
+    @vite(['resources/js/app.js','resources/css/app.css'])
+  </head>
+<body class="mx-5">
   @include('components/layouts/partials/header')
   
   {{{ await $slots.main() }}}

@@ -1,0 +1,26 @@
+@layouts.app()
+   
+    <main class="mx-5">
+      <div>
+        Lista de Produtos
+      </div>
+      
+      <div>
+        <div>Produto A</div>
+        <ul>
+          @each(product in product)
+            <li>
+              <a href="{{route('products.show',{id: product.id}) }}">{{product.nome}} - {{product.price}} -</a> 
+              <a href="{{route('products.alter',{id: product.id}) }}">Alterar</a>
+              <a href="{{route('products.destroy',{id: product.id})}}">Remover</a>
+            </li>
+          @end
+        </ul>
+        @button({name: 'escreva', classe:'rounded-full bg-slate-300 px-2', type: 'submit'})
+        enviar
+        @end
+        
+      </div>
+      </main>
+
+@end

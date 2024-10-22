@@ -40,8 +40,11 @@ router
       router.get('/:id', [ProductsController, 'show']).where('id', router.matchers.number()).as('show')
       router.get('/new/', [ProductsController, 'create']).as('create')
       router.post('/', [ProductsController, 'store']).as('store')
-      router.delete('/:id', [ProductsController, 'destroy']).as('destroy')
+      router.get('/remove/:id', [ProductsController, 'destroy']).as('destroy')
       router.patch('/:id', [ProductsController, 'update']).as('update')
+      router.get('/list', [ProductsController, 'list']).as('list')
+      router.get('/update/:id', [ProductsController, 'alter']).as('alter')
+      
     })
     .prefix('product')
     .as('products')

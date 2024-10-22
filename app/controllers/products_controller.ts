@@ -19,6 +19,19 @@ export default class ProductsController {
     return view.render('pages/products/index', {product})
   }
 
+  async list({ view,request}: HttpContext) {
+    const page = request.input('page', 1)
+    const limit = 10
+
+    const payload = request.only(['nome'])
+    const query = Product.query()
+    if (payload.nome != null && payload.nome.length){
+     query.where('nome', 'like', `%${payload.nome}%`)
+  } 
+    const product = await query.paginate(page,limit)
+    return view.render('pages/products/index_adm', {product})
+  }
+
 
   async show({view, params}: HttpContext) {
     const product = await Product.findOrFail(params.id)
@@ -29,6 +42,12 @@ export default class ProductsController {
   async create({view, params }: HttpContext){
     return view.render('pages/products/create')
   }
+
+  async alter({view, params }: HttpContext){
+    const product = await Product.findOrFail(params.id)
+
+    return view.render('pages/products/alter',{product})
+  }
   async store({request}: HttpContext){
     const payload = request.only(['nome', 'price', 'description'])
 
@@ -38,10 +57,11 @@ export default class ProductsController {
   }
   async destroy({ params }: HttpContext){
     const product = await Product.findOrFail(params.id)
-
+    console.log(params.id)
     await product.delete()
     return {
-      message: `sucesso na remoção de ${params.id}`
+      message: `sucesso na remoção de ${params.id}`,
+    
     }
   }
 
