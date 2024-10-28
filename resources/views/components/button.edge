@@ -1,1 +1,25 @@
-<button type="{{type}}" class="{{classe}}"> {{await $slots.main()}}</button>
+@let(classes ='bg-blue-600 px-2  py-1 my-2')
+
+@if(variant == 'default')
+    @assign(classes ='bg-blue-600 px-2  py-1 my-2 hover: bg-blue-800')
+@elseif(variant == 'shop')
+    @assign(classes ='bg-orange-400 px-2 py-1 my-2 hover: bg-red-700 ')
+@elseif(variant == 'destructive')
+    @assign(classes ='bg-red-600 px-2  py-1 my-2')
+@else
+    @assign(classes = 'bg-blue-600 px-2  py-1 my-2 text-white hove: bg-blue-800 hover: ring-2 hover:ring-blue-300')
+@end
+
+@if(href)
+<a 
+   
+    class="{{classes}} {{$props.get('class') || '' }}"
+
+    {{$props.except(['class', 'variant']).toAttrs() }}> 
+    {{{await $slots.main()}}}</a>
+@else
+    
+<button 
+    class="{{classes}} {{$props.get('class') || '' }}"
+    {{$props.except(['class']).toAttrs() }}> {{await $slots.main()}}</button>
+@end

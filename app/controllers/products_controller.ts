@@ -48,32 +48,34 @@ export default class ProductsController {
 
     return view.render('pages/products/alter',{product})
   }
-  async store({request}: HttpContext){
+  async store({request, response}: HttpContext){
     const payload = request.only(['nome', 'price', 'description'])
 
-    const insert = await Product.create(payload)
+    await Product.create(payload)
 
-    return payload
+    return response.redirect().toRoute('products.index')
   }
-  async destroy({ params }: HttpContext){
+  async destroy({ params, response}: HttpContext){
     const product = await Product.findOrFail(params.id)
     console.log(params.id)
     await product.delete()
-    return {
-      message: `sucesso na remoção de ${params.id}`,
+    return response.redirect().toRoute('products.list')
     
-    }
+    
   }
 
-  async update({ params, request}: HttpContext){
+  async update({ params, request, response}: HttpContext){
+    
     const product = await Product.findOrFail(params.id)
+    const altered = request.only(['nome', 'price', 'description'])
 
-    const altered = request.only(['nome'])
-
-    product.merge(altered)
+    const filteredaltered = Object.fromEntries(
+      Object.entries(altered).filter(([key, value]) => value !== null && value !== '')
+    )
+    product.merge(filteredaltered)
 
     await product.save()
 
-    return product
+    return response.redirect().toRoute('products.list')
   }
 }

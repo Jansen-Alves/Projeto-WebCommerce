@@ -41,9 +41,9 @@ router
       router.get('/new/', [ProductsController, 'create']).as('create')
       router.post('/', [ProductsController, 'store']).as('store')
       router.get('/remove/:id', [ProductsController, 'destroy']).as('destroy')
-      router.patch('/:id', [ProductsController, 'update']).as('update')
+      router.post('/update/:id', [ProductsController, 'update']).as('update')
       router.get('/list', [ProductsController, 'list']).as('list')
-      router.get('/update/:id', [ProductsController, 'alter']).as('alter')
+      router.get('/alter/:id', [ProductsController, 'alter']).as('alter')
       
     })
     .prefix('product')
