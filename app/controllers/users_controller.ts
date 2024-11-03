@@ -2,25 +2,7 @@ import type { HttpContext } from '@adonisjs/core/http'
 import User from '#models/user'
 import { createUserValidator } from '#validators/user'
 import hash from '@adonisjs/core/services/hash'
-let sequence = 3
 
-const users = [
-  {
-    id: 1,
-    name: 'John Doe',
-    email: 'doe@gmail.com',
-  },
-  {
-    id: 2,
-    name: 'John Doe',
-    email: 'doe@gmail.com',
-  },
-  {
-    id:3,
-    name: 'Jana Doe',
-    email: 'doenna@gmail.com',
-  }
-]
 
 export default class UsersController {
 
@@ -39,10 +21,10 @@ export default class UsersController {
   }
 
   async store({ request, response }: HttpContext) {
-    const senha = request.only(['password'])
+    const payload = await createUserValidator.validate(request.all())
+    const senha = payload.password
 
-    const payload = request.only(['fullName', 'email', 'password'])
-    payload.password = await hash.make(senha.password)
+    payload.password = await hash.make(senha)
 
     const user = await User.create(payload)
 

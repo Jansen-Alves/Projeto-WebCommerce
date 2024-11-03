@@ -4,9 +4,16 @@
     <title>HTML app</title>
     @vite(['resources/js/app.js','resources/css/app.css'])
   </head>
-<body class="mx-5">
-  @include('components/layouts/partials/header')
-  
-  {{{ await $slots.main() }}}
+<body class="">
+
+  <section class="w-full pb-12 antialiased bg-white">
+    <div class="mx-auto max-w-7xl">
+      @include('components/layouts/partials/cabecalho')
+      <div>
+        {{{ await $slots.main() }}}
+      </div>
+    </div>
+  </section>
+
 </body>
 </html>

@@ -2,7 +2,7 @@ import vine from '@vinejs/vine'
 
 export const createProductValidator = vine.compile(
     vine.object({
-      nome: vine.string().trim().minLength(2),
+      name: vine.string().trim().minLength(2),
       price: vine.number().min(0),
       description: vine.string().trim(),
       categoryId: vine.number(),

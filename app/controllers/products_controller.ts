@@ -12,10 +12,10 @@ export default class ProductsController {
     //const product = await Product.all()
     //const  = await data.json()
 
-    const payload = request.only(['nome'])
+    const payload = request.only(['name'])
     const query = Product.query()
-    if (payload.nome != null && payload.nome.length){
-     query.where('nome', 'like', `%${payload.nome}%`)
+    if (payload.name != null && payload.name.length){
+     query.where('name', 'like', `%${payload.name}%`)
   } 
     const product = await query.paginate(page,limit)
     return view.render('pages/products/index', {product})
@@ -25,10 +25,10 @@ export default class ProductsController {
     const page = request.input('page', 1)
     const limit = 10
 
-    const payload = request.only(['nome'])
+    const payload = request.only(['name'])
     const query = Product.query()
-    if (payload.nome != null && payload.nome.length){
-     query.where('nome', 'like', `%${payload.nome}%`)
+    if (payload.name != null && payload.name.length){
+     query.where('name', 'like', `%${payload.name}%`)
   } 
     const product = await query.paginate(page,limit)
     return view.render('pages/products/list', {product})
@@ -73,7 +73,7 @@ export default class ProductsController {
   async update({ params, request, response}: HttpContext){
     
     const product = await Product.findOrFail(params.id)
-    const altered = request.only(['nome', 'price', 'description'])
+    const altered = request.only(['name', 'price', 'description'])
 
     const filteredaltered = Object.fromEntries(
       Object.entries(altered).filter(([key, value]) => value !== null && value !== '')
