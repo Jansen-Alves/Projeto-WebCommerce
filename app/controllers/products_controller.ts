@@ -40,8 +40,7 @@ export default class ProductsController {
   }
 
   async store({request, response}: HttpContext){
-    const payload = await createProductValidator.validate(request.all())
-
+    const payload = await request.validateUsing(createProductValidator)
     const product = await Product.create(payload)
     return response.redirect().toRoute('products.show', {id: product.id})
   }

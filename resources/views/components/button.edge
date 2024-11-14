@@ -6,6 +6,8 @@
     @assign(classes ='bg-orange-400 px-2 py-1 my-2 hover: bg-red-700 ')
 @elseif(variant == 'destructive')
     @assign(classes ='bg-red-600 px-2  py-1 my-2')
+@elseif(variant == 'ghost')
+    @assign(classes ='hover:bg-accent hover:text-accent-foreground')
 @else
     @assign(classes = 'bg-blue-600 px-2  py-1 my-2 text-white hover: bg-blue-800 hover: ring-2 hover:ring-blue-300')
 @end

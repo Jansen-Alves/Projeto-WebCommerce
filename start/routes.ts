@@ -10,6 +10,7 @@
 
 import AuthController from '#controllers/auth_controller'
 import router from '@adonisjs/core/services/router'
+import { middleware } from './kernel.js'
 
 const UsersController = () => import('#controllers/users_controller')
 const ProductsController = () => import('#controllers/products_controller')
@@ -19,22 +20,25 @@ router
     router.get('/:id', [UsersController, 'show']).where('id', router.matchers.number()).as('show')
     router.post('/', [UsersController, 'store']).as('store')
     router.get('/new', [UsersController, 'create']).as('create')
+    router.post('/role', [UsersController, 'role']).as('role')
   })
   .prefix('users')
-  .as('users')
+  .as('users').use(middleware.adm())
 
-  
+    router.get('/index', async({view}) =>{
+      return view.render('pages/main')
+    })
     router.get('/adm', async ({ view }) =>{
       return view.render('pages/adm')
-    })
+    }).as('auth.adm').use(middleware.auth())
     router.get('/login', [AuthController, 'create']).as('auth.create')
     router.post('/login', [AuthController, 'store']).as('auth.store')
-    //router.get('/logout', [AuthController, 'destroy']).as('auth.destroy')
+    router.get('/logout', [AuthController, 'destroy']).as('auth.destroy')
   
+    router.get('product/', [ProductsController, 'index']).as('products.index')
+    router.get('product/:id', [ProductsController, 'show']).where('id', router.matchers.number()).as('products.show')
   router
     .group(() => {
-      router.get('/', [ProductsController, 'index']).as('index')
-      router.get('/:id', [ProductsController, 'show']).where('id', router.matchers.number()).as('show')
       router.get('/new/', [ProductsController, 'create']).as('create')
       router.post('/', [ProductsController, 'store']).as('store')
       router.get('/remove/:id', [ProductsController, 'destroy']).as('destroy')
@@ -44,4 +48,4 @@ router
       
     })
     .prefix('product')
-    .as('products')
+    .as('products').use(middleware.adm())

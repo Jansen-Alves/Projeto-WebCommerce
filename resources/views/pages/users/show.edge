@@ -7,7 +7,16 @@
     <div>
         <div class="bg-slate-200"><a>Usuario:</a>
         <a>-{{user.fullName}}</a></div>
-        
+        <a>-{{user.birthday}}</a>
         <div><a> email:</a> {{user.email}} </div>
+
+        @formProd({action: route('users.role'), method: 'POST', class: 'space-y-6'})
+        @!input({type:'hidden', value:user.id, name:'id'})
+        <div>
+        @button({type:'submit'})
+        mudar role
+        @end
+        </div>
+        @end
     </div>
 @end

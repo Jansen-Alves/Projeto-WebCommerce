@@ -2,9 +2,13 @@ import vine from '@vinejs/vine'
 
 export const createUserValidator = vine.compile(
     vine.object({
-      fullname: vine.string().trim().minLength(4),
-      email: vine.string().minLength(10),
-      password: vine.string().trim().minLength(8),
+      fullName: vine.string().trim().minLength(4),
+      email: vine.string().email().trim(),
+      birthday: vine.date({
+        formats: [  'YYYY-MM-DD']
+      }),
+      password: vine.string().minLength(5).confirmed(),
+    
     
       
     })

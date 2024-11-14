@@ -1,26 +1,34 @@
 @layouts.app()
-@formProd({action: route('users.store')})
-    <div>
+<div class="flex min-h-[40vh]  justify-center py-12 sm:px-6 lg:px-8">
+    @formProd({action: route('users.store'), method: 'POST', class: 'space-y-6'})
         <div>
-            <label for="fullname" > Nome completo</label>
-            @!input({ name:'fullName', type:'text', required:'true'})
+            <div>
+                <label for="fullName" > Nome completo</label>
+                @!input({ name:'fullName', type:'text', required:'true'})
+            </div>
+            <div>
+                <label for="email"> e-mail </label>
+                @!input({name:'email', type:'email', required:'true'})
+            </div>
+            <div>
+                <label for="birthday">Data de nascimento</label>
+                @!input({name:'birthday', type:'date', required:'true'})
+            </div>
+            <div>
+                <label for="password" > Senha</label>
+                @!input({name:'password', type:'password', required:'true'})
+            </div>
+            
+            <div>
+                <label for="password_confirmation"> Confirme senha</label>
+                @!input({name:'password_confirmation', type:'password', required:'true'})
+            </div>
+    
+            @button({type:"submit"})
+            Cadastrar
+            @end
+            
         </div>
-        <div>
-            <label for="email"> e-mail </label>
-            @!input({name:'email', type:'email', required:'true'})
-        </div>
-        <div>
-            <label for="password" > Senha</label>
-            @!input({name:'password', type:'password', required:'true'})
-        </div>
-        <div>
-            <label for="password-confirm"> Confirme senha</label>
-            @!input({name:'password-confirm', type:'password', required:'true'})
-        </div>
-
-        @button({type:"submit"})
-        Enviar
-        @end
-    </div>
-@end
+    @end
+</div>
 @end

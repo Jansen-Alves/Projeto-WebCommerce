@@ -5,15 +5,18 @@
     @vite(['resources/js/app.js','resources/css/app.css'])
   </head>
 <body class="">
-
-  <section class="w-full pb-12 antialiased bg-white">
-    <div class="mx-auto max-w-7xl">
-      @include('components/layouts/partials/cabecalho')
-      <div>
-        {{{ await $slots.main() }}}
+<div class="min-h-screen flex flex-col">
+  <main class="flex-grow">
+    <section class="w-full pb-12 antialiased bg-white">
+      <div class="mx-auto max-w-7xl ">
+        @include('components/layouts/partials/cabecalho')
+        <div class="flex items-center justify-center h-screens">
+          {{{ await $slots.main() }}}
+        </div>
       </div>
-    </div>
-  </section>
-
+    </section>
+  </main>
+    @include('components/layouts/partials/footer')
+  </div>
 </body>
 </html>

@@ -21,16 +21,28 @@ export default class UsersController {
   }
 
   async store({ request, response }: HttpContext) {
-    const payload = await createUserValidator.validate(request.all())
-    const senha = payload.password
+    console.log('alou')
+    
+    const payload = await request.validateUsing(createUserValidator)
+    const user = new User()
+    console.log(payload.email)
+    user.merge(payload)
 
-    payload.password = await hash.make(senha)
-
-    const user = await User.create(payload)
-
-    return response.redirect().toRoute('users.show', { id: user.id })
+    await user.save()
+   
+    
+    return response.redirect().toRoute('auth.create')
   }
+  async role({request, response}: HttpContext){
+    const payload = request.all()
+    console.log(payload)
+    const user = await User.findOrFail(payload.id)
+    user.roleId = 2
+    await user.save()
 
+    response.redirect().toRoute('/adm')
+
+  }
   async create({view }: HttpContext){
     return view.render('pages/users/create')
   }

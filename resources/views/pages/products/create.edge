@@ -10,12 +10,12 @@
             @!input({name:'price', type:'text',})
         </div>
         <div>
-            <label for="categoryId">
+            <label for="category_id">
               Categoria
             </label>
-            <select name="categoryId">
+            <select name="category_id">
               @each(category in categories)
-                <option value="{{ category.id }}">{{ category.name }}</option>
+                <option value="{{ category.id }}"> {{ category.name }}</option>
               @end
             </select>
           </div>

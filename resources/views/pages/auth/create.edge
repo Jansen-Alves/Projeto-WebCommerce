@@ -1,14 +1,15 @@
 @layouts.app()
-@formProd({action: route('products.store')})
+@formProd({action: route('auth.store')})
     <div>
         <div>
-            <label > email: </label>
+            <label for="email"> email: </label>
             @!input({ name:'email', type:'text'})
         </div>
         <div>
-            <label > Senha </label>
+            <label for="pasword"> Senha </label>
             @!input({name:'password', type:'password',})
         </div>
+        
 
         @button({type:"submit"})
         Enviar

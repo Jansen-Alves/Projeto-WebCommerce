@@ -14,11 +14,11 @@
           
           @each(product in product)
           
-            <li>
+            <li class="flex flex-row">
             
               <a href="{{route('products.show',{id: product.id}) }}">{{product.name}} - {{product.price}} -</a> 
               <a href="{{route('products.alter',{id: product.id}) }}">
-                @svg('heroicons:arrow-right-end-on-rectangle-solid')
+                @svg('heroicons:arrow-right-end-on-rectangle-solid', {class:"text-blue-300 mr-1"})
               </a>
               <a href="{{route('products.destroy',{id: product.id})}}">Remover</a>
             </li>
