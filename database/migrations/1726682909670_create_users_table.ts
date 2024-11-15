@@ -1,5 +1,6 @@
 import { BaseSchema } from '@adonisjs/lucid/schema'
 import Roles from '../../app/Enums/Roles.js'
+import Hash from '@adonisjs/core/services/hash'
 export default class extends BaseSchema {
   protected tableName = 'users'
 
@@ -15,6 +16,20 @@ export default class extends BaseSchema {
 
       table.timestamp('created_at').notNullable()
       table.timestamp('updated_at').nullable()
+      this.defer(async (db) => {
+        const hashedPassword = await Hash.make('12345')
+        await db.table(this.tableName).multiInsert([{
+          id:1,
+          full_name: 'Jansen Alves',
+          email: 'j.alves@gmail.com',
+          birthday: '2002-02-16',
+          password:  hashedPassword,
+          role_id: 2,
+          created_at: new Date().toISOString(), // Define `created_at`
+          updated_at: null
+
+        }])
+      })
     })
   }
 

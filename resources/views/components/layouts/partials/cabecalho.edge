@@ -7,9 +7,9 @@
     <div class="flex items-center md:order-2 space-x-3 md:space-x-2 rtl:space-x-reverse">
       @if(auth.isAuthenticated)
         @if(auth.user.isAdm )
-      <p> Admin {{ auth.user.email }} </p>
+      <p> Admin {{ auth.user.fullName }} </p>
         @else
-        <p> Cliente {{ auth.user.email }} </p>
+        <p> Cliente {{ auth.user.fullName }} </p>
         @end
         <a href="{{route('auth.destroy')}}"> Sair </a>
 

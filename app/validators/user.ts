@@ -5,7 +5,7 @@ export const createUserValidator = vine.compile(
       fullName: vine.string().trim().minLength(4),
       email: vine.string().email().trim(),
       birthday: vine.date({
-        formats: [  'YYYY-MM-DD']
+        formats: ['YYYY/MM/DD','DD/MM/YYYY', 'dd/mm/yyyy','YYYY-MM-DD']
       }),
       password: vine.string().minLength(5).confirmed(),
     

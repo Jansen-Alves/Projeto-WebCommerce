@@ -16,14 +16,15 @@ const UsersController = () => import('#controllers/users_controller')
 const ProductsController = () => import('#controllers/products_controller')
 router
   .group(() => {
-    router.get('/', [UsersController, 'index']).as('index')
-    router.get('/:id', [UsersController, 'show']).where('id', router.matchers.number()).as('show')
+    router.get('/', [UsersController, 'index']).as('index').use(middleware.adm())
+    router.get('/:id', [UsersController, 'show']).where('id', router.matchers.number()).as('show').use(middleware.adm())
     router.post('/', [UsersController, 'store']).as('store')
     router.get('/new', [UsersController, 'create']).as('create')
-    router.post('/role', [UsersController, 'role']).as('role')
+    router.get('/alter/:id',[UsersController, 'alter']).as('alter')
+    router.post('/role', [UsersController, 'role']).as('role').use(middleware.adm())
   })
   .prefix('users')
-  .as('users').use(middleware.adm())
+  .as('users')
 
     router.get('/index', async({view}) =>{
       return view.render('pages/main')

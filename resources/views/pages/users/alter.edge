@@ -1,0 +1,26 @@
+@layouts.app()
+@formProd({action: route('users.update', {id: user.id})})
+    <div>
+        <div>
+
+            @!input({type:'hidden', name:'id', value: user.id})
+            <label > Nome </label>
+            
+            @!input({ name:'fullName', type:'text',  placeholder:user.fullName})
+        </div>
+        <div>
+            <label > email</label>
+            @!input({name:'email', type:'email', placeholder:user.email, class:'block text-sm font-medium leading-6 text-gray-900 bg-slate-100'})
+        </div>
+        <div>
+            <label > data de nascimento </label>
+            @!input({name:'birthday', type:'text', placeholder:user.birthday, class:'block text-sm font-medium leading-6 text-gray-900 bg-slate-100'})
+        </div>
+        
+
+        @button({type:"submit", variant:"shop"})
+        Enviar
+        @end
+    </div>
+@end
+@end

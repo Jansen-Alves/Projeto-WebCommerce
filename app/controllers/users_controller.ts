@@ -47,7 +47,27 @@ export default class UsersController {
     return view.render('pages/users/create')
   }
 
-  
+  async alter({view, params }: HttpContext){
+    const user = await User.findOrFail(params.id)
+
+    return view.render('pages/user/alter',{user})
+  }
+
+  async update({ params, request, response}: HttpContext){
+    
+    const user = await User.findOrFail(params.id)
+    const payload = await request.validateUsing(createUserValidator)
+    
+
+    const filteredaltered = Object.fromEntries(
+      Object.entries(payload).filter(([key, value]) => value !== null && value !== '')
+    )
+    user.merge(filteredaltered)
+
+    await user.save()
+
+    return response.redirect().toRoute('/index')
+  }
 
   async show({view, params }: HttpContext) {
     const user = await User.findOrFail(params.id)
