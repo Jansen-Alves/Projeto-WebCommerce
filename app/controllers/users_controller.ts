@@ -21,16 +21,13 @@ export default class UsersController {
   }
 
   async store({ request, response }: HttpContext) {
-    console.log('alou')
-    
+    const data = await request.only(['birthday'])
     const payload = await request.validateUsing(createUserValidator)
-    const user = new User()
-    console.log(payload.email)
+    const user = new User() 
+    payload.birthday = data.birthday
     user.merge(payload)
 
     await user.save()
-   
-    
     return response.redirect().toRoute('auth.create')
   }
   async role({request, response}: HttpContext){
@@ -50,14 +47,13 @@ export default class UsersController {
   async alter({view, params }: HttpContext){
     const user = await User.findOrFail(params.id)
 
-    return view.render('pages/user/alter',{user})
+    return view.render('pages/users/alter',{user})
   }
 
   async update({ params, request, response}: HttpContext){
     
     const user = await User.findOrFail(params.id)
-    const payload = await request.validateUsing(createUserValidator)
-    
+    const payload = request.body()
 
     const filteredaltered = Object.fromEntries(
       Object.entries(payload).filter(([key, value]) => value !== null && value !== '')

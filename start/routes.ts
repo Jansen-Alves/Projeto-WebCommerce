@@ -21,6 +21,7 @@ router
     router.post('/', [UsersController, 'store']).as('store')
     router.get('/new', [UsersController, 'create']).as('create')
     router.get('/alter/:id',[UsersController, 'alter']).as('alter')
+    router.post('/update/:id', [UsersController, 'update']).as('update').use(middleware.auth())
     router.post('/role', [UsersController, 'role']).as('role').use(middleware.adm())
   })
   .prefix('users')
