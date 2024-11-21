@@ -1,24 +1,52 @@
-@layouts.app()
-@formProd({action: route('auth.store')})
-    <div>
-        <div>
-            <label for="email"> email: </label>
-            @!input({ name:'email', type:'text'})
-        </div>
-        <div>
-            <label for="pasword"> Senha </label>
-            @!input({name:'password', type:'password',})
-        </div>
-        
+<!DOCTYPE html>
+<html lang="pt">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Login</title>
+        <link rel="stylesheet" href="/resources/css/index.css">
+        <link rel="stylesheet" href="/resources/css/login.css">
+    </head>
 
-        @button({type:"submit"})
-        Enviar
-        @end
-        @flashMessage('errors.login')
-        <p class="text-sm text-red-500 p-auto">
-          {{ $message }}
-        </p>
-      @end
-    </div>
-@end
-@end
+    <body>
+        <nav>
+            <div class="container">
+                <div class="item">
+                    <a href="{{ route('/index') }}"><img src="/imagens/BT.png" width="80px" height="80px"></a>
+                </div>
+            </div>
+        </nav>
+        <div class="white-box center">
+            <div id="form-box" class="center">
+                <h1>
+                    LOG IN
+                </h1>
+                <form action="{{ route('auth.store') }}" method="POST" style="width: 300px;">
+
+                    <div class="input-box">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-envelope-fill" viewBox="0 0 16 16">
+                            <path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414zM0 4.697v7.104l5.803-3.558zM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586zm3.436-.586L16 11.801V4.697z"/>
+                        </svg>
+                        <input type="email" name="email" autofocus="on" placeholder="Email" required>
+                    </div>
+                    <div class="input-box">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-lock-fill" viewBox="0 0 16 16">
+                            <path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2m3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2"/>
+                        </svg>
+                        <input type="password" name="password" autofocus="on" placeholder="Senha" required>
+                    </div>
+                    <button type="submit" class="orange-button">
+                        ENTRAR
+                    </button>
+                </form>
+                <p>
+                    <span>Não é Cadastrado?</span>
+                </p>
+                <p>
+                    <a href="{{ route('users.create') }}">Clique aqui</a>
+                    <span>para se cadastrar!</span>
+                </p>
+            </div>
+        </div>
+    </body>
+</html>

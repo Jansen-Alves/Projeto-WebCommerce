@@ -16,4 +16,8 @@ export default defineConfig({
       reload: ['resources/views/**/*.edge'],
     }),
   ],
+  build: {
+    outDir: 'public/assets',  // Local onde os arquivos compilados serão gerados
+    assetsDir: 'assets',      // Subdiretório onde assets como imagens, fontes serão colocados
+  },
 })

@@ -6,10 +6,7 @@
       </div>
       
       <div>
-        <div>
-          <a href="{{ route('products.create') }}"> Criar produtos </a>
-        </div>
-       
+
         <ul>
           
           @each(product in product)
@@ -17,17 +14,11 @@
             <li class="flex flex-row">
             
               <a href="{{route('products.show',{id: product.id}) }}">{{product.name}} - {{product.price}} -</a> 
-              <a href="{{route('products.alter',{id: product.id}) }}">
-                @svg('heroicons:arrow-right-end-on-rectangle-solid', {class:"text-blue-300 mr-1"})
-              </a>
+              <a href="{{route('products.alter',{id: product.id}) }}">Editar</a>
               <a href="{{route('products.destroy',{id: product.id})}}">Remover</a>
             </li>
           @end
         </ul>
-        @button({name: 'escreva', classe:'rounded-full bg-slate-300 px-2', type: 'submit'})
-        enviar
-        @end
-        
       </div>
       </main>
 

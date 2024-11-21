@@ -1,26 +1,115 @@
-@layouts.app()
-@formProd({action: route('users.update', {id: user.id})})
-    <div>
-        <div>
+<!DOCTYPE html>
 
-            @!input({type:'hidden', name:'id', value: user.id})
-            <label > Nome </label>
-            
-            @!input({ name:'fullName', type:'text',  placeholder:user.fullName})
-        </div>
-        <div>
-            <label > email</label>
-            @!input({name:'email', type:'email', placeholder:user.email, class:'block text-sm font-medium leading-6 text-gray-900 bg-slate-100'})
-        </div>
-        <div>
-            <label > data de nascimento </label>
-            @!input({name:'birthday', type:'text', placeholder:user.birthday, class:'block text-sm font-medium leading-6 text-gray-900 bg-slate-100'})
-        </div>
-        
+<html lang="pt">
+<head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Editar Usuário</title>
+        <link rel="stylesheet" href="/resources/css/index.css">
+        <link rel="stylesheet" href="/resources/css/signup.css">
+    </head>
 
-        @button({type:"submit", variant:"shop"})
-        Enviar
-        @end
-    </div>
-@end
-@end
+    <body>
+    <nav>
+            <div id="navbar">
+                <div id="navbar-logo">
+                    <img src="/imagens/BungaTech.png" alt="Bunga Tech">
+                </div>
+                <div id="navbar-links">
+                    <ul>
+                        <li>
+                            <a href="{{route('/index')}}">
+                                Página Inicial
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{route('products.index')}}">
+                                Produtos
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                Sobre
+                            </a>
+                        </li>
+                    </ul>  
+                </div>
+                <div id="navbar-auth">
+                    @if(auth.isAuthenticated)
+                        <div id="navbar-ferramentas">
+                            <a id="link-carrinho" href="#">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-cart" viewBox="0 0 16 16">
+                                    <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M3.102 4l1.313 7h8.17l1.313-7zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2"/>
+                                </svg>
+                                <span>0</span>
+                            </a>
+                            <a id="link-favoritos" href="#">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16">
+                                    <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143q.09.083.176.171a3 3 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15"/>
+                                </svg>
+                                <span>0</span>
+                            </a>
+                            <a id="link-perfil" href="{{ auth.user.isAdm ? route('/adm') : route('users.alter', {id:auth.user.id}) }}">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+                                    <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
+                                    <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"/>
+                                </svg>
+                            </a>
+                        </div>
+                        @if(auth.user.isAdm )
+                            <p> Admin {{ auth.user.fullName }} </p>
+                        @else
+                            <p> Cliente {{ auth.user.fullName }} </p>
+                        @end
+
+                        <a href="{{route('auth.destroy')}}"> Sair </a>
+                    @else
+                        @button({
+                            href: route('users.create'),
+                            class: 'white-button-auth'
+                        })
+                            Sign In
+                        @end
+                        @button({
+                            href: route('auth.create'),
+                            class:'orange-button-auth'
+                        }) 
+                            Login
+                        @end
+                    @end
+                </div>
+        </nav>
+
+ 
+        <div class="white-box center">
+            <div id="form-box" class="center">
+                <h1>
+                    EDITAR USUÁRIO
+                </h1>
+                <form action="{{ route('users.update', {id:user.id}) }}" method="POST" style="width: 300px;">
+                    <div class="input-box">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
+                            <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
+                        </svg>
+                        <input type="text" name="fullName" autofocus="on" placeholder="Nome" required>
+                    </div>
+                    <div class="input-box">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-envelope-fill" viewBox="0 0 16 16">
+                            <path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414zM0 4.697v7.104l5.803-3.558zM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586zm3.436-.586L16 11.801V4.697z"/>
+                        </svg>
+                        <input type="email" name="email" autofocus="on" placeholder="Email" required>
+                    </div>
+                    <div class="input-box">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-calendar-event-fill" viewBox="0 0 16 16">
+                            <path d="M4 .5a.5.5 0 0 0-1 0V1H2a2 2 0 0 0-2 2v1h16V3a2 2 0 0 0-2-2h-1V.5a.5.5 0 0 0-1 0V1H4zM16 14V5H0v9a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2m-3.5-7h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5"/>
+                        </svg>
+                        <input type="date" name="birthday" autofocus="on" placeholder="Data de Nascimento" required>
+                    </div>
+                    <button type="submit" class="orange-button">
+                        EDITAR
+                    </button>
+                </form>
+            </div>
+        </div>
+    </body>
+</html>

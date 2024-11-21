@@ -56,8 +56,8 @@ export default class ProductsController {
 
   async alter({view, params }: HttpContext){
     const product = await Product.findOrFail(params.id)
-
-    return view.render('pages/products/alter',{product})
+    const categories = await Category.all()
+    return view.render('pages/products/alter',{product, categories})
   }
   
   async destroy({ params, response}: HttpContext){

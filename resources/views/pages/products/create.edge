@@ -1,32 +1,116 @@
-@layouts.app()
-@formProd({action: route('products.store')})
-    <div>
-        <div>
-            <label > Nome </label>
-            @!input({ name:'name', type:'text'})
-        </div>
-        <div>
-            <label > Preço </label>
-            @!input({name:'price', type:'text',})
-        </div>
-        <div>
-            <label for="category_id">
-              Categoria
-            </label>
-            <select name="category_id">
-              @each(category in categories)
-                <option value="{{ category.id }}"> {{ category.name }}</option>
-              @end
-            </select>
-          </div>
-        <div>
-            <label > Descricao</label>
-            @!input({name:'description', type:'text'})
-        </div>
+<!DOCTYPE html>
 
-        @button({type:"submit"})
-        Enviar
-        @end
-    </div>
-@end
-@end
+<html lang="pt">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Criar Produto</title>
+        <link rel="stylesheet" href="/resources/css/index.css">
+        <link rel="stylesheet" href="/resources/css/signup.css">
+    </head>
+
+    <body>
+    <nav>
+            <div id="navbar">
+                <div id="navbar-logo">
+                    <img src="/imagens/BungaTech.png" alt="Bunga Tech">
+                </div>
+                <div id="navbar-links">
+                    <ul>
+                        <li>
+                            <a href="{{route('/index')}}">
+                                Página Inicial
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{route('products.index')}}">
+                                Produtos
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                Sobre
+                            </a>
+                        </li>
+                    </ul>  
+                </div>
+                <div id="navbar-auth">
+                    @if(auth.isAuthenticated)
+                        <div id="navbar-ferramentas">
+                            <a id="link-carrinho" href="#">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-cart" viewBox="0 0 16 16">
+                                    <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M3.102 4l1.313 7h8.17l1.313-7zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2"/>
+                                </svg>
+                                <span>0</span>
+                            </a>
+                            <a id="link-favoritos" href="#">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16">
+                                    <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143q.09.083.176.171a3 3 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15"/>
+                                </svg>
+                                <span>0</span>
+                            </a>
+                            <a id="link-perfil" href="{{ auth.user.isAdm ? route('/adm') : route('users.alter', {id:auth.user.id}) }}">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+                                    <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
+                                    <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"/>
+                                </svg>
+                            </a>
+                        </div>
+                        @if(auth.user.isAdm )
+                            <p> Admin {{ auth.user.fullName }} </p>
+                        @else
+                            <p> Cliente {{ auth.user.fullName }} </p>
+                        @end
+
+                        <a href="{{route('auth.destroy')}}"> Sair </a>
+                    @else
+                        @button({
+                            href: route('users.create'),
+                            class: 'white-button-auth'
+                        })
+                            Sign In
+                        @end
+                        @button({
+                            href: route('auth.create'),
+                            class:'orange-button-auth'
+                        }) 
+                            Login
+                        @end
+                    @end
+                </div>
+        </nav>
+        <div class="white-box center">
+            <div id="form-box" class="center">
+                <h1>
+                    NOVO PRODUTO
+                </h1>
+                <form action="{{ route('products.store') }}" method="POST" style="width: 300px;">
+                    <div class="input-box">
+                        <input type="text" name="name" autofocus="on" placeholder="Nome" required>
+                    </div>
+                    <div class="input-box">
+                        <input type="text" name="price" autofocus="on" placeholder="Preço" required>
+                    </div>
+                    <div class="input-box">
+                        <input type="text" name="description" autofocus="on" placeholder="Descrição" required>
+                    </div>
+                    <div>
+                        <label for="category_id" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"></label>
+                        <select name="category_id" class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                            <option selected>Escolha uma Categoria</option>
+                                @each(category in categories)
+                                <option value="{{ category.id }}">{{ category.name }}</option>
+                                @end
+                        </select>
+                    </div>
+                    <button type="submit" class="orange-button">
+                        CRIAR
+                    </button>
+                </form>
+                <p>
+                    <a href="{{ route('products.list') }}">Ver todos os Produtos</a>
+                </p>
+            </div>
+        </div>
+    </body>
+</html>
