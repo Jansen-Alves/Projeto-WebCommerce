@@ -35,6 +35,9 @@ export default class User extends compose(BaseModel, AuthFinder) {
   public get isAdm(){
     return this.roleId === Roles.ADMIN
   }
+  
+  @column()
+  declare sex: string
 
   @column()
   declare birthday: Date

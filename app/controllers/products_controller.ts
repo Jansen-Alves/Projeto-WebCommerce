@@ -72,7 +72,7 @@ export default class ProductsController {
   async update({ params, request, response}: HttpContext){
     
     const product = await Product.findOrFail(params.id)
-    const altered = request.only(['name', 'price', 'description'])
+    const altered = request.only(['name', 'price', 'description', 'category_id'])
 
     const filteredaltered = Object.fromEntries(
       Object.entries(altered).filter(([key, value]) => value !== null && value !== '')

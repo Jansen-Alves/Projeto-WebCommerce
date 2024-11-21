@@ -8,17 +8,21 @@ export default class AuthController {
         return view.render('pages/auth/create')
       }
     
-      async store({auth, request, response}: HttpContext){
+      async store({auth, request, response, session}: HttpContext){
         try{
         const payload = await request.validateUsing(createAuthValidator)
         
         const user = await User.verifyCredentials(payload.email, payload.password)
+        
         await auth.use('web').login(user)
 
-        return response.redirect().toRoute('/index')
-        }catch(exception){
-
+       
+        }catch(exception){ 
+          session.flashOnly(['email'])
+          session.flash({ errors: { login: 'Não encontramos nenhuma conta válida' } })
+          return response.redirect().back() 
         }
+        return response.redirect().toRoute('main')
       }
       
       async destroy({auth,response}: HttpContext){

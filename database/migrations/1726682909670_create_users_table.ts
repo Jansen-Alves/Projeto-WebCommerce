@@ -9,6 +9,7 @@ export default class extends BaseSchema {
       table.increments('id').notNullable()
       table.string('full_name').nullable()
       table.string('email', 254).notNullable().unique()
+      table.string('sex').notNullable()
       table.date('birthday')
       table.integer('role_id').unsigned().references('id').inTable('roles').defaultTo(Roles.USER)
       table.string('password').notNullable()
@@ -22,6 +23,7 @@ export default class extends BaseSchema {
           id:1,
           full_name: 'Jansen Alves',
           email: 'j.alves@gmail.com',
+          sex: 'Masculino',
           birthday: '2002-02-16',
           password:  hashedPassword,
           role_id: 2,
