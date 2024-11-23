@@ -3,7 +3,11 @@ export default {
   content: ["./resources/**/*.edge",
     "./resources/**/*.{js,ts}",],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        poppins: ['Poppins', 'sans-serif'], // Adiciona Poppins como uma opção de fonte
+      },
+    },
   },
   plugins: [],
 }

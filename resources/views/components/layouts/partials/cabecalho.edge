@@ -1,0 +1,65 @@
+<nav class="bg-transparent w-full z-1000 font-semibold transition duration-300 ease-in-out">
+    <div id="navbar" class="flex flex-row justify-between place-items-center w-[88%] m-auto p-[15px]">
+        <div id="navbar-logo">
+            <img src="imagens/BungaTech.png" alt="Bunga Tech" class="w-[200px] h-[97px] ">
+        </div>
+        <div id="navbar-links" class="flex flex-row items-center space-x-16">
+            <ul class="flex space-x-16 text-gray-800">
+                <li>
+                    <a href="{{route('/index')}}" class="font-medium text-base transition duration-300 ease-in-out hover:text-orange-400">Página Inicial</a>
+                </li>
+                <li>
+                    <a href="{{route('products.index')}}" class="font-medium text-base transition duration-300 ease-in-out hover:text-orange-400">Produtos</a>
+                </li>
+                <li>
+                    <a href="#" class=" font-medium text-base transition duration-300 ease-in-out hover:text-orange-400">Sobre</a>
+                </li>
+            </ul>
+        </div>
+        <div id="navbar-auth" class="flex flex-row place-items-center">
+            @if(auth.isAuthenticated)
+                <div id="navbar-ferramentas" class="flex items-center space-x-10">
+                    <a id="link-carrinho" href="#" class="flex items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-cart" viewBox="0 0 16 16">
+                            <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M3.102 4l1.313 7h8.17l1.313-7zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2"/>
+                        </svg>
+                        <span class="ml-1">0</span>
+                    </a>
+                    <a id="link-favoritos" href="#" class="flex items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16">
+                            <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143q.09.083.176.171a3 3 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15"/>
+                        </svg>
+                        <span class="ml-1">0</span>
+                    </a>
+                    <a id="link-perfil" href="{{ auth.user.isAdm ? route('/adm') : route('users.alter', {id:auth.user.id}) }}" class="flex items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+                            <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
+                            <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"/>
+                        </svg>
+                    </a>
+                </div>
+                @if(auth.user.isAdm )
+                    <p class="ml-5"> Admin {{ auth.user.fullName }} </p>
+                @else
+                    <p class="ml-5"> Cliente {{ auth.user.fullName }} </p>
+                @end
+                <a href="{{route('auth.destroy')}}" class="text-orange-400 ml-5"> Sair </a>
+            @else
+                @button({
+                    href: route('users.create'),
+                    class: 'px-[15px] py-[7px] rounded-[3px] no-underline bg-white text-orange-400 text-[16px] font-medium antialiased transition duration-300 ease-in-out mr-[20px] hover:bg-orange-400 hover:text-white',
+                    variant:'new'
+                })
+                    Sign In
+                @end
+                @button({
+                    href: route('auth.create'),
+                    class:'px-[15px] py-[7px] rounded-[3px] no-underline bg-orange-400 text-white text-[16px] font-medium antialiased transition duration-300 ease-in-out ml-[20px] hover:bg-white hover:text-orange-400',
+                    variant:'new'
+                }) 
+                    Login
+                @end
+            @end
+        </div>
+    </div>
+</nav>

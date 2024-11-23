@@ -4,11 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Meu Site</title>
-    
-
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    @vite(['resources/js/app.js','resources/css/app.css'])
     <!-- Links para o CSS -->
-    <link href="/resources/css/produtos.css" rel="stylesheet">
-
     <!-- Script para interações -->
     <script>
       document.addEventListener('DOMContentLoaded', () => {
@@ -20,16 +18,18 @@
   
   </head>
 
-  <body>
-    <!-- Cabeçalho e navegação -->
+  <body class="min-h-screen flex flex-col font-poppins">
     @include('components/layouts/partials/cabecalho')
-    
-    <!-- Conteúdo da página -->
-    <main>
-      {{{ await $slots.main() }}}
+    <main class="">
+      <section class="w-full pb-8 antialiased bg-white">
+        <div class="mx-auto">
+            {{{ await $slots.main() }}}
+        </div>
+      </section>
     </main>
 
     <!-- Rodapé -->
-    @include('components/layouts/partials/footer')
+  
   </body>
+  @include('components/layouts/partials/footer')  
 </html>

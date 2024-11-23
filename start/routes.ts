@@ -30,6 +30,9 @@ router
     router.get('/index', async({view}) =>{
       return view.render('pages/main')
     }).as('main')
+    router.get('/init', async({view}) =>{
+      return view.render('pages/inicio')
+    }).as('teste')
     router.get('/adm', async ({ view }) =>{
       return view.render('pages/adm')
     }).as('auth.adm').use(middleware.auth())
