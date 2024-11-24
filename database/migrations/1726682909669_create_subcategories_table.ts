@@ -8,7 +8,8 @@ export default class extends BaseSchema {
       table.increments('id')
 
       table.string('name')
-      table.integer('category_id')
+      table.integer('category_id').unsigned().notNullable().references('id').inTable('categories').onDelete('CASCADE')
+      
 
       table.timestamp('created_at')
       table.timestamp('updated_at')

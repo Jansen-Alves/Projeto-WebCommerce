@@ -25,7 +25,6 @@ export default class Product extends BaseModel {
   @belongsTo(() => Subcategory)
   declare subCategory: BelongsTo<typeof Subcategory>
 
-
   @column()
   declare stocked: number
 
