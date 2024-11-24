@@ -26,6 +26,8 @@ export default class User extends compose(BaseModel, AuthFinder) {
   declare password: string
 
   @column()
+  declare cpf: string
+  @column()
   declare roleId: number
 
   @belongsTo(() => Role)
@@ -36,9 +38,6 @@ export default class User extends compose(BaseModel, AuthFinder) {
     return this.roleId === Roles.ADMIN
   }
   
-  @column()
-  declare sex: string
-
   @column()
   declare birthday: Date
 
