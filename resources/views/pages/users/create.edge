@@ -80,6 +80,35 @@
                     <span>para logar!</span>
                 </p>
             </div>
+<<<<<<< HEAD
+=======
+            <div>
+                <label for="sex">Genero</label>
+                <select class='block text-sm font-medium leading-6 text-gray-900 bg-blue-100' name="sex">
+                      <option value="Masculino">Masculino</option>                      
+                      <option value="Feminino">Feminino</option>
+                      <option value="X">Não declarar</option>
+                  </select>
+            </div>
+            <div>
+                <label for="birthday">Data de nascimento</label>
+                @!input({name:'birthday', type:'date', required:'true'})
+            </div>
+            <div>
+                <label for="password" > Senha</label>
+                @!input({name:'password', type:'password', required:'true'})
+            </div>
+            
+            <div>
+                <label for="password_confirmation"> Confirme senha</label>
+                @!input({name:'password_confirmation', type:'password', required:'true'})
+            </div>
+    
+            @button({type:"submit"})
+            Cadastrar
+            @end
+            
+>>>>>>> 095013ff35d7315ad90e9ce0936f3c68a6929b88
         </div>
     </body>
 </html>
