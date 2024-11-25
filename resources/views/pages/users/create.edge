@@ -39,6 +39,12 @@
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-calendar-event-fill" viewBox="0 0 16 16">
                             <path d="M4 .5a.5.5 0 0 0-1 0V1H2a2 2 0 0 0-2 2v1h16V3a2 2 0 0 0-2-2h-1V.5a.5.5 0 0 0-1 0V1H4zM16 14V5H0v9a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2m-3.5-7h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5"/>
                         </svg>
+                        <input type="text" name="cpf" id="cpf-input" maxlength="14" placeholder="xxx.xxx.xxx-xx" required/>
+                    </div>
+                    <div class="input-box">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-calendar-event-fill" viewBox="0 0 16 16">
+                            <path d="M4 .5a.5.5 0 0 0-1 0V1H2a2 2 0 0 0-2 2v1h16V3a2 2 0 0 0-2-2h-1V.5a.5.5 0 0 0-1 0V1H4zM16 14V5H0v9a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2m-3.5-7h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5"/>
+                        </svg>
                         <input type="date" name="birthday" autofocus="on" placeholder="Data de Nascimento" required>
                     </div>
                     <div class="input-box">
@@ -56,6 +62,17 @@
                     <button type="submit" class="orange-button">
                         CRIAR CONTA
                     </button>
+                    <script>
+                        const cpfInput = document.getElementById('cpf-input');
+                
+                        cpfInput.addEventListener('input', (event) => {
+                            let value = event.target.value.replace(/\D/g, ''); // Remove caracteres não numéricos
+                            if (value.length > 3) value = value.replace(/^(\d{3})(\d)/, '$1.$2');
+                            if (value.length > 7) value = value.replace(/^(\d{3})\.(\d{3})(\d)/, '$1.$2.$3');
+                            if (value.length > 11) value = value.replace(/^(\d{3})\.(\d{3})\.(\d{3})(\d)/, '$1.$2.$3-$4');
+                            event.target.value = value;
+                        });
+                    </script>
                 </form>
                 <p>
                     <span>Já é Cadastrado?</span>
@@ -63,35 +80,6 @@
                     <span>para logar!</span>
                 </p>
             </div>
-<<<<<<< Updated upstream
-            <div>
-                <label for="sex">Genero</label>
-                <select class='block text-sm font-medium leading-6 text-gray-900 bg-blue-100' name="sex">
-                      <option value="Masculino">Masculino</option>                      
-                      <option value="Feminino">Feminino</option>
-                      <option value="X">Não declarar</option>
-                  </select>
-            </div>
-            <div>
-                <label for="birthday">Data de nascimento</label>
-                @!input({name:'birthday', type:'date', required:'true'})
-            </div>
-            <div>
-                <label for="password" > Senha</label>
-                @!input({name:'password', type:'password', required:'true'})
-            </div>
-            
-            <div>
-                <label for="password_confirmation"> Confirme senha</label>
-                @!input({name:'password_confirmation', type:'password', required:'true'})
-            </div>
-    
-            @button({type:"submit"})
-            Cadastrar
-            @end
-            
-=======
->>>>>>> Stashed changes
         </div>
     </body>
 </html>

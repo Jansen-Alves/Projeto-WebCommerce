@@ -11,6 +11,7 @@
 import AuthController from '#controllers/auth_controller'
 import router from '@adonisjs/core/services/router'
 import { middleware } from './kernel.js'
+import CategoriesController from '#controllers/categories_controller'
 
 const UsersController = () => import('#controllers/users_controller')
 const ProductsController = () => import('#controllers/products_controller')
@@ -26,6 +27,7 @@ router
   })
   .prefix('users')
   .as('users')
+  router.get('/categorias/:id', [CategoriesController, 'show'])
 
     router.get('/index', async({view}) =>{
       return view.render('pages/main')

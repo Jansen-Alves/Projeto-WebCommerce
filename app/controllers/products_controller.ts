@@ -2,6 +2,7 @@ import Product from '#models/product'
 import Category from '#models/category'
 import type { HttpContext } from '@adonisjs/core/http'
 import { createProductValidator  } from '#validators/product'
+import Subcategory from '#models/subcategory'
 
 
 export default class ProductsController {
@@ -34,8 +35,9 @@ export default class ProductsController {
     return view.render('pages/products/list', {product})
   }
 
-  async create({view, params }: HttpContext){
-    const categories = await Category.all()
+  async create({view }: HttpContext){
+    const categories = await Category.query().preload('subCategories')
+
     return view.render('pages/products/create',{categories})
   }
 

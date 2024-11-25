@@ -15,7 +15,7 @@ export default class Category extends BaseModel {
   declare products: HasMany<typeof Product>
 
   @hasMany(()=> Subcategory)
-  declare subCategory: HasMany<typeof Subcategory>
+  declare subCategories: HasMany<typeof Subcategory>
   
   @column.dateTime({ autoCreate: true })
   declare createdAt: DateTime
