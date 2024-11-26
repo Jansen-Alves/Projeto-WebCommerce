@@ -27,6 +27,7 @@ export default class User extends compose(BaseModel, AuthFinder) {
 
   @column()
   declare cpf: string
+  
   @column()
   declare roleId: number
 

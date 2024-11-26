@@ -8,13 +8,18 @@
 */
 
 
-import AuthController from '#controllers/auth_controller'
+
 import router from '@adonisjs/core/services/router'
 import { middleware } from './kernel.js'
-import CategoriesController from '#controllers/categories_controller'
+
+
+
 
 const UsersController = () => import('#controllers/users_controller')
 const ProductsController = () => import('#controllers/products_controller')
+const AuthController  = () => import('#controllers/auth_controller')
+const CategoriesController = () => import('#controllers/categories_controller')
+const ShoppingCartController = () => import('#controllers/shopping_carts_controller')
 router
   .group(() => {
     router.get('/', [UsersController, 'index']).as('index').use(middleware.adm())
@@ -27,7 +32,10 @@ router
   })
   .prefix('users')
   .as('users')
+
   router.get('/categorias/:id', [CategoriesController, 'show'])
+  router.post('/shopping-cart/add', [ShoppingCartController, 'store']).use(middleware.auth()).as('shoppingCart.add')
+
 
     router.get('/index', async({view}) =>{
       return view.render('pages/main')
