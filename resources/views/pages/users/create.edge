@@ -7,6 +7,20 @@
         <title>Sign Up</title>
         <link rel="stylesheet" href="/resources/css/index.css">
         <link rel="stylesheet" href="/resources/css/signup.css">
+        
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                const cpfInput = document.getElementById('cpf-input');
+        
+                cpfInput.addEventListener('input', (event) => {
+                    let value = event.target.value.replace(/\D/g, ''); // Remove caracteres não numéricos
+                    if (value.length > 3) value = value.replace(/^(\d{3})(\d)/, '$1.$2');
+                    if (value.length > 7) value = value.replace(/^(\d{3})\.(\d{3})(\d)/, '$1.$2.$3');
+                    if (value.length > 11) value = value.replace(/^(\d{3})\.(\d{3})\.(\d{3})(\d)/, '$1.$2.$3-$4');
+                    event.target.value = value;
+                });
+            });
+        </script>
     </head>
 
     <body>
@@ -18,6 +32,14 @@
             </div>
         </nav>
         <div class="white-box center">
+            <div class="back-button-container">
+                <button onclick="window.history.length > 1 ? history.back() : window.location.href = '/'" 
+                    class="back-button">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-arrow-left-short" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M12 8a.5.5 0 0 1-.5.5H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5a.5.5 0 0 1 .5.5"/>
+                    </svg>
+                </button>
+            </div>
             <div id="form-box" class="center">
                 <h1>
                     SIGN UP
@@ -62,17 +84,7 @@
                     <button type="submit" class="orange-button">
                         CRIAR CONTA
                     </button>
-                    <script>
-                        const cpfInput = document.getElementById('cpf-input');
-                
-                        cpfInput.addEventListener('input', (event) => {
-                            let value = event.target.value.replace(/\D/g, ''); // Remove caracteres não numéricos
-                            if (value.length > 3) value = value.replace(/^(\d{3})(\d)/, '$1.$2');
-                            if (value.length > 7) value = value.replace(/^(\d{3})\.(\d{3})(\d)/, '$1.$2.$3');
-                            if (value.length > 11) value = value.replace(/^(\d{3})\.(\d{3})\.(\d{3})(\d)/, '$1.$2.$3-$4');
-                            event.target.value = value;
-                        });
-                    </script>
+
                 </form>
                 <p>
                     <span>Já é Cadastrado?</span>
@@ -80,35 +92,6 @@
                     <span>para logar!</span>
                 </p>
             </div>
-<<<<<<< HEAD
-=======
-            <div>
-                <label for="sex">Genero</label>
-                <select class='block text-sm font-medium leading-6 text-gray-900 bg-blue-100' name="sex">
-                      <option value="Masculino">Masculino</option>                      
-                      <option value="Feminino">Feminino</option>
-                      <option value="X">Não declarar</option>
-                  </select>
-            </div>
-            <div>
-                <label for="birthday">Data de nascimento</label>
-                @!input({name:'birthday', type:'date', required:'true'})
-            </div>
-            <div>
-                <label for="password" > Senha</label>
-                @!input({name:'password', type:'password', required:'true'})
-            </div>
-            
-            <div>
-                <label for="password_confirmation"> Confirme senha</label>
-                @!input({name:'password_confirmation', type:'password', required:'true'})
-            </div>
-    
-            @button({type:"submit"})
-            Cadastrar
-            @end
-            
->>>>>>> 095013ff35d7315ad90e9ce0936f3c68a6929b88
         </div>
     </body>
 </html>

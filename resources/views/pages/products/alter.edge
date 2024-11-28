@@ -1,123 +1,53 @@
-<!DOCTYPE html>
+@layouts.app()    
+    <div class="bg-[#f7b57e34] min-h-screen flex flex-col items-center justify-center ">
+        <div class="bg-white max-w-md w-4/5 h-[450px] text-center rounded-lg shadow-md flex flex-col">
+            <div class="flex justify-start p-2">
+                <button onclick="window.history.length > 1 ? history.back() : window.location.href = '/'" 
+                    class="text-orange-400">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-arrow-left-short" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M12 8a.5.5 0 0 1-.5.5H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5a.5.5 0 0 1 .5.5"/>
+                    </svg>
+                </button>
+            </div>
 
-<html lang="pt">
-<head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Editar Produto</title>
-        <link rel="stylesheet" href="/resources/css/index.css">
-        <link rel="stylesheet" href="/resources/css/signup.css">
-    </head>
-
-    <body>
-    <nav>
-            <div id="navbar">
-                <div id="navbar-logo">
-                    <img src="/imagens/BungaTech.png" alt="Bunga Tech">
-                </div>
-                <div id="navbar-links">
-                    <ul>
-                        <li>
-                            <a href="{{route('/index')}}">
-                                Página Inicial
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{route('products.index')}}">
-                                Produtos
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                Sobre
-                            </a>
-                        </li>
-                    </ul>  
-                </div>
-                <div id="navbar-auth">
-                    @if(auth.isAuthenticated)
-                        <div id="navbar-ferramentas">
-                            <a id="link-carrinho" href="#">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-cart" viewBox="0 0 16 16">
-                                    <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M3.102 4l1.313 7h8.17l1.313-7zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2"/>
-                                </svg>
-                                <span>0</span>
-                            </a>
-                            <a id="link-favoritos" href="#">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16">
-                                    <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143q.09.083.176.171a3 3 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15"/>
-                                </svg>
-                                <span>0</span>
-                            </a>
-                            <a id="link-perfil" href="{{ auth.user.isAdm ? route('/adm') : route('users.alter', {id:auth.user.id}) }}">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
-                                    <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
-                                    <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"/>
-                                </svg>
-                            </a>
-                        </div>
-                        @if(auth.user.isAdm )
-                            <p> Admin {{ auth.user.fullName }} </p>
-                        @else
-                            <p> Cliente {{ auth.user.fullName }} </p>
-                        @end
-
-                        <a href="{{route('auth.destroy')}}"> Sair </a>
-                    @else
-                        @button({
-                            href: route('users.create'),
-                            class: 'white-button-auth'
-                        })
-                            Sign In
-                        @end
-                        @button({
-                            href: route('auth.create'),
-                            class:'orange-button-auth'
-                        }) 
-                            Login
-                        @end
-                    @end
-                </div>
-        </nav>
-
-        <div class="white-box center">
-            <div id="form-box" class="center">
-                <h1>
-                    EDITAR PRODUTO
-                </h1>
-                <form action="{{ route('products.update', {id:product.id}) }}" method="POST" style="width: 300px;">
-                    <div class="input-box">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
+            <div id="form-box" class="pt-[30px]">
+                <h1 class="text-orange-500 font-extrabold text-4xl">EDITAR PRODUTO</h1>
+                <form action="{{ route('products.update', {id:product.id}) }}" method="POST" class="w-[300px] mx-auto">
+                    <div class="flex items-center rounded-md bg-gray-200/50 px-4 py-2 mt-4 mx-auto w-4/5">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-orange-500" viewBox="0 0 16 16" fill="currentColor">
                             <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
                         </svg>
-                        <input type="text" name="name" autofocus="on" placeholder="Nome">
+                        <input type="text" name="name" placeholder="Nome" autofocus
+                            class="ml-2 bg-transparent outline-none border-none w-full text-gray-700" />
                     </div>
-                    <div class="input-box">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-tag-fill" viewBox="0 0 16 16">
-                        <path d="M2 1a1 1 0 0 0-1 1v4.586a1 1 0 0 0 .293.707l7 7a1 1 0 0 0 1.414 0l4.586-4.586a1 1 0 0 0 0-1.414l-7-7A1 1 0 0 0 6.586 1zm4 3.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0"/>
+                    <div class="flex items-center rounded-md bg-gray-200/50 px-4 py-2 mt-4 mx-auto w-4/5">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-orange-500" viewBox="0 0 16 16" fill="currentColor">
+                            <path d="M2 1a1 1 0 0 0-1 1v4.586a1 1 0 0 0 .293.707l7 7a1 1 0 0 0 1.414 0l4.586-4.586a1 1 0 0 0 0-1.414l-7-7A1 1 0 0 0 6.586 1zm4 3.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0"/>
                         </svg>
-                        <input type="text" name="price" autofocus="on" placeholder="Preço">
+                        <input type="text" name="price" autofocus placeholder="Preço"
+                            class="ml-2 bg-transparent outline-none border-none w-full text-gray-700" />
                     </div>
-                    <div class="input-box">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chat-left-dots-fill" viewBox="0 0 16 16">
-                        <path d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4.414a1 1 0 0 0-.707.293L.854 15.146A.5.5 0 0 1 0 14.793zm5 4a1 1 0 1 0-2 0 1 1 0 0 0 2 0m4 0a1 1 0 1 0-2 0 1 1 0 0 0 2 0m3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2"/>
+                    <div class="flex items-center rounded-md bg-gray-200/50 px-4 py-2 mt-4 mx-auto w-4/5">
+                      <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-orange-500" viewBox="0 0 16 16" fill="currentColor">
+                            <path d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4.414a1 1 0 0 0-.707.293L.854 15.146A.5.5 0 0 1 0 14.793zm5 4a1 1 0 1 0-2 0 1 1 0 0 0 2 0m4 0a1 1 0 1 0-2 0 1 1 0 0 0 2 0m3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2"/>
                         </svg>
-                        <input type="text" name="description" autofocus="on" placeholder="Descrição">
+                        <input type="text" name="description" autofocus placeholder="Descrição"
+                            class="ml-2 bg-transparent outline-none border-none w-full text-gray-700" />
                     </div>
                     <div>
-                        <label for="category_id" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"></label>
-                        <select name="category_id" class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                        <label for="category_id"></label>
+                        <select name="category_id" class="rounded-md bg-gray-200/50 text-gray-700 px-4 py-2 mt-4 mx-auto w-4/5">
                             <option selected>Escolha uma Categoria</option>
                                 @each(category in categories)
                                 <option value="{{ category.id }}">{{ category.name }}</option>
                                 @end
                         </select>
                     </div>
-                    <button type="submit" class="orange-button">
+                    <button type="submit" class="orange-button mt-[20px] py-[8px] px-[16px] rounded-[5px] text-base cursor-pointer bg-orange-500 text-white hover:bg-orange-400">
                         EDITAR
                     </button>
                 </form>
             </div>
         </div>
-    </body>
-</html>
+    </div> 
+@end

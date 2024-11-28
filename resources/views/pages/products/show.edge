@@ -1,16 +1,30 @@
 @layouts.app()
-<style>
-    .nomeProd{
-        color: yellow
-    }
-</style>
-    <div>
-        <div class="bg-slate-200"><a>Produto:</a>
-        <a>-{{product.name}}</a></div>
-        
-        <div><a> preco:</a> {{product.price}} </div>
-        <div><a> categoria:</a> {{ product.category.name }}</div>
-        <div><p>{{product.description}}</p></div>
-     
+
+<div class="py-0 px-[150px]">
+
+    <div class="flex flex-row w-full h-[500px] mt-[110px] shadow-custom rounded-[5px] overflow-hidden">
+        <div class="bg-orange-100 flex justify-center items-center flex-shrink-0 flex-grow-0 w-[470px] h-full py-0 px-[50px]">
+            <img src="imagens/product page/promotion products/MOBILE.png" alt="Coleção de iPhones" class="max-w-full max-h-full object-cover hover:animate-wiggle">
+        </div>
+        <div class="bg-white flex flex-col justify-center items-start py-0 px-[80px] flex-1">
+            <div class="flex flex-row mb-[7px]">
+                <span class="h-[40px] w-[15px] mr-[15px] bg-orange-500 rounded-[25px]"></span>
+                <h1 class="text-[rgb(64, 64, 64)] font-medium text-[25px]">{{product.name}}</h1>
+            </div>
+            <p class="text-gray-500 font-normal text-base my-[10px] mx-0 antialiased">
+                {{product.description}}
+            </p>
+            <h2 class="text-[rgb(64, 64, 64)] font-800 text-[25px] mt-0 antialiased">
+                {{ product.category.name }}
+            </h2>
+            <h3 class="text-[rgb(64, 64, 64)] font-800 text-[25px] mt-0 antialiased">
+                R$ {{product.price}}
+            </h3>
+            <button class="orange-button mt-[20px] py-[8px] px-[16px] rounded-[5px] text-base cursor-pointer bg-orange-500 text-white hover:bg-orange-400">
+                Adicionar ao Carrinho
+            </button>
+        </div>
     </div>
+</div>
+    
 @end

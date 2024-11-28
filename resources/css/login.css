@@ -126,3 +126,20 @@ h2 {
     text-decoration: none;
 }
 
+.back-button-container {
+    display: flex;
+    justify-content: start;
+    padding: 8px;
+    border: none;
+    
+}
+
+.back-button {
+    all: unset;
+    cursor: pointer;
+}
+
+.back-button svg {
+    display: inline;
+    color: rgb(251, 146, 60);
+}

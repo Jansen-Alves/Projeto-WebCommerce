@@ -11,10 +11,10 @@
 
   </head>
 
-  <body class="min-h-screen flex flex-col font-poppins">
+  <body class="min-h-screen flex flex-col flex-grow font-poppins">
     @include('components/layouts/partials/cabecalho')
-    <main class="">
-      <section class="w-full pb-8 antialiased bg-white">
+    <main class="flex-grow">
+      <section>
         <div class="mx-auto">
             {{{ await $slots.main() }}}
         </div>
