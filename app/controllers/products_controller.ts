@@ -36,13 +36,20 @@ export default class ProductsController {
   }
 
   async create({view }: HttpContext){
-    const categories = await Category.query().preload('subCategories')
-
-    return view.render('pages/products/create',{categories})
+    const categories = await Category.query().orderBy('id', 'asc').preload('subCategories')
+    const subcategories = await Subcategory.query().orderBy('category_id', 'asc')
+    return view.render('pages/products/create',{categories, subcategories})
   }
 
   async store({request, response}: HttpContext){
+    console.log("entrou", request.body())
+    const imgSrc = request.file('imgSrc')
+    console.log(imgSrc)
     const payload = await request.validateUsing(createProductValidator)
+  
+    const add = await Subcategory.findBy('id', payload.subcategory_id)
+    payload.category_id = add?.categoryId
+    
     const product = await Product.create(payload)
     return response.redirect().toRoute('products.show', {id: product.id})
   }

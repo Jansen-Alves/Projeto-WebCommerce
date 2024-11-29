@@ -1,5 +1,6 @@
 import type { HttpContext } from '@adonisjs/core/http'
 import Category from '#models/category'
+import Subcategory from '#models/subcategory'
 
 export default class CategoriesController {
     async show({ view, params }: HttpContext) {
@@ -9,3 +10,6 @@ export default class CategoriesController {
         return view.render('pages/categories/show', { categories })
       }
 }
+
+
+    

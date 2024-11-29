@@ -7,8 +7,8 @@ export const createProductValidator = vine.compile(
       stocked: vine.number().min(0),
       imgSrc: vine.string().trim(),
       description: vine.string().trim(),
-      category_id: vine.number(),
-      subCategory_id: vine.number(),
+      category_id: vine.number().optional(),
+      subcategory_id: vine.number(),
     })
   )
   
