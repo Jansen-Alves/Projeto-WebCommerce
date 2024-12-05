@@ -3,7 +3,8 @@ import Category from '#models/category'
 import type { HttpContext } from '@adonisjs/core/http'
 import { createProductValidator  } from '#validators/product'
 import Subcategory from '#models/subcategory'
-
+import path from 'path'
+import { fileURLToPath } from 'url';
 
 export default class ProductsController {
   async index({ view,request}: HttpContext) {
@@ -42,14 +43,29 @@ export default class ProductsController {
   }
 
   async store({request, response}: HttpContext){
-    console.log("entrou", request.body())
-    const imgSrc = request.file('imgSrc')
+    const __filename = fileURLToPath(import.meta.url); // Caminho completo do arquivo atual
+    const __dirname = path.dirname(__filename); 
+    //console.log("entrou", request.body())
+    const imgSrc = request.file('imagem', {
+      extnames: ['jpg', 'png', 'jpeg'],
+      size: '4mb',
+    });
+
     console.log(imgSrc)
     const payload = await request.validateUsing(createProductValidator)
-  
-    const add = await Subcategory.findBy('id', payload.subcategory_id)
-    payload.category_id = add?.categoryId
+    console.log("depois do validador", payload.imgSrc)
+    const add = await Subcategory.findBy('id', payload.subcategoryId)
+    payload.categoryId = add?.categoryId
     
+    if (imgSrc) {
+      const imageName = `${new Date().getTime()}`;
+      const uploadPath = path.join(__dirname, '..', 'uploads', imageName);
+
+      console.log("path", imageName)
+      await imgSrc.move(uploadPath);
+      payload.imgSrc = `app/uploads/${imageName}/${imgSrc.clientName}`
+      }
+    console.log(payload)
     const product = await Product.create(payload)
     return response.redirect().toRoute('products.show', {id: product.id})
   }

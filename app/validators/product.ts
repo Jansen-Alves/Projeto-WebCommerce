@@ -5,10 +5,10 @@ export const createProductValidator = vine.compile(
       name: vine.string().trim().minLength(2),
       price: vine.number().min(0),
       stocked: vine.number().min(0),
-      imgSrc: vine.string().trim(),
       description: vine.string().trim(),
-      category_id: vine.number().optional(),
-      subcategory_id: vine.number(),
+      subcategoryId: vine.number(),
+      categoryId: vine.number().optional(),
+      imgSrc: vine.string().optional().nullable(),
     })
   )
   

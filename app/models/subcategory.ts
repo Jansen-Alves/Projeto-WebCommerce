@@ -10,7 +10,7 @@ export default class Subcategory extends BaseModel {
   @column()
   declare name: string
   
-   @column()
+  @column()
   declare categoryId: number
 
   @belongsTo(() => Category)

@@ -20,7 +20,7 @@ export default class Product extends BaseModel {
   declare category: BelongsTo<typeof Category>
 
   @column()
-  declare subCategoryId: number
+  declare subcategoryId: number
 
   @belongsTo(() => Subcategory)
   declare subCategory: BelongsTo<typeof Subcategory>
@@ -29,7 +29,7 @@ export default class Product extends BaseModel {
   declare stocked: number
 
   @column()
-  declare imgSrc: string
+  declare imgSrc: string | null
 
   @column()
   declare description: string
