@@ -17,12 +17,12 @@
                     <a href="{{route('products.show',{id: product.id}) }}">
                       <li class="produto-card bg-white rounded-[10px] shadow-custom text-center overflow-hidden">
                           <div class="produto-image-container bg-[#f7b57e34] p-[20px] h-[198px] flex justify-center items-center relative">
-                              <img src="imagens/product page/headphone collection/01.png" alt="Headphones Navy" class="max-w-full h-full object-contain" />
+                              <img src="{{product.imgSrc}}" alt="produtos" class="max-w-full h-full object-contain" />
                           </div>
                           <div class="produto-text-container p-[16px]">
                               <h1 class="text-[rgb(64, 64, 64)] text-[19px] font-medium mb-[4px]">{{product.name}}</h1>
                               <p class="text-[rgb(64, 64, 64)] text-[18px] font-normal mb-[8px]">R${{product.price}}</p>
-                              <p class="text-[rgb(64, 64, 64)] text-[18px] font-normal mb-[8px]">Quantidade: xxx</p>
+                              <p class="text-[rgb(64, 64, 64)] text-[18px] font-normal mb-[8px]">Quantidade: {{product.stocked}}</p>
                               <div class="flex justify-between p-[5px]">  
                                 <a href="{{route('products.alter',{id: product.id}) }}" class="orange-button py-[8px] px-[16px] rounded-[5px] text-base cursor-pointer bg-orange-500 text-white hover:bg-orange-400">
                                 Editar

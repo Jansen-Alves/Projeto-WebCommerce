@@ -63,7 +63,7 @@ export default class ProductsController {
 
       console.log("path", imageName)
       await imgSrc.move(uploadPath);
-      payload.imgSrc = `app/uploads/${imageName}/${imgSrc.clientName}`
+      payload.imgSrc = `/app/uploads/${imageName}/${imgSrc.clientName}`
       }
     console.log(payload)
     const product = await Product.create(payload)
