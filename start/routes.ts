@@ -34,8 +34,8 @@ router
   .as('users')
 
   router.get('/categorias/:id', [CategoriesController, 'show'])
-  router.post('/shopping-cart/add', [ShoppingCartController, 'store']).use(middleware.auth()).as('shoppingCart.add')
-
+  router.get('/shopping-cart/add/:id', [ShoppingCartController, 'store']).use(middleware.auth()).as('shoppingCart.add')
+  router.get('/shopping-car/:id', [ShoppingCartController, 'show']).use(middleware.auth()).as('shoppingCart.show')
 
     router.get('/index', async({view}) =>{
       return view.render('pages/main')

@@ -1,8 +1,9 @@
 import { DateTime } from 'luxon'
-import { BaseModel, column, belongsTo } from '@adonisjs/lucid/orm'
-import type { BelongsTo } from '@adonisjs/lucid/types/relations'
+import { BaseModel, column, belongsTo, hasMany } from '@adonisjs/lucid/orm'
+import type { BelongsTo, HasMany } from '@adonisjs/lucid/types/relations'
 import  Category  from '#models/category'
 import Subcategory from './subcategory.js'
+import ShoppingCart from './shopping_cart.js'
 export default class Product extends BaseModel {
   @column({ isPrimary: true })
   declare id: number
@@ -30,7 +31,10 @@ export default class Product extends BaseModel {
 
   @column()
   declare imgSrc: string | null
-
+  
+  @hasMany(()=> ShoppingCart)
+  declare shoppingCart: HasMany<typeof ShoppingCart>
+  
   @column()
   declare description: string
 

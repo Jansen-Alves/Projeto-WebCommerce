@@ -1,11 +1,12 @@
 import { DateTime } from 'luxon'
 import hash from '@adonisjs/core/services/hash'
 import { compose } from '@adonisjs/core/helpers'
-import { BaseModel, column, belongsTo, computed } from '@adonisjs/lucid/orm'
-import type { BelongsTo } from '@adonisjs/lucid/types/relations'
+import { BaseModel, column, belongsTo, computed, hasMany } from '@adonisjs/lucid/orm'
+import type { BelongsTo, HasMany } from '@adonisjs/lucid/types/relations'
 import { withAuthFinder } from '@adonisjs/auth/mixins/lucid'
 import Role from './role.js'
 import Roles from '../Enums/Roles.js'
+import ShoppingCart from './shopping_cart.js'
 
 const AuthFinder = withAuthFinder(() => hash.use('scrypt'), {
   uids: ['email'],
@@ -38,7 +39,9 @@ export default class User extends compose(BaseModel, AuthFinder) {
   public get isAdm(){
     return this.roleId === Roles.ADMIN
   }
-  
+  @hasMany(() => ShoppingCart)
+  declare shoppingCart: HasMany<typeof ShoppingCart>
+
   @column()
   declare birthday: Date
 

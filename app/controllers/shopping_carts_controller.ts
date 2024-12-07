@@ -2,14 +2,15 @@ import type { HttpContext } from '@adonisjs/core/http'
 import ShoppingCart from '#models/shopping_cart'
 export default class ShoppingCartsController {
 
-    async store({auth, request, response}: HttpContext){
+    async store({auth, request, response, params}: HttpContext){
         try {
             const user = auth.user
             if (!user) {
               return response.unauthorized('Usuário não logado')
             }
-      
-            const productId = request.input('product_id')
+            
+            const productId = params.id
+            //const productId = request.input('product_id')
       
             // Verifica se o produto já está no carrinho
             const existingItem = await ShoppingCart.query()
@@ -18,7 +19,7 @@ export default class ShoppingCartsController {
               .first()
       
             if (existingItem) {
-              return response.badRequest('Product already in cart')
+              return response.badRequest('Produto já no carrinho')
             }
       
             // Adiciona ao carrinho
@@ -33,5 +34,16 @@ export default class ShoppingCartsController {
             return response.internalServerError('Algo deu errado')
           }
 
+    }
+    async show({params, view}: HttpContext){
+      try{
+        const carts = await ShoppingCart.query().where('userId', params.id).preload('product')
+        //await carts?.load('product')
+        //console.log(carts)
+        return view.render('pages/cart/show',{carts})
+
+      }catch{
+        return Response.error
+      }
     }
 }

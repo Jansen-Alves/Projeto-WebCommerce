@@ -51,19 +51,19 @@ export default class ProductsController {
       size: '4mb',
     });
 
-    console.log(imgSrc)
+    //console.log(imgSrc)
     const payload = await request.validateUsing(createProductValidator)
-    console.log("depois do validador", payload.imgSrc)
-    const add = await Subcategory.findBy('id', payload.subcategoryId)
+   // console.log("depois do validador", payload.imgSrc)
+    const add = await Subcategory.findByOrFail('id', payload.subcategoryId)
     payload.categoryId = add?.categoryId
     
     if (imgSrc) {
       const imageName = `${new Date().getTime()}`;
-      const uploadPath = path.join(__dirname, '..', 'uploads', imageName);
+      const uploadPath = path.join(__dirname, '..', 'uploads', add.name);
 
       console.log("path", imageName)
       await imgSrc.move(uploadPath);
-      payload.imgSrc = `/app/uploads/${imageName}/${imgSrc.clientName}`
+      payload.imgSrc = `/app/uploads/${add.name}/${imgSrc.clientName}`
       }
     console.log(payload)
     const product = await Product.create(payload)
