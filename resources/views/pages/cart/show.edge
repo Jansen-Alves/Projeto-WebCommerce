@@ -1,8 +1,9 @@
 @layouts.app() 
     <div class=" px-5 pt-[150px] pb-[30px] flex justify-center">
+        
         @each(cart in carts)
         <ul>
-            <li>{{cart.product.name}}  <li>
+            <li>{{cart.product.name}}  </li>
             <li>{{cart.product.price}}</li>
         </ul>
         @end
