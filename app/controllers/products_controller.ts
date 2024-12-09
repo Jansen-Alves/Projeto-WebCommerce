@@ -73,6 +73,7 @@ export default class ProductsController {
   async show({view, params}: HttpContext) {
     const product = await Product.findOrFail(params.id)
     await product.load('category')
+    await product.load('subCategory')
     //const product = await data.json()
     return view.render('pages/products/show', {product})
   }

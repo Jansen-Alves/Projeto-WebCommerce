@@ -1,9 +1,9 @@
 @layouts.app()
 
-<div class="py-0 px-[150px]">
+<div class="py-2 px-[150px]">
 
-    <div class="flex flex-row w-full h-[500px] mt-[110px] shadow-custom rounded-[5px] overflow-hidden">
-        <div class="bg-orange-100 flex justify-center items-center flex-shrink-0 flex-grow-0 w-[470px] h-full py-0 px-[50px]">
+    <div class="flex flex-row w-full h-[500px] mt-[110px] mb-[40px] shadow-custom rounded-[5px] overflow-hidden">
+        <div class="bg-orange-300 flex justify-center items-center flex-shrink-0 flex-grow-0 w-[470px] h-full py-0 px-[50px]">
             <img src="{{product.imgSrc}}" alt="Coleção de iPhones" class="max-w-full max-h-full object-cover hover:animate-wiggle">
         </div>
         <div class="bg-white flex flex-col justify-center items-start py-0 px-[80px] flex-1">
@@ -14,9 +14,14 @@
             <p class="text-gray-500 font-normal text-base my-[10px] mx-0 antialiased">
                 {{product.description}}
             </p>
-            <h2 class="text-[rgb(64, 64, 64)] font-800 text-[25px] mt-0 antialiased">
-                {{ product.category.name }}
-            </h2>
+            <div class="">
+                <h2 class="text-[rgb(64, 64, 64)] font-800 text-[25px] mt-0 antialiased">
+                    {{ product.category.name }}
+                </h2>
+                <h3 class="text-[rgb(64, 64, 64)] font-800 text-[13px] mt-0 mb-2 antialiased">
+                    - {{ product.subCategory.name }}
+                </h3>
+            </div>
             <h3 class="text-[rgb(64, 64, 64)] font-800 text-[25px] mt-0 antialiased">
                 R$ {{product.price}}
             </h3>

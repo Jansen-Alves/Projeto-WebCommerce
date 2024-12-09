@@ -46,4 +46,30 @@ export default class ShoppingCartsController {
         return Response.error
       }
     }
+
+    async remove({response, params,auth}: HttpContext){
+      try{
+        const user = auth.user
+        if (!user) {
+          return response.unauthorized('Usuário não logado')
+        }
+        const cart = await ShoppingCart.query().where('userId', user.id).andWhere('productId', params.id).first()
+        if(cart){
+          cart.active = false
+          await cart.save()
+        }
+    }catch{
+      return response.internalServerError()
+    }
+    }
+
+
+    async destroy({response, params, auth}: HttpContext){
+      const user = auth.user
+      if (!user) {
+        return response.unauthorized('Usuário não logado')
+      }
+      await ShoppingCart.query().where('userId', user.id).andWhere('productId', params.id).delete()
+      return response.redirect().toRoute('product.list')
+    }
 }
