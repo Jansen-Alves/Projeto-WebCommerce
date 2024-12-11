@@ -8,6 +8,7 @@ import { fileURLToPath } from 'url';
 
 export default class ProductsController {
   async index({ view,request}: HttpContext) {
+    //console.log("chegou na função")
     const page = request.input('page', 1)
     const limit = 10
     //requere todo os rows da tabela Product
@@ -15,10 +16,14 @@ export default class ProductsController {
     //const  = await data.json()
 
     const payload = request.only(['name'])
-    const query = Product.query()
+    const query =  Product.query()
     if (payload.name != null && payload.name.length){
-     query.where('name', 'like', `%${payload.name}%`)
-  } 
+      await query.where('name', 'like', `%${payload.name}%`)
+
+  }/*else if(payload.category != null ){
+    query.where('subcategoryId','like', `${payload.category}`)
+  }*/
+    await query.preload('category').preload('subCategory')
     const product = await query.paginate(page,limit)
     return view.render('pages/products/index', {product})
   }

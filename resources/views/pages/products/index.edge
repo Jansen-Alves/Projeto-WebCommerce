@@ -1,303 +1,83 @@
-@layouts.app()
-
-<script>
-    document.addEventListener('DOMContentLoaded', () => {
-
-        // Produto Cards Display
-
-        let produtoContainerWidth = document.querySelector('.produto-cards-container').offsetWidth;
-        let produtoCardWidth = 260;
-        let produtoCardsPerRow = Math.floor(produtoContainerWidth / (produtoCardWidth + 10));
-        let marginSpacing = (produtoContainerWidth - (produtoCardsPerRow * produtoCardWidth)) / (produtoCardsPerRow - 1);
-
-        let lastElement = produtoCardsPerRow -1;
-        let produtoCards;
-
-        let produtoSection = document.querySelectorAll(".produto-section");
-        produtoSection.forEach((section) => {
-            produtoCards = section.querySelectorAll('.produto-card');
-
-            for (let i = 0; i < produtoCardsPerRow; i++) {
-                produtoCards[i].classList.add('active');
-
-                if (i === lastElement) {
-                    produtoCards[i].style.marginRight = '0px';
-                }
-                else {
-                    produtoCards[i].style.marginRight = `${marginSpacing}px`;
-                }
-            }
-        })
-
-        // Adicionando Itens aos Favoritos
-
-        let favoritosCont = document.querySelector('#link-favoritos span');
-        let favoritosButton = document.querySelectorAll('.button-favoritos');
-        
-        favoritosButton.forEach((button) => {
-            button.addEventListener('click', () => {
-                button.classList.toggle('active');
-
-                favoritosCont.innerHTML = document.querySelectorAll('.button-favoritos.active').length;
-            })
-        })
-
-        // Adicionando Itens ao Carrinho
-
-        let carrinhoCont = document.querySelector('#link-carrinho span');
-        let carrinhoButton = document.querySelectorAll('.produto-card .orange-button');
-
-        carrinhoButton.forEach((button) => {
-            button.addEventListener('click', () => {
-                button.classList.toggle('active');
-
-                let buttonString = button.innerHTML.trim();
-                if (buttonString === "Adicionar ao Carrinho") {
-                    button.innerHTML = "Remover";
-                }
-                else if (buttonString === "Remover") {
-                    button.innerHTML = "Adicionar ao Carrinho";
-                }
-                else {
-                    console.log("Error: Adicionando Itens ao Carrinho FALHOU", button.innerHTML);
-                }
-                carrinhoCont.innerHTML = document.querySelectorAll('.produto-card .orange-button.active').length;
-            })
-        })
-
-        // SlideShow
-
-        let slideshowButtons = document.querySelectorAll(".slideshow-button");
-        slideshowButtons.forEach((button) => {
-            button.addEventListener('click', () => {
-                let slideshowSection = button.parentElement.dataset.slideshow;
-                let slideshowContainer = document.querySelector(`#produto-section-${slideshowSection}`);
-                let produtoCards = slideshowContainer.querySelectorAll('.produto-card');
-
-                if (button.classList.contains('prev-button')) {
-                    if (lastElement <= (produtoCardsPerRow - 1)) {
-                        lastElement = produtoCards.length - 1;
-                    }
-                    else {
-                        lastElement--;
-                    }
-                }
-                else if (button.classList.contains('next-button')) {
-                    if (lastElement === (produtoCards.length - 1)) {
-                        lastElement = produtoCardsPerRow - 1;
-                    }else {
-                        lastElement++;
-                    }
-                }
-                else {
-                    console.log("Slideshow: Erro");
-                }
-
-                for (let i = 0; i < produtoCards.length; i++) {
-                    if ((i <= lastElement) && (i >= (lastElement - (produtoCardsPerRow - 1)))) {
-                        produtoCards[i].classList.add('active');
-
-                        if (i === lastElement) {
-                            produtoCards[i].style.marginRight = '0px';
-                        }
-                        else {
-                            produtoCards[i].style.marginRight = `${marginSpacing}px`;
-                        }
-                    }
-                    else {
-                        produtoCards[i].classList.remove('active');
-                        produtoCards[i].style.marginRight = '0px';
-                    }
-                }
-            })
-        })
-    })
-</script>
-
-<!-- Main Body -->
-<div class="py-0 px-[150px]">
-
-    <!-- Top Section -->
-    <div class="pt-[150px] pb-[50px] flex justify-center">
-        <div class="bg-[#f7b57e34] w-full h-[520px] overflow-hidden p-[100px] rounded-[5px] flex flex-row items-center justify-between">
-            
-            <!-- Text Section -->
-            <div class="w-[52%]">
-                <h1 class="text-[rgb(64,64,64)] text-[23px] font-medium antialiased">Último Lançamento</h1>
-                <h2 class="text-[rgb(64,64,64)] text-[45px] font-medium">Headphone Sem Fio</h2>
-                <p class="text-[rgb(117,117,117)] text-[17px] mt-[10px] mb-[25px] leading-[1.7]">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse iaculis porta velit, eu vehicula sem tincidunt sit amet. Integer bibendum lacus eu lorem feugiat.
-                </p>
-                <button class="bg-orange-500 text-white text-base font-medium antialiased transition-all duration-300 hover:bg-orange-400 py-[15px] px-[45px] rounded-[5px] text-[17px]">
-                    Compre Agora
-                </button>
-            </div>
-            
-            <!-- Image Section -->
-            <div class="bg-orange-800/20 w-96 h-96 rounded-full flex justify-center items-center shadow-lg hover:animate-wiggle cursor-pointer">
-                <img src="imagens/product page/top_headphone.png" alt="Headphone Cor Beje" class="h-11/12 w-auto">
-            </div>
-        </div>
-    </div>
-    <!-- Fim da Section -->
-
-
-    <!-- Categorias de Produtos -->
-    <div id="produto-categoria-container" class="mt-[45px]">
-        <div id="produto-categoria-text" class="mb-[45px] flex items-center">
-            <span class="h-[40px] w-[15px] mr-[15px] bg-orange-500 rounded-[25px]"></span>
-            <span class="text-[rgb(64, 64, 64)] font-medium text-[25px]">Categorias</span>
-        </div>
-        <div id="produto-categoria-wrapper" class="flex flex-wrap gap-[15px] justify-start w-full">
-            <div class="produto-categoria w-[375px] h-[100px] overflow-hidden flex justify-start items-center rounded-[5px] mb-[15px] shadow-custom transition-transform duration-300 ease-in-out hover:scale-110 cursor-pointer">
-                <div class="produto-categoria-image bg-[#f7b57e34] flex justify-center items-center p-[10px] w-[100px] h-full">
-                    <img src="imagens/product page/product category/all.png" alt="Imagem contendo Todas as Categorias" class="max-w-[97%] max-h-[97%] object-contain">
-                </div>
-                <div class="produto-categoria-desc flex flex-col justify-center pl-7 h-full flex-grow">
-                    <span class="produto-categoria-tipo text-gray-800 font-medium text-lg">Todos</span>
-                    <span class="produto-categoria-quant text-gray-500 text-sm">60 itens</span>
-                </div>
-            </div>
-            <div class="produto-categoria w-[375px] h-[100px] overflow-hidden flex justify-start items-center rounded-[5px] mb-[15px] shadow-custom transition-transform duration-300 ease-in-out hover:scale-110 cursor-pointer">
-                <div class="produto-categoria-image bg-[#f7b57e34] flex justify-center items-center p-2.5 w-[100px] h-full">
-                    <img src="imagens/product page/product category/headphone.png" alt="Imagem contendo Todos os Headphones" class="max-w-[97%] max-h-[97%] object-contain">
-                </div>
-                <div class="produto-categoria-desc flex flex-col justify-center pl-7 h-full flex-grow">
-                    <span class="produto-categoria-tipo text-gray-800 font-medium text-lg">Headphone</span>
-                    <span class="produto-categoria-quant text-gray-500 text-sm">12 itens</span>
-                </div>
-            </div>
-            <div class="produto-categoria w-[375px] h-[100px] overflow-hidden flex justify-start items-center rounded-[5px] mb-[15px] shadow-custom transition-transform duration-300 ease-in-out hover:scale-110 cursor-pointer">
-                <div class="produto-categoria-image bg-[#f7b57e34] flex justify-center items-center p-2.5 w-[100px] h-full">
-                    <img src="imagens/product page/product category/ipad.png" alt="Imagem contendo Todos os Tablets" class="max-w-[97%] max-h-[97%] object-contain">
-                </div>
-                <div class="produto-categoria-desc flex flex-col justify-center pl-7 h-full flex-grow">
-                    <span class="produto-categoria-tipo text-gray-800 font-medium text-lg">Tablet</span>
-                    <span class="produto-categoria-quant text-gray-500 text-sm">12 itens</span>
-                </div>
-            </div>
-            <div class="produto-categoria w-[375px] h-[100px] overflow-hidden flex justify-start items-center rounded-[5px] mb-[15px] shadow-custom transition-transform duration-300 ease-in-out hover:scale-110 cursor-pointer">
-                <div class="produto-categoria-image bg-[#f7b57e34] flex justify-center items-center p-2.5 w-[100px] h-full">
-                    <img src="imagens/product page/product category/laptop.png" alt="Imagem contendo Todos os Notebooks" class="max-w-[97%] max-h-[97%] object-contain">
-                </div>
-                <div class="produto-categoria-desc flex flex-col justify-center pl-7 h-full flex-grow">
-                    <span class="produto-categoria-tipo text-gray-800 font-medium text-lg">Notebook</span>
-                    <span class="produto-categoria-quant text-gray-500 text-sm">12 itens</span>
-                </div>
-            </div>
-            <div class="produto-categoria w-[375px] h-[100px] overflow-hidden flex justify-start items-center rounded-[5px] mb-[15px] shadow-custom transition-transform duration-300 ease-in-out hover:scale-110 cursor-pointer">
-                <div class="produto-categoria-image bg-[#f7b57e34] flex justify-center items-center p-2.5 w-[100px] h-full">
-                    <img src="imagens/product page/product category/phone.png" alt="Imagem contendo Todos os Celulares" class="max-w-[97%] max-h-[97%] object-contain">
-                </div>
-                <div class="produto-categoria-desc flex flex-col justify-center pl-7 h-full flex-grow">
-                    <span class="produto-categoria-tipo text-gray-800 font-medium text-lg">Celular</span>
-                    <span class="produto-categoria-quant text-gray-500 text-sm">12 itens</span>
-                </div>
-            </div>
-            <div class="produto-categoria w-[375px] h-[100px] overflow-hidden flex justify-start items-center rounded-[5px] mb-[15px] shadow-custom transition-transform duration-300 ease-in-out hover:scale-110 cursor-pointer">
-                <div class="produto-categoria-image bg-[#f7b57e34] flex justify-center items-center p-2.5 w-[100px] h-full">
-                    <img src="imagens/product page/product category/watch.png" alt="Imagem contendo Todos os Smartwatchs" class="max-w-[97%] max-h-[97%] object-contain">
-                </div>
-                <div class="produto-categoria-desc flex flex-col justify-center pl-7 h-full flex-grow">
-                    <span class="produto-categoria-tipo text-gray-800 font-medium text-lg">Smartwatch</span>
-                    <span class="produto-categoria-quant text-gray-500 text-sm">12 itens</span>
-                </div>
-            </div>
-        </div>
-    </div>
+@layouts.app() 
     
-    <!-- Produto Cards ALL / Slideshow-->
-
-    <!-- Section Headphone -->
-    <div class="produto-section mt-20">
-        <div class="produto-section-top-container flex justify-between items-center">
-            <div class="section-categoria-container">
-                <div class="section-categoria-type flex items-center">
-                <span class="h-[40px] w-[15px] mr-[15px] bg-orange-500 rounded-[25px]"></span>
-                <span class="text-[rgb(64, 64, 64)] font-medium text-[25px]">Headphones</span>
-                </div>
-                <h1 class="text-gray-700 text-4xl font-medium mb-10">Explore os Mais Vendidos</h1>
+<div class="flex flex-col py-4 pt-[150px] px-[150px] justify-center flex-grow-0">
+    
+      <div class="flex flex-row my-[20px] bg-slate-100 p-[14px] items-center w-[max-content] rounded-[28px]">
+          <!-- Formulário de busca -->
+          <form method="GET" action="{{route('products.index')}}">
+            <div class="flex flex-row">
+              <input type="text" id="name" name="name" placeholder="Pesquise" class="ml-[14px] w-[350px] outline-none bg-transparent border-none" value="{{ request.input('name', '') }}" /> 
+            <button type="submit"> 
+              @svg('heroicons:magnifying-glass-20-solid', {class:'w-6 h-6 mx-1'})
+            </button>
             </div>
-            <div class="slideshow-buttons-conteiner flex">
-                <button class="slideshow-button prev-button bg-gray-200 rounded-full w-16 h-16 flex justify-center items-center shadow-md mr-4">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-chevron-left" viewBox="0 0 16 16">
-                        <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0"/>
-                    </svg>
-                </button>
-                <button class="slideshow-button next-button bg-gray-200 rounded-full w-16 h-16 flex justify-center items-center shadow-md">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16">
-                        <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708"/>
-                    </svg>
-                </button>
-            </div>
-        </div>
-
-        <div class="produto-cards-container w-full flex justify-start">
-            <ul class="flex flex-row flex-wrap list-none">
-                <li class="produto-card bg-white rounded-[10px] shadow-custom text-center overflow-hidden transition-transform duration-800 ease-in-out hover:scale-110 w-[260px] h-[379px]">
-                    <div class="produto-image-container bg-[#f7b57e34] p-[20px] h-[198px] flex justify-center items-center relative">
-                        <img src="imagens/product page/headphone collection/01.png" alt="Headphones Navy" class="max-w-full h-full object-contain" />
-                        <button class="button-favoritos bg-white text-[rgb(64, 64, 64)] rounded-full flex justify-center items-center p-[8px] cursor-pointer absolute top-[10px] right-[10px] z-10">
-                            <svg viewBox="0 0 24 24" width="22" height="22" xmlns="http://www.w3.org/2000/svg" class="stroke-gray-600 fill-none">
-                                <path fill-rule="evenodd" clip-rule="evenodd" d="M12 6.00019C10.2006 3.90317 7.19377 3.2551 4.93923 5.17534C2.68468 7.09558 2.36727 10.3061 4.13778 12.5772C5.60984 14.4654 10.0648 18.4479 11.5249 19.7369C11.6882 19.8811 11.7699 19.9532 11.8652 19.9815C11.9483 20.0062 12.0393 20.0062 12.1225 19.9815C12.2178 19.9532 12.2994 19.8811 12.4628 19.7369C13.9229 18.4479 18.3778 14.4654 19.8499 12.5772C21.6204 10.3061 21.3417 7.07538 19.0484 5.17534C16.7551 3.2753 13.7994 3.90317 12 6.00019Z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-                            </svg>
-                        </button>
-                    </div>
-                    <div class="produto-text-container p-[16px]">
-                        <h1 class="text-[rgb(64, 64, 64)] text-[19px] font-medium mb-[4px]">Headphone Navy</h1>
-                        <p class="text-[rgb(64, 64, 64)] text-[18px] font-normal mb-[8px]">R$1899,00</p>
-                        <button class="orange-button py-[8px] px-[16px] rounded-[5px] text-base cursor-pointer bg-orange-500 text-white hover:bg-orange-400">
-                        Adicionar ao Carrinho
-                        </button>
+          </form>
+      </div>
+      <!-- Tabela de produtos 
+      <table class="w-full border-collapse border border-gray-300">
+        <thead>
+          <tr>
+            <th class="bg-gray-100 border border-gray-300 p-2">ID</th>
+            <th class="bg-gray-100 border border-gray-300 p-2">Nome</th>
+            <th class="bg-gray-100 border border-gray-300 p-2">Imagem</th>
+          </tr>
+        </thead>
+        <tbody>
+          @if (product.length > 0)
+            @each(produto in product    )
+              <tr>
+                <td class="border border-gray-300 p-2">{{ produto.id }}</td>
+                <td class="border border-gray-300 p-2">{{ produto.name }}</td>
+                <td  class="border border-gray-300 p-2">
+                  @if (produto.imgSrc)
+                    <img src="{{ produto.imgSrc }}" alt="{{ produto.name }}" style="width: 100px;" />
+                  @else
+                    Sem imagem
+                  @end
+                </td>
+              </tr>
+            @end
+          @else
+            <tr>
+              <td class="border border-gray-300 p-2" colspan="3">Nenhum produto encontrado.</td>
+            </tr>
+          @end
+        </tbody>
+      </table>
+    -->
+    <div class="produto-cards-container w-full flex justify-start">
+      <ul class="flex flex-col flex-wrap list-none">
+          @each(product in product)
+              <a href="{{route('products.show',{id: product.id}) }}">
+                <li class="produto-card bg-white rounded-[10px] my-[16px] w-[120%] shadow-custom text-center overflow-hidden">
+                    <div class="flex flex-row">
+                      <div class="produto-image-container bg-[#f7b57e34] p-[20px] h-[198px] flex justify-center items-center relative">
+                          <img src="{{product.imgSrc}}" alt="produtos" class="max-w-full h-full object-contain" />
+                      </div>
+                      <div class="produto-text-container p-[16px] w-[400px] content-center">
+                          <h1 class="text-orange-400 text-[25px] font-medium mb-[4px]">{{product.name}}</h1>
+                          <p class="text-[rgb(64, 64, 64)] text-[20px] font-normal mb-[8px]">{{product.category.name}} - {{product.subCategory.name}}</p>
+                          <p class="text-[rgb(64, 64, 64)] text-[18px] font-normal mb-[8px]">R$ {{product.price}}</p>
+                      
+                      </div>
                     </div>
                 </li>
-            </ul>
-        </div>
-    </div>
-
-    <!-- Promo Section 1-->
-    <div class="flex flex-row w-full h-[500px] mt-[110px] shadow-custom rounded-[5px] overflow-hidden">
-        <div class="bg-orange-100 flex justify-center items-center flex-shrink-0 flex-grow-0 w-[470px] h-full py-0 px-[50px]">
-            <img src="imagens/product page/promotion products/WATCH2.png" alt="Trio de Relógios" class="max-w-full max-h-full object-cover hover:animate-wiggle cursor-pointer">
-        </div>
-        <div class="bg-white flex flex-col justify-center items-start py-0 px-[80px] flex-1">
-            <div class="flex flex-row mb-[7px]">
-                <span class="h-[40px] w-[15px] mr-[15px] bg-orange-500 rounded-[25px]"></span>
-                <h1 class="text-[rgb(64, 64, 64)] font-medium text-[25px]">Categorias</h1>
-            </div>
-            <h2 class="text-[rgb(64, 64, 64)] font-800 text-[25px] mt-0 antialiased">
-                Descubra o Futuro da Tecnologia com nossa Coleção de Smartwatches
-            </h2>
-            <p class="text-gray-500 font-normal text-base my-[10px] mx-0 antialiased">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse iaculis porta velit, eu vehicula sem tincidunt sit amet. Integer bibendum lacus eu lorem feugiat.
-            </p>
-            <button class="mt-[12px] px-[35px] py-[15px] rounded-[3px] text-base bg-orange-500 text-white hover:bg-orange-400 transition">
-                Compre Agora
-            </button>
-        </div>
-    </div>
-
-    <!-- Promo Section 2-->
-    <div class="flex flex-row w-full h-[500px] mt-[110px] shadow-custom rounded-[5px] overflow-hidden">
-        <div class="bg-orange-100 flex justify-center items-center flex-shrink-0 flex-grow-0 w-[470px] h-full py-0 px-[50px]">
-            <img src="imagens/product page/promotion products/MOBILE.png" alt="Coleção de iPhones" class="max-w-full max-h-full object-cover hover:animate-wiggle cursor-pointer">
-        </div>
-        <div class="bg-white flex flex-col justify-center items-start py-0 px-[80px] flex-1">
-            <div class="flex flex-row mb-[7px]">
-                <span class="h-[40px] w-[15px] mr-[15px] bg-orange-500 rounded-[25px]"></span>
-                <h1 class="text-[rgb(64, 64, 64)] font-medium text-[25px]">Novo Lançamento</h1>
-            </div>
-            <h2 class="text-[rgb(64, 64, 64)] font-800 text-[25px] mt-0 antialiased">
-                Explore o Mundo da Comunicação e Desempenho com nossos iPhones
-            </h2>
-            <p class="text-gray-500 font-normal text-base my-[10px] mx-0 antialiased">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse iaculis porta velit, eu vehicula sem tincidunt sit amet. Integer bibendum lacus eu lorem feugiat.
-            </p>
-            <button class="mt-[12px] px-[35px] py-[15px] rounded-[3px] text-base bg-orange-500 text-white hover:bg-orange-400 transition">
-                Compre Agora
-            </button>
-        </div>
-    </div>
-</div>
+              </a>
+          @end
+      </ul>
+  </div>
+      <!-- Paginação -->
+      <div>
+        <p>Página {{ product.currentPage }} de {{ product.lastPage }}</p>
     
-@end
+        @if (product.currentPage > 1)
+          <a href="?page={{ product.currentPage - 1 }}&name={{ request.input('name', '') }}">Página Anterior</a>
+        @end
+    
+        @if (product.currentPage < product.lastPage)
+          <a href="?page={{ product.currentPage + 1 }}&name={{ request.input('name', '') }}">Próxima Página</a>
+        @end
+      </div>
+</div>
+
+  @end
