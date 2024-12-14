@@ -22,6 +22,9 @@ export default class ShoppingCart extends BaseModel {
 
   @column()
   declare active: boolean
+
+  @column()
+  declare quantity: number
   
   @column.dateTime({ autoCreate: true })
   declare createdAt: DateTime

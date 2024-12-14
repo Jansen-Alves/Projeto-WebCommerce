@@ -2,7 +2,7 @@ import type { HttpContext } from '@adonisjs/core/http'
 import ShoppingCart from '#models/shopping_cart'
 export default class ShoppingCartsController {
 
-    async store({auth, request, response, params}: HttpContext){
+    async store({auth, view, response, params}: HttpContext){
         try {
             const user = auth.user
             if (!user) {
@@ -19,16 +19,19 @@ export default class ShoppingCartsController {
               .first()
       
             if (existingItem) {
-              return response.badRequest('Produto já no carrinho')
+              existingItem.quantity += 1
+              existingItem.save()
+              return view.render('pages/products/show', productId)
             }
       
             // Adiciona ao carrinho
             await ShoppingCart.create({
               userId: user.id,
               productId: productId,
+              quantity: 1
             })
       
-            return response.ok({ message: 'Produto adicionado ao carrinho' })
+            return view.render('pages/products/show', productId)
           } catch (error) {
             console.error(error)
             return response.internalServerError('Algo deu errado')

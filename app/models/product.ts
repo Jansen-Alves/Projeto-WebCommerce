@@ -30,6 +30,8 @@ export default class Product extends BaseModel {
   declare stocked: number
 
   @column()
+  declare approvals: number
+  @column()
   declare imgSrc: string | null
   
   @hasMany(()=> ShoppingCart)

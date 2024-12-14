@@ -13,38 +13,8 @@
             </div>
           </form>
       </div>
-      <!-- Tabela de produtos 
-      <table class="w-full border-collapse border border-gray-300">
-        <thead>
-          <tr>
-            <th class="bg-gray-100 border border-gray-300 p-2">ID</th>
-            <th class="bg-gray-100 border border-gray-300 p-2">Nome</th>
-            <th class="bg-gray-100 border border-gray-300 p-2">Imagem</th>
-          </tr>
-        </thead>
-        <tbody>
-          @if (product.length > 0)
-            @each(produto in product    )
-              <tr>
-                <td class="border border-gray-300 p-2">{{ produto.id }}</td>
-                <td class="border border-gray-300 p-2">{{ produto.name }}</td>
-                <td  class="border border-gray-300 p-2">
-                  @if (produto.imgSrc)
-                    <img src="{{ produto.imgSrc }}" alt="{{ produto.name }}" style="width: 100px;" />
-                  @else
-                    Sem imagem
-                  @end
-                </td>
-              </tr>
-            @end
-          @else
-            <tr>
-              <td class="border border-gray-300 p-2" colspan="3">Nenhum produto encontrado.</td>
-            </tr>
-          @end
-        </tbody>
-      </table>
-    -->
+      
+      
     <div class="produto-cards-container w-full flex justify-start">
       <ul class="flex flex-col flex-wrap list-none">
           @each(product in product)
