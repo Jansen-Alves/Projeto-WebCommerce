@@ -1,6 +1,6 @@
 @layouts.app()    
     <div class="bg-[#f7b57e34] min-h-screen flex flex-col items-center justify-center ">
-        <div class="bg-white max-w-md w-4/5 h-[450px] text-center rounded-lg shadow-md flex flex-col">
+        <div class="bg-white max-w-md w-4/5 h-[550px] text-center rounded-lg shadow-md flex flex-col">
             <div class="flex justify-start p-2">
                 <button onclick="window.history.length > 1 ? history.back() : window.location.href = '/'" 
                     class="text-orange-400">
@@ -17,31 +17,41 @@
                         <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-orange-500" viewBox="0 0 16 16" fill="currentColor">
                             <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
                         </svg>
-                        <input type="text" name="name" placeholder="Nome" autofocus
+                        <input type="text" name="name" placeholder="{{product.name}}" value="" autofocus
                             class="ml-2 bg-transparent outline-none border-none w-full text-gray-700" />
                     </div>
                     <div class="flex items-center rounded-md bg-gray-200/50 px-4 py-2 mt-4 mx-auto w-4/5">
                         <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-orange-500" viewBox="0 0 16 16" fill="currentColor">
                             <path d="M2 1a1 1 0 0 0-1 1v4.586a1 1 0 0 0 .293.707l7 7a1 1 0 0 0 1.414 0l4.586-4.586a1 1 0 0 0 0-1.414l-7-7A1 1 0 0 0 6.586 1zm4 3.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0"/>
                         </svg>
-                        <input type="text" name="price" autofocus placeholder="Preço"
+                        <input type="text" name="price" autofocus placeholder="{{product.price}}"
                             class="ml-2 bg-transparent outline-none border-none w-full text-gray-700" />
                     </div>
                     <div class="flex items-center rounded-md bg-gray-200/50 px-4 py-2 mt-4 mx-auto w-4/5">
-                      <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-orange-500" viewBox="0 0 16 16" fill="currentColor">
+                        <input type="text" class="ml-2 bg-transparent outline-none border-none w-full text-gray-700" name="stocked" autofocus="on" placeholder="{{product.stocked}}" >
+                    </div>
+            
+                
+                    <div class="flex items-center rounded-md bg-gray-200/50 px-4 py-2 mt-4 mx-auto w-4/5">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-orange-500" viewBox="0 0 16 16" fill="currentColor">
                             <path d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4.414a1 1 0 0 0-.707.293L.854 15.146A.5.5 0 0 1 0 14.793zm5 4a1 1 0 1 0-2 0 1 1 0 0 0 2 0m4 0a1 1 0 1 0-2 0 1 1 0 0 0 2 0m3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2"/>
                         </svg>
-                        <input type="text" name="description" autofocus placeholder="Descrição"
-                            class="ml-2 bg-transparent outline-none border-none w-full text-gray-700" />
+                        <textarea type="text" name="description" class="ml-2 bg-transparent outline-none border-none w-full text-gray-700" autofocus="on" 
+                        placeholder="{{product.description}}"></textarea>
                     </div>
                     <div>
-                        <label for="category_id"></label>
-                        <select name="category_id" class="rounded-md bg-gray-200/50 text-gray-700 px-4 py-2 mt-4 mx-auto w-4/5">
-                            <option selected>Escolha uma Categoria</option>
-                                @each(category in categories)
-                                <option value="{{ category.id }}">{{ category.name }}</option>
-                                @end
-                        </select>
+                        <label for="subcategoryId" class="block mb-2 text-sm font-medium text-gray-900">subcategoria:</label>
+                        <select name="subcategoryId">
+                            <option value=""   selected> Selecione categoria</option>
+                        @each(category in categories)
+                            <option value=""  disabled > {{category.name}}</option>
+                            @each(subcategory in subcategories)
+                                @if(subcategory.categoryId == category.id)
+                                    <option value="{{ subcategory.id }}">{{ subcategory.name}}</option>
+                                @endif
+                            @end
+                        @end
+                                </select>
                     </div>
                     <button type="submit" class="orange-button mt-[20px] py-[8px] px-[16px] rounded-[5px] text-base cursor-pointer bg-orange-500 text-white hover:bg-orange-400">
                         EDITAR

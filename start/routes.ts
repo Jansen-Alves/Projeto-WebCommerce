@@ -32,9 +32,12 @@ router
   .as('users')
 
   router.get('/categorias/:id', [CategoriesController, 'show'])
-  router.get('/shopping-cart/add/:id', [ShoppingCartController, 'store']).use(middleware.auth()).as('shoppingCart.add')
-  router.get('/shopping-car/:id', [ShoppingCartController, 'show']).use(middleware.auth()).as('shoppingCart.show')
 
+  router.get('/shopping-cart/add/:id', [ShoppingCartController, 'store']).use(middleware.auth()).as('shoppingCart.add')
+  router.get('/shopping-cart/remove/:id',[ShoppingCartController,'remove']).use(middleware.auth()).as('shoppingCart.remove')
+  router.get('/shopping-cart/:id', [ShoppingCartController, 'show']).use(middleware.auth()).as('shoppingCart.show')
+  router.get('/shopping-cart/destroy/:id',[ShoppingCartController,'destroy']).use(middleware.auth()).as('shoppingCart.destroy')
+  
     router.get('/index', async({view}) =>{
       return view.render('pages/main')
     }).as('main')

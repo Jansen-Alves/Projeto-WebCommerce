@@ -87,8 +87,10 @@ export default class ProductsController {
 
   async alter({view, params }: HttpContext){
     const product = await Product.findOrFail(params.id)
-    const categories = await Category.all()
-    return view.render('pages/products/alter',{product, categories})
+    const categories = await Category.query().orderBy('id', 'asc').preload('subCategories')
+    const subcategories = await Subcategory.query().orderBy('category_id', 'asc')
+    
+    return view.render('pages/products/alter',{product, categories, subcategories})
   }
   
   async destroy({ params, response}: HttpContext){
@@ -103,7 +105,7 @@ export default class ProductsController {
   async update({ params, request, response}: HttpContext){
     
     const product = await Product.findOrFail(params.id)
-    const altered = request.only(['name', 'price', 'description', 'category_id'])
+    const altered = request.only(['name', 'price', 'description','stocked', 'subcategoryId'])
 
     const filteredaltered = Object.fromEntries(
       Object.entries(altered).filter(([key, value]) => value !== null && value !== '')
