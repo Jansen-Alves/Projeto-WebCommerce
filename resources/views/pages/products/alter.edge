@@ -27,6 +27,20 @@
                         <input type="text" name="price" autofocus placeholder="{{product.price}}"
                             class="ml-2 bg-transparent outline-none border-none w-full text-gray-700" />
                     </div>
+                    <div>
+                        <label for="subcategoryId" class="block mb-2 text-sm font-medium text-gray-900">subcategoria:</label>
+                        <select name="subcategoryId" class="">
+                            <option value=""   selected> Selecione categoria</option>
+                        @each(category in categories)
+                            <option value=""  disabled > {{category.name}}</option>
+                            @each(subcategory in subcategories)
+                                @if(subcategory.categoryId == category.id)
+                                    <option value="{{ subcategory.id }}">{{ subcategory.name}}</option>
+                                @endif
+                            @end
+                        @end
+                                </select>
+                    </div>
                     <div class="flex items-center rounded-md bg-gray-200/50 px-4 py-2 mt-4 mx-auto w-4/5">
                         <input type="text" class="ml-2 bg-transparent outline-none border-none w-full text-gray-700" name="stocked" autofocus="on" placeholder="{{product.stocked}}" >
                     </div>
@@ -39,20 +53,7 @@
                         <textarea type="text" name="description" class="ml-2 bg-transparent outline-none border-none w-full text-gray-700" autofocus="on" 
                         placeholder="{{product.description}}"></textarea>
                     </div>
-                    <div>
-                        <label for="subcategoryId" class="block mb-2 text-sm font-medium text-gray-900">subcategoria:</label>
-                        <select name="subcategoryId">
-                            <option value=""   selected> Selecione categoria</option>
-                        @each(category in categories)
-                            <option value=""  disabled > {{category.name}}</option>
-                            @each(subcategory in subcategories)
-                                @if(subcategory.categoryId == category.id)
-                                    <option value="{{ subcategory.id }}">{{ subcategory.name}}</option>
-                                @endif
-                            @end
-                        @end
-                                </select>
-                    </div>
+                    
                     <button type="submit" class="orange-button mt-[20px] py-[8px] px-[16px] rounded-[5px] text-base cursor-pointer bg-orange-500 text-white hover:bg-orange-400">
                         EDITAR
                     </button>

@@ -77,7 +77,7 @@ export default class ShoppingCartsController {
         //await carts?.load('product')
         //console.log(carts)
         for(const cart of carts){
-          somatorio += cart.product.price
+          somatorio += cart.product.price * cart.quantity
         }
         const formatado = somatorio.toFixed(2);
         const frete = Math.trunc((somatorio* 0.15)*100)/100 
@@ -91,6 +91,7 @@ export default class ShoppingCartsController {
     async deactive({response, params,auth}: HttpContext){
       try{
         const user = auth.user
+        const param = params.id
         if (!user) {
           return response.unauthorized('Usuário não logado')
         }

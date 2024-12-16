@@ -17,20 +17,23 @@
                 <h2 class="text-2xl font-bold mb-4 text-black">Produtos no Carrinho</h2>
             </div>
             @if(carts.length > 0)
-            <ul class="space-y-4">
+            <ul class="my-3">
              
-               
                 @each(cart in carts)
                 <li class="flex justify-between border-b pb-4">
-                    <div class="produto-image-container bg-[#e9b48834] p-[4px] h-[198px] w-[190px] flex justify-center items-center relative">
-                        <img src="{{cart.product.imgSrc}}" alt="produtos" class="max-w-full h-full object-contain" />
-                    </div>
-                    <div class="">
-                      <p class="text-lg font-medium">{{cart.product.name}}</p>
+                    <a href="{{route('products.show', {id: cart.product.id})}}">
+                      <div class="produto-image-container bg-[#e9b48834] p-[4px] h-[198px] w-[190px] flex justify-center items-center relative">
+                          <img src="{{cart.product.imgSrc}}" alt="produtos" class="max-w-full h-full object-contain" />
+                      </div>
+                    </a>
+                    <div class="flex flex-col">
+                      <a class="text-xl font-bold transition ease-in-out duration-300 hover:text-orange-400" href="{{route('products.show', {id: cart.product.id})}}">{{cart.product.name}}</a>
                       <p class="text-sm text-gray-700">{{cart.product.description}}</p>
-                      <p class="text-lg font-bold ">{{cart.product.price}}</p>
+                      <div class="flex flex-col items-end">
+                        <p class="text-lg font-medium">R${{cart.product.price}}</p>
+                      </div>
                     </div>
-                    <div class="flex flex-row ">
+                    <div class="flex flex-row items-center ">
                       @button({href:route('shoppingCart.remove',{id:cart.product.id}),
                     variant:'new'}) 
                         @svg('heroicons:minus-small', {class:'w-6 h-6 mx-1  rounded-md transition ease-in-out duration-300 hover:text-orange-400'})
@@ -71,7 +74,7 @@
               <hr class="my-4">
               <div class="flex justify-between text-xl font-bold">
                 <p>Total:</p>
-                <p>{{somatorio+frete}}</p>
+                <p>{{Math.trunc((somatorio+frete)*100)/100 }}</p>
               </div>
             </div>
             <button class="w-full mt-6 bg-black text-white py-2 rounded-md transition ease-in-out duration-300 hover:bg-orange-400">
