@@ -15,7 +15,7 @@ export default class ShoppingCartsController {
             // Verifica se o produto já está no carrinho
             const existingItem = await ShoppingCart.query()
               .where('user_id', user.id)
-              .andWhere('product_id', productId)
+              .andWhere('product_id', productId).andWhere('active',true)
               .first()
       
             if (existingItem) {
@@ -31,7 +31,7 @@ export default class ShoppingCartsController {
               quantity: 1,
             })
       
-            return response.redirect().toRoute('products.show',{id: productId})
+            return response.redirect().toRoute('shoppingCart.show',{id: productId})
           } catch (error) {
             console.error(error)
             return response.internalServerError('Algo deu errado')
@@ -71,7 +71,7 @@ export default class ShoppingCartsController {
 
     async show({params, view}: HttpContext){
       try{
-        const carts = await ShoppingCart.query().where('userId', params.id).preload('product')
+        const carts = await ShoppingCart.query().where('userId', params.id).andWhere('active', true).preload('product')
         let somatorio = 0
         
         //await carts?.load('product')
@@ -91,16 +91,29 @@ export default class ShoppingCartsController {
     async deactive({response, params,auth}: HttpContext){
       try{
         const user = auth.user
-        const param = params.id
+        const productId = params.id
         if (!user) {
           return response.unauthorized('Usuário não logado')
         }
+        if(productId > 0){
         const cart = await ShoppingCart.query().where('userId', user.id).andWhere('productId', params.id).first()
-        if(cart){
+        if(cart != null){
           cart.active = false
           await cart.save()
-          return response.redirect().toRoute('products.list')
+         
+        }else{
+          await ShoppingCart.create({
+            userId: user.id,
+            productId: productId,
+            quantity: 1,
+            active: false,
+          })
         }
+        
+      }else{
+        await ShoppingCart.query().where('userId', user.id).update({ active: false })
+      }
+      return response.redirect().toRoute('products.list')
     }catch{
       return response.internalServerError()
     }

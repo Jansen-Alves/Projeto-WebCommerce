@@ -21,14 +21,27 @@
               <a href="{{route('products.show',{id: product.id}) }}">
                 <li class="produto-card bg-white rounded-[10px] my-[16px] w-[120%] shadow-custom text-center overflow-hidden">
                     <div class="flex flex-row">
-                      <div class="produto-image-container bg-[#f7b57e34] p-[20px] h-[198px] w-[190px] flex justify-center items-center relative">
+                      <div class="produto-image-container bg-[#f7b57e34] p-[20px] h-[210px] w-[190px] m-0 flex justify-center items-center relative">
                           <img src="{{product.imgSrc}}" alt="produtos" class="max-w-full h-full object-contain" />
                       </div>
-                      <div class="produto-text-container p-[16px] w-[400px] content-center">
+                      <div class="produto-text-container p-[16px] w-[100%] items-center">
                           <h1 class="text-orange-400 text-[25px] font-medium mb-[4px]">{{product.name}}</h1>
                           <p class="text-[rgb(64, 64, 64)] text-[20px] font-normal mb-[8px]">{{product.category.name}} - {{product.subCategory.name}}</p>
                           <p class="text-[rgb(64, 64, 64)] text-[18px] font-normal mb-[8px]">R$ {{product.price}}</p>
-                      
+                          
+                          <div class="flex flex-row m-3 justify-center items-center space-x-4">
+                            @button({href: route('shoppingCart.deactive', {id: product.id}),
+                            class:'orange-button py-[8px] px-[16px] rounded-[5px] text-base cursor-pointer bg-orange-500 text-white hover:bg-orange-400',
+                            variant: 'new'})
+                                       Comprar Agora
+                                        @end
+                            <a class="py-[8px] px-[16px] rounded-[5px] text-base cursor-pointer bg-orange-500 text-white hover:bg-orange-400" id="link-carrinho" href="{{route('shoppingCart.add', {id:product.id})}}" class="flex items-center">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-cart" viewBox="0 0 16 16">
+                                  <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M3.102 4l1.313 7h8.17l1.313-7zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2"/>
+                              </svg>
+                            
+                            </a>
+                          </div>
                       </div>
                     </div>
                 </li>
