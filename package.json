@@ -61,6 +61,7 @@
     "@adonisjs/shield": "^8.1.1",
     "@adonisjs/static": "^1.1.1",
     "@adonisjs/vite": "^3.0.0",
+    "@alpinejs/focus": "^3.14.7",
     "@iconify-json/heroicons": "^1.2.1",
     "@vinejs/vine": "^2.1.0",
     "alpinejs": "^3.14.3",

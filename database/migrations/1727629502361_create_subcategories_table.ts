@@ -25,9 +25,6 @@ export default class extends BaseSchema {
           name: 'Placa-Mãe',
           category_id:1,
         },{
-          name: 'Drive',
-          category_id:1,
-        },{
           name: 'Fonte',
           category_id:1,
         },{
@@ -55,7 +52,7 @@ export default class extends BaseSchema {
           name: 'Gabinete',
           category_id:3,
         },{
-          name: 'Monitore',
+          name: 'Monitor',
           category_id:3,
         }])
       })

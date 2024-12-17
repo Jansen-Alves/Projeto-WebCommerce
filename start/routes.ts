@@ -10,20 +10,23 @@
 
 import router from '@adonisjs/core/services/router'
 import { middleware } from './kernel.js'
+import Product from '#models/product'
+
 
 const UsersController = () => import('#controllers/users_controller')
 const ProductsController = () => import('#controllers/products_controller')
 const AuthController  = () => import('#controllers/auth_controller')
 const CategoriesController = () => import('#controllers/categories_controller')
 const ShoppingCartController = () => import('#controllers/shopping_carts_controller')
-
+const ApprovalsController = () => import('#controllers/approvals_controller')
 
 router.get('/login', [AuthController, 'create']).as('auth.create')
 router.post('/login', [AuthController, 'store']).as('auth.store')
 router.get('/logout', [AuthController, 'destroy']).as('auth.destroy')
 
 router.get('/index', async({view}) =>{
-  return view.render('pages/main')
+  const perifericos = await Product.query().where('categoryId', 2).orderBy('approvals', 'desc').preload('subCategory').limit(3)
+  return view.render('pages/main', {perifericos})
 }).as('main')
 
 router.get('/init', async({view}) =>{
@@ -34,6 +37,7 @@ router.get('/adm', async ({ view }) =>{
   return view.render('pages/adm')
 }).as('auth.adm').use(middleware.auth())
 
+router.post('/approval/:id', [ApprovalsController, 'store']).as('approval.store').use(middleware.auth())
 router
   .group(() => {
     router.get('/', [UsersController, 'index']).as('index').use(middleware.adm())

@@ -76,60 +76,33 @@
         Confira os Produtos Mais Vendidos da Semana
     </span>
     <ul class="produto-section-items-wrapper list-none flex justify-around flex-row mt-14 w-[70%]">
-        <li class="produto-item max-w-[280px] rounded-lg m-5 overflow-hidden shadow-[0_30px_50px_rgba(0,0,0,0.15)]">
-            <div class="produto-image bg-[#f7b57e34] h-[210px] flex justify-center items-center p-8">
-                <img src="imagens/homepage/watch.png" alt="Relógio Turquesa" class="h-full">
-            </div>
-            <div class="produto-text text-center p-5">
-                <span class="produto-title text-[#323232] text-[18px] font-medium">
-                    Smartwatch azul Turquesa Claro
-                </span>
-                <div class="produto-purchase mt-2 w-full">
-                    <span class="produto-price text-[18px] text-[#fb923c] font-medium">
-                        R$2055.00
+       
+           
+            @each(item in perifericos)
+            <li class="produto-item max-w-[280px] rounded-lg m-5 overflow-hidden shadow-[0_30px_50px_rgba(0,0,0,0.15)]">
+            <a href="{{route('products.show', {id: item.id})}}">
+                <div class="produto-image bg-[#f7b57e34] h-[210px] flex justify-center items-center p-8">
+                    <img src="{{item.imgSrc}}" alt="" class="h-full">
+                </div>
+                <div class="produto-text text-center p-5">
+                    <span class="produto-title text-[#323232] text-[18px] font-medium">
+                       {{item.name}}
                     </span>
+                    <div class="produto-purchase mt-2 w-full">
+                        <span class="produto-price text-[18px] text-[#fb923c] font-medium">
+                          {{item.price}}
+                        </span>
+            </a>
                     <button class="add-to-cart mt-2 px-5 py-2 rounded-lg text-[16px] bg-[#fb923c] text-white  hover:bg-white hover:text-orange-400  transition-all">
                         Adicionar ao Carrinho
                     </button>
                 </div>
             </div>
         </li>
-        <li class="produto-item max-w-[280px] rounded-lg m-5 overflow-hidden shadow-[0_30px_50px_rgba(0,0,0,0.15)]">
-            <div class="produto-image bg-[#f7b57e34] h-[210px] flex justify-center items-center p-8">
-                <img src="imagens/homepage/headphone.png" alt="Headphone Rose Gold" class="h-full">
-            </div>
-            <div class="produto-text text-center p-5">
-                <span class="produto-title text-[#323232] text-[18px] font-medium">
-                    Headphone Rose Gold
-                </span>
-                <div class="produto-purchase mt-2 w-full">
-                    <span class="produto-price text-[18px] text-[#fb923c] font-medium">
-                        R$1899.00
-                    </span>
-                    <button class="add-to-cart mt-2 px-5 py-2 rounded-lg text-[16px] bg-[#fb923c] text-white hover:bg-white hover:text-orange-400 transition-all">
-                        Adicionar ao Carrinho
-                    </button>
-                </div>
-            </div>
-        </li>
-        <li class="produto-item max-w-[280px] rounded-lg m-5 overflow-hidden shadow-[0_30px_50px_rgba(0,0,0,0.15)]">
-            <div class="produto-image bg-[#f7b57e34] h-[210px] flex justify-center items-center p-8">
-                <img src="imagens/homepage/ipad.png" alt="iPad Amarelo Sunshine" class="h-full">
-            </div>
-            <div class="produto-text text-center p-5">
-                <span class="produto-title text-[#323232] text-[18px] font-medium">
-                    iPad Amarelo Sunshine
-                </span>
-                <div class="produto-purchase mt-2 w-full">
-                    <span class="produto-price text-[18px] text-[#fb923c] font-medium">
-                        R$3999.00
-                    </span>
-                    <button class="mt-2 px-5 py-2 rounded-lg text-[16px] bg-[#fb923c] text-white hover:bg-white hover:text-orange-400 transition-all">
-                        Adicionar ao Carrinho
-                    </button>
-                </div>
-            </div>
-        </li>
+            @end
+            
+            
+      
     </ul>
 </div>
 

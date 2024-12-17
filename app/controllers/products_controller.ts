@@ -5,6 +5,7 @@ import { createProductValidator  } from '#validators/product'
 import Subcategory from '#models/subcategory'
 import path from 'path'
 import { fileURLToPath } from 'url';
+import Approval from '#models/approval'
 
 export default class ProductsController {
   async index({ view,request}: HttpContext) {
@@ -75,12 +76,22 @@ export default class ProductsController {
     return response.redirect().toRoute('products.show', {id: product.id})
   }
 
-  async show({view, params}: HttpContext) {
-    const product = await Product.findOrFail(params.id)
+  async show({view, params, auth}: HttpContext) {
+    const like = Approval.query()
+    const user = auth.user
+    let likeexiste = null
+    const productId = params.id
+    const product = await Product.findOrFail(productId)
     await product.load('category')
     await product.load('subCategory')
+    if(user){
+        console.log("pegou")
+       likeexiste = await like.where('userId', user.id).andWhere('productId', params.id).first()
+    }
+
     //const product = await data.json()
-    return view.render('pages/products/show', {product})
+    
+    return view.render('pages/products/show', {product, likeexiste: !!likeexiste,})
   }
 
   

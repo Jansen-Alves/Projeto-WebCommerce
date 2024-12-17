@@ -3,7 +3,7 @@ import Product from '#models/product'
 import type { HttpContext } from '@adonisjs/core/http'
 
 export default class ApprovalsController {
-    async store({auth, view, response, params}: HttpContext){
+    async store({auth, response, params}: HttpContext){
         try {
             const user = auth.user
             if (!user) {
@@ -24,10 +24,7 @@ export default class ApprovalsController {
               await existingItem.delete()
               product.approvals -= 1
               await product.save()
-
-              return view.render('pages/products/show', productId)
-            }
-           
+            }else{
             product.approvals += 1
             await product.save()
             // Adiciona ao carrinho
@@ -35,8 +32,8 @@ export default class ApprovalsController {
               userId: user.id,
               productId: productId,
             })
-      
-            return view.render('pages/products/show', productId)
+            }
+            return response.redirect().toRoute('products.show',{id: productId})
           } catch (error) {
             console.error(error)
             return response.internalServerError('Algo deu errado')
