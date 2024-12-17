@@ -54,7 +54,7 @@ router
   router.get('/remove/:id',[ShoppingCartController,'remove']).as('remove')
   router.get('/:id', [ShoppingCartController, 'show']).as('show')
   router.get('/destroy/:id',[ShoppingCartController,'destroy']).as('destroy')
-  router.post('/deactive/:id',[ShoppingCartController,'deactive']).as('deactive')
+  router.get('/deactive/:id',[ShoppingCartController,'deactive']).as('deactive')
   })
   .prefix('shopping-cart').
   as('shoppingCart').use(middleware.auth())

@@ -1,5 +1,5 @@
 @layouts.app() 
-   <!-- <div class=" px-5 pt-[150px] pb-[30px] flex flex-row justify-center"> 
+   <!-- <div class="px-5 pt-[150px] pb-[30px] flex flex-row justify-center"> 
         <div>
             @each(cart in carts)
             <ul>
@@ -9,87 +9,83 @@
             @end
         </div>
     </div>-->
-    <div class="container mx-auto px-5 pt-[150px] pb-[30px]">
-        <div class="flex space-x-6">
-          <!-- Div dos produtos -->
-          <div class="w-2/3 bg-white p-6 shadow-md rounded-lg">
-            <div class="flex flex-row justify-between">
-                <h2 class="text-2xl font-bold mb-4 text-black">Produtos no Carrinho</h2>
+    <div class="">
+      <div class="container mx-auto px-5 pt-[150px] pb-[30px]">
+          <div class="flex space-x-6">
+            <!-- Div dos produtos -->
+            <div class="w-2/3 bg-white p-6 shadow-md rounded-lg">
+              <div class="flex flex-row justify-between">
+                  <h2 class="text-2xl font-bold mb-4 text-orange-400">Produtos no Carrinho</h2>
+              </div>
+              @if(carts.length > 0)
+              <ul class="my-3">
+              
+                  @each(cart in carts)
+                  <li class="flex border-b py-4">
+                      <a href="{{route('products.show', {id: cart.product.id})}}">
+                        <div class="produto-image-container p-[4px] h-[150px] w-[150px] flex justify-center items-center relative">
+                            <img src="{{cart.product.imgSrc}}" alt="produtos" class="max-w-full h-full object-contain" />
+                        </div>
+                      </a>
+                      <div class="flex flex-col pl-[20px] w-full">
+                        <a class="text-xl font-bold transition ease-in-out duration-300 hover:text-orange-400" href="{{route('products.show', {id: cart.product.id})}}">
+                          {{cart.product.name}}
+                        </a>
+                        <p class="text-sm text-gray-700">{{cart.product.description}}</p>
+                        
+                        <!-- Adiciona um espaçamento antes da base -->
+                        <div class="flex flex-row justify-between mt-auto">
+                          <div class="flex justify-start">
+                            <p class="text-lg font-medium flex">R${{cart.product.price}}</p>
+                          </div>
+                          <div class="flex justify-end">
+                            @button({href:route('shoppingCart.remove',{id:cart.product.id}),
+                              variant:'new'}) 
+                              @svg('heroicons:minus-small', {class:'w-6 h-6 mx-1  rounded-md transition ease-in-out duration-300 hover:text-orange-400'})
+                            @end
+                            <p class="text-lg font-bold">{{cart.quantity}}</p>
+                            @button({href:route('shoppingCart.add',{id:cart.product.id}),
+                              variant:'new'}) 
+                              @svg('heroicons:plus-small-solid', {class:'w-6 h-6 mx-1  rounded-md transition ease-in-out duration-300 hover:text-orange-400'})
+                            @end
+                          </div>
+                        </div>
+                      </div>    
+                  @end
+                  @else
+                  <div class="flex justify-center mt-6">
+                    <p class="text-lg font-bold items-center">Carrinho vazio</p> 
+                  </div>
+                  @end
+              </ul>
             </div>
-            @if(carts.length > 0)
-            <ul class="my-3">
-             
-                @each(cart in carts)
-                <li class="flex justify-between border-b pb-4">
-                    <a href="{{route('products.show', {id: cart.product.id})}}">
-                      <div class="produto-image-container bg-[#e9b48834] p-[4px] h-[198px] w-[190px] flex justify-center items-center relative">
-                          <img src="{{cart.product.imgSrc}}" alt="produtos" class="max-w-full h-full object-contain" />
-                      </div>
-                    </a>
-                    <div class="flex flex-col">
-                      <a class="text-xl font-bold transition ease-in-out duration-300 hover:text-orange-400" href="{{route('products.show', {id: cart.product.id})}}">{{cart.product.name}}</a>
-                      <p class="text-sm text-gray-700">{{cart.product.description}}</p>
-                      <div class="flex flex-col items-end">
-                        <p class="text-lg font-medium">R${{cart.product.price}}</p>
-                      </div>
-                    </div>
-                    <div class="flex flex-row items-center ">
-                      @button({href:route('shoppingCart.remove',{id:cart.product.id}),
-                    variant:'new'}) 
-                        @svg('heroicons:minus-small', {class:'w-6 h-6 mx-1  rounded-md transition ease-in-out duration-300 hover:text-orange-400'})
-                      @end
-                      <p class="text-lg font-bold">{{cart.quantity}}</p>
-                      @button({href:route('shoppingCart.add',{id:cart.product.id}),
-                      variant:'new'}) 
-                          @svg('heroicons:plus-small-solid', {class:'w-6 h-6 mx-1  rounded-md transition ease-in-out duration-300 hover:text-orange-400'})
-                        @end
-                    </div>
-                @end
-                @else
-                <div class="flex justify-center mt-6">
-                  
-                  <p class="text-lg font-bold items-center">Carrinho vazio</p>
-                  
+      
+            <!-- Div do total -->
+            <div class="w-1/3 bg-white p-6 shadow-md rounded-lg">
+              <h2 class="text-2xl font-bold mb-4 text-orange-400">Resumo do Pedido</h2>
+              <div class="space-y-4">
+                
+                <div class="flex justify-between">
+                  <p class="text-lg">Subtotal:</p>
+                  <p class="text-lg font-bold">
+                      R${{formatado}}
+                  </p>
                 </div>
-                @end
-              
-            </ul>
-          </div>
-    
-          <!-- Div do total -->
-          <div class="w-1/3 bg-white p-6 shadow-md rounded-lg">
-            <h2 class="text-2xl font-bold mb-4 text-orange-400">Resumo do Pedido</h2>
-            <div class="space-y-4">
-              
-              <div class="flex justify-between">
-                <p class="text-lg">Subtotal:</p>
-                <p class="text-lg font-bold">
-                    R${{formatado}}
-                </p>
+                <div class="flex justify-between">
+                  <p class="text-lg">Frete:</p>
+                  <p class="text-lg font-bold">R${{frete}}</p>
+                </div>
+                <hr class="my-4">
+                <div class="flex justify-between text-xl font-bold">
+                  <p>Total:</p>
+                  <p>{{Math.trunc((somatorio+frete)*100)/100 }}</p>
+                </div>
               </div>
-              <div class="flex justify-between">
-                <p class="text-lg">Frete:</p>
-                <p class="text-lg font-bold">R${{frete}}</p>
-              </div>
-              <hr class="my-4">
-              <div class="flex justify-between text-xl font-bold">
-                <p>Total:</p>
-                <p>{{Math.trunc((somatorio+frete)*100)/100 }}</p>
-              </div>
+              <button class="w-full mt-6 bg-black text-white py-2 rounded-md transition ease-in-out duration-300 hover:bg-orange-400">
+                Finalizar Compra
+              </button>
             </div>
-            <div class="">
-              <form method="POST" action=" {{route('shoppingCart.deactive', {id:0})}}" >
-              @button({
-               
-                class:" w-[100%] mt-6 bg-black text-white py-2 rounded-md transition ease-in-out duration-300 hover:bg-orange-400",
-                variant: "new",
-              })
-                Finalizar compra
-              @end
-            </div>
-          </form>
-         
           </div>
         </div>
-      </div>
+    </div>
 @end

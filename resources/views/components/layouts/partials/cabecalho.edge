@@ -17,23 +17,36 @@
 </script>
 
 <!-- navbar -->
-<nav class="bg-transparent w-full z-1000 font-semibold transition duration-300 ease-in-out fixed">
+<nav class="bg-transparent w-full z-1000 font-semibold transition duration-500 ease-in-out fixed">
     <div id="navbar" class="flex flex-row justify-between place-items-center w-[85%] m-auto p-[15px] ">
         <div id="navbar-logo">
             <img src="/imagens/BungaTech.png" alt="Bunga Tech" class="w-[200px] h-[90px] ">
         </div>
-        <div id="navbar-links" class="flex flex-row items-center">
-            <ul class="flex flex-row list-none">
-                <li class="ml-[60px]">
-                    <a href="{{route('/index')}}" class="no-underline text-[rgb(64,64,64)] font-medium antialiased text-base transition ease-in-out duration-300 mr-[30px] hover:text-[rgb(251,146,60)]">Página Inicial</a>
-                </li>
-                <li class="ml-[60px]">
-                    <a href="{{route('products.index')}}" class="no-underline text-[rgb(64,64,64)] font-medium antialiased text-base transition ease-in-out duration-300 mr-[30px] hover:text-[rgb(251,146,60)]">Produtos</a>
-                </li>
-                <li class="ml-[60px]">
-                    <a href="#" class="no-underline text-[rgb(64,64,64)] font-medium antialiased text-base transition ease-in-out duration-300 mr-[30px] hover:text-[rgb(251,146,60)]">Sobre</a>
-                </li>
-            </ul>
+        <div id="navbar-links" class="flex flex-row gap-[50px] justify-center items-center">
+            <div clas="flex flex-row items-center">
+                <ul class="flex flex-row list-none">
+                    <li class="ml-[60px]">
+                        <a href="{{route('/index')}}" class="no-underline text-[rgb(64,64,64)] font-medium antialiased text-base transition ease-in-out duration-300 mr-[30px] hover:text-[rgb(251,146,60)]">Página Inicial</a>
+                    </li>
+                    <li class="ml-[60px]">
+                        <a href="{{route('products.index')}}" class="no-underline text-[rgb(64,64,64)] font-medium antialiased text-base transition ease-in-out duration-300 mr-[30px] hover:text-[rgb(251,146,60)]">Produtos</a>
+                    </li>
+                    <li class="ml-[60px]">
+                        <a href="javascript:void(0);" onclick="window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });" class="no-underline text-[rgb(64,64,64)] font-medium antialiased text-base transition ease-in-out duration-300 mr-[30px] hover:text-[rgb(251,146,60)]">Sobre</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="flex flex-row my-[20px] bg-slate-100 p-[14px] items-center w-[max-content] rounded-[28px]">
+                <!-- Formulário de busca -->
+                <form method="GET" action="{{route('products.index')}}">
+                    <div class="flex flex-row">
+                    <input type="text" id="name" name="name" placeholder="Pesquise" class="ml-[14px] w-[350px] outline-none bg-transparent border-none" value="{{ request.input('name', '') }}" /> 
+                    <button type="submit"> 
+                    @svg('heroicons:magnifying-glass-20-solid', {class:'w-6 h-6 mx-1'})
+                    </button>
+                    </div>
+                </form>
+            </div>
         </div>
 
         <div id="navbar-auth" class="flex flex-row place-items-center">
@@ -45,12 +58,15 @@
                         </svg>
                         <span class="bg-[rgb(251,146,60)] w-[17px] h-[17px] rounded-full text-white text-[13px] flex justify-center items-center relative bottom-[10px] right-[6px]">0</span>
                     </a>
-                    <a id="link-favoritos" href="#" class="flex items-center ml-[10px]">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16">
-                            <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143q.09.083.176.171a3 3 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15"/>
-                        </svg>
-                        <span class="bg-[rgb(251,146,60)] w-[17px] h-[17px] rounded-full text-white text-[13px] flex justify-center items-center relative bottom-[10px] right-[6px]">0</span>
-                    </a>
+
+                    <div class="pt-[10px]">
+                        <a id="link-favoritos" href="#" class="flex items-center ml-[10px]">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16">
+                                <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143q.09.083.176.171a3 3 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15"/>
+                            </svg>
+                            <span class="bg-[rgb(251,146,60)] w-[17px] h-[17px] rounded-full text-white text-[13px] flex justify-center items-center relative bottom-[10px] right-[6px]">0</span>
+                        </a>
+                    </div>
 
                     <!-- Dropdown Profile Section -->
                     <div x-data="{ isOpen: false, openedWithKeyboard: false, leaveTimeout: null }" 

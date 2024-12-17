@@ -53,7 +53,39 @@
                         <textarea type="text" name="description" class="ml-2 bg-transparent outline-none border-none w-full text-gray-700" autofocus="on" 
                         placeholder="{{product.description}}"></textarea>
                     </div>
+                    <div>
+                        <label for="subcategoryId" class="block mb-2 text-sm font-medium text-gray-900">subcategoria:</label>
+                        <select name="subcategoryId">
+                            <option value=""   selected> Selecione categoria</option>
+                        @each(category in categories)
+                            <option value=""  disabled > {{category.name}}</option>
+                            @each(subcategory in subcategories)
+                                @if(subcategory.categoryId == category.id)
+                                    <option value="{{ subcategory.id }}">{{ subcategory.name}}</option>
+                                @endif
+                            @end
+                        @end
+                                </select>
+                    </div>
+                    <div>
+                        <!-- Select de Subcategoria -->
+                        <label for="subcategoryId"></label>
+                        <select id="subcategorySelect" name="subcategoryId" 
+                            class="rounded-md bg-gray-200/50 text-gray-700 px-4 py-2 mt-4 mx-auto w-4/5" disabled>
+                            <option value="" disabled selected>Subcategoria</option>
+                        </select>
+                    </div>
+
+                    <input type="text" name="imgSrc" value="imagem" hidden>
                     
+                    <div class="flex items-center rounded-md bg-gray-200/50 px-4 py-2 mt-4 mx-auto w-4/5">
+                        <input type="text" name="stocked" autofocus="on" placeholder="Em estoque" 
+                            class="ml-2 bg-transparent outline-none border-none w-full text-gray-700" required>
+                    </div>
+                    <div class="flex items-center rounded-md bg-gray-200/50 px-4 py-2 mt-4 mx-auto w-4/5">
+                        <input type="text" name="description" autofocus placeholder="Descrição"
+                            class="ml-2 bg-transparent outline-none border-none w-full text-gray-700" />
+                    </div>
                     <button type="submit" class="orange-button mt-[20px] py-[8px] px-[16px] rounded-[5px] text-base cursor-pointer bg-orange-500 text-white hover:bg-orange-400">
                         EDITAR
                     </button>

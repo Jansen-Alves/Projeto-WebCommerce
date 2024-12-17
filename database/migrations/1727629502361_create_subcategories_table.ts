@@ -19,19 +19,22 @@ export default class extends BaseSchema {
           name: 'Coolers',
           category_id: 1,
         },{
-          name: 'Disco rigido',
+          name: 'Disco Rígido',
           category_id:1,
         },{
-          name: 'Placa-mãe',
+          name: 'Placa-Mãe',
           category_id:1,
         },{
           name: 'Drive',
           category_id:1,
         },{
-          name: 'Fontes',
+          name: 'Fonte',
           category_id:1,
         },{
           name: 'Memória RAM',
+          category_id:1,
+        },{
+          name: 'Processador',
           category_id:1,
         },{
           name: 'Teclado e Mouse',
@@ -40,19 +43,19 @@ export default class extends BaseSchema {
           name: 'Mouse Pad',
           category_id:2,
         },{
-          name: 'Mesa Digitalizadora',
+          name: 'Fone',
           category_id:2,
         },{
           name: 'Microfone',
           category_id:2,
         },{
-          name: 'Cadeiras',
+          name: 'Cadeira',
           category_id:3,
         },{
-          name: 'Gabinetes',
+          name: 'Gabinete',
           category_id:3,
         },{
-          name: 'Monitores',
+          name: 'Monitore',
           category_id:3,
         }])
       })
