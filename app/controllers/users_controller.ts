@@ -20,15 +20,40 @@ export default class UsersController {
     return view.render('pages/users/list', {user})
   }
 
-  async store({ request, response }: HttpContext) {
-    const data = await request.only(['birthday'])
-    const payload = await request.validateUsing(createUserValidator)
-    const user = new User() 
-    payload.birthday = data.birthday
-    user.merge(payload)
+  async store({ request, session, response }: HttpContext) {
+    try{
+      console.log('store')
+      const data = await request.only(['birthday'])
+      const payload = await request.validateUsing(createUserValidator)
+      const user = new User() 
+      payload.birthday = data.birthday
+      console.log(payload )
+      user.merge(payload)
 
-    await user.save()
-    return response.redirect().toRoute('auth.create')
+      await user.save()
+      return response.redirect().toRoute('auth.create')
+    }catch(exception){
+      if (exception.messages) {
+        // Captura os erros de validação
+        console.log(exception.messages.errors);
+    
+        // Flash somente os campos relevantes
+        session.flashOnly(['fullName', 'email', 'password']);
+    
+        // Armazena os erros na sessão
+        session.flash({
+          errors: exception.messages.errors,
+        }); 
+       
+      }else {
+        // Para outros tipos de erros
+        console.error(exception); // Log de erro para depuração
+        session.flash({
+          errors: { login: 'Não encontramos nenhuma conta válida' },
+        });
+      }
+      return response.redirect('back')
+    }
   }
   async role({request, response}: HttpContext){
     const payload = request.all()
