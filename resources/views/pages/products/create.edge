@@ -1,6 +1,15 @@
 @layouts.app() 
+
+                    
         <div class="bg-[#f7b57e34] min-h-screen flex flex-col items-center justify-center">
+         
             <div class="bg-white max-w-md w-4/5 h-auto text-center rounded-lg shadow-md flex flex-col">
+                @flashMessage('error.product')
+                <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+                             
+                             <span class="block sm:inline">{{ $message  }}</span>
+                </div>
+                         @end
                 <div class="flex justify-start p-2">
                     <button onclick="window.history.length > 1 ? history.back() : window.location.href = '/'" 
                         class="text-orange-400">
@@ -23,7 +32,7 @@
                         <div>
                             <label for="subcategoryId" class="block mt-4 text-sm font-medium text-gray-900"></label>
                             <select name="subcategoryId" 
-                                class="outline-none border-none w-4/5 text-gray-400 bg-gray-200/50 rounded-md px-4 py-2">
+                                class="outline-none border-none w-4/5 text-gray-600 bg-gray-200/50 rounded-md px-4 py-2">
                                 <option value="" disabled selected> Selecione categoria</option>
                                 @each(category in categories)
                                     <option value="" disabled selected> {{category.name}}</option>
