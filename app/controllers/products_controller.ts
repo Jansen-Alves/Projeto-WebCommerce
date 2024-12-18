@@ -9,6 +9,8 @@ import Approval from '#models/approval'
 
 export default class ProductsController {
   async index({ view,params,request}: HttpContext) {
+    const categories = await Category.query().orderBy('id', 'asc').preload('subCategories')
+    const subcategories = await Subcategory.query().orderBy('category_id', 'asc')
     //console.log("chegou na função")
     const page = request.input('page', 1)
     const limit = 10
@@ -16,16 +18,18 @@ export default class ProductsController {
     //const product = await Product.all()
     //const  = await data.json()
 
-    const payload = request.only(['name'])
+    const payload = request.only(['name','subcategory'])
     const query =  Product.query()
-    const subcategory = params.subcategory
+    const subcategory = params.subcategory || payload.subcategory
     const category = params.category
   
-    console.log("resposta categoria", category)
-    console.log("resposta subcategoria", subcategory)
+    console.log("resposta de form", payload)
+
   if (payload.name != null && payload.name.length){
       await query.where('name', 'like', `%${payload.name}%`)
 
+  }else if(payload.name != null && payload.name.length && payload.subcategory != null){
+    await query.where('name', 'like', `%${payload.name}%`).andWhere('subcategory', payload.subcategory)
   }else if(category > 0){
     query.where('categoryId',category )
 
@@ -34,7 +38,7 @@ export default class ProductsController {
   }
     await query.preload('category').preload('subCategory')
     const product = await query.paginate(page,limit)
-    return view.render('pages/products/index', {product})
+    return view.render('pages/products/index', {product, subcategories, categories})
   }
 
   async list({ view,request}: HttpContext) {

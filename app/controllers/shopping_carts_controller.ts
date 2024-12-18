@@ -5,7 +5,7 @@ export default class ShoppingCartsController {
     async store({auth, request, response, params}: HttpContext){
         try {
             const user = auth.user
-            const mod = params.mod
+           
             const previousUrl =  request.header('Referer')
 
 
