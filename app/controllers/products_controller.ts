@@ -6,6 +6,7 @@ import Subcategory from '#models/subcategory'
 import path from 'path'
 import { fileURLToPath } from 'url';
 import Approval from '#models/approval'
+import Favorite from '#models/favorites'
 
 export default class ProductsController {
   async index({ view,params,request}: HttpContext) {
@@ -25,16 +26,16 @@ export default class ProductsController {
   
     console.log("resposta de form", payload)
 
-  if (payload.name != null && payload.name.length){
-      await query.where('name', 'like', `%${payload.name}%`).orWhere('description', 'like', `%${payload.name}%`)
-
-  }else if(payload.name != null && payload.name.length && payload.subcategory != null){
+  if(payload.name != null && payload.name.length && payload.subcategory != null){
     await query.where((builder) => {
       builder
         .where('name', 'like', `%${payload.name}%`)
         .orWhere('description', 'like', `%${payload.name}%`);
     })
-    .andWhere('subcategory', payload.subcategory)
+    .andWhere('subcategoryId', payload.subcategory)
+  }else if (payload.name != null && payload.name.length){
+    await query.where('name', 'like', `%${payload.name}%`).orWhere('description', 'like', `%${payload.name}%`)
+
   }else if(category > 0){
     query.where('categoryId',category )
 
@@ -104,7 +105,7 @@ export default class ProductsController {
   }
 
   async show({view, params, auth}: HttpContext) {
-    const like = Approval.query()
+    
     const user = auth.user
     let likeexiste = null
     const productId = params.id
@@ -114,7 +115,7 @@ export default class ProductsController {
     const similars = await Product.query().where('subcategoryId', product.subcategoryId)
     if(user){
         console.log("pegou")
-       likeexiste = await like.where('userId', user.id).andWhere('productId', params.id).first()
+       likeexiste = await Favorite.query().where('userId', user.id).andWhere('productId', params.id).first()
     }
 
     //const product = await data.json()

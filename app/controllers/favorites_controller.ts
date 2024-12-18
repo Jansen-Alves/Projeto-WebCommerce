@@ -21,6 +21,7 @@ export default class FavoritesController {
         .first()
 
       if (existingFavorite) {
+        await existingFavorite.delete()
         return response.redirect().toPath(previousUrl)
       }
 

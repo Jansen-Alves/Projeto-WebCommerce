@@ -92,6 +92,29 @@
             </div>
         </div>
     </div> 
+    <div class="flex flex-col py-4 justify-center flex-grow-0">
+        <form method="GET" action="{{route('products.index')}}">
+    
+    
+            <div class="flex flex-row">
+              <input type="text" id="name" name="name" placeholder="Pesquise" class="ml-[14px] w-[350px] outline-none bg-gray-200/50 border-none" value="{{ request.input('name', '') }}" />  
+            <select name="subcategory" 
+            class="outline-none border-none w-[100px] text-gray-800  rounded-md px-4 py-2">
+            <option value=""  selected> Filtros</option>
+            @each(category in categories)
+                <option value="" disabled selected> {{category.name}}</option>
+                @each(subcategory in subcategories)
+                    @if(subcategory.categoryId == category.id)
+                        <option value="{{ subcategory.id }}">{{ subcategory.name}}</option>
+                    @endif
+                @end
+            @end
+        </select> 
+          <button type="submit"> 
+          @svg('heroicons:magnifying-glass-20-solid', {class:'w-6 h-6 mx-1'})
+          </button>
+          </div>
+      </form>
     <div class="produto-cards-container w-full flex justify-start">
       <ul class="flex flex-wrap list-none">
           @each(product in product)
@@ -126,6 +149,7 @@
           @end
       </ul>
   </div>
+</div>
       <!-- Paginação -->
       <div class="flex flex row gap-[20px] py-4 justify-center">
 

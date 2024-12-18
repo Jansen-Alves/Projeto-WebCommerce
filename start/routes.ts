@@ -83,8 +83,8 @@ router
 
   router
     .group(() => {
-      router.post('store/:id', [FavoritesController, 'store']).as('store')
-      router.get('remove/:id', [FavoritesController, 'remove']).as('remove')
+      router.post('/store/:id', [FavoritesController, 'store']).as('store')
+      router.get('/remove/:id', [FavoritesController, 'remove']).as('remove')
       router.get('/:id', [FavoritesController, 'show']).as('show')
     })
     .prefix('favorites')
