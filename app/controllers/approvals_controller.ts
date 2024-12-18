@@ -39,5 +39,41 @@ export default class ApprovalsController {
             return response.internalServerError('Algo deu errado')
           }
 
-    }
+    } async remove ({auth, response, params}: HttpContext){
+      try {
+          const user = auth.user
+          if (!user) {
+            return response.unauthorized('Usuário não logado')
+          }
+          
+          const productId = params.id
+          //const productId = request.input('product_id')
+          const product = await Product.findByOrFail('id', productId)
+
+          // Verifica se o produto já está no carrinho
+          const existingItem = await Approval.query()
+            .where('user_id', user.id)
+            .andWhere('product_id', productId)
+            .first()
+          
+          if (existingItem) {
+            await existingItem.delete()
+            product.approvals += 1
+            await product.save()
+          }else{
+          product.approvals -= 1
+          await product.save()
+          // Adiciona ao carrinho
+          await Approval.create({
+            userId: user.id,
+            productId: productId,
+          })
+          }
+          return response.redirect().toRoute('products.show',{id: productId})
+        } catch (error) {
+          console.error(error)
+          return response.internalServerError('Algo deu errado')
+        }
+
+  }
 }

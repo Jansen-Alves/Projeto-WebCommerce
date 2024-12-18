@@ -31,6 +31,10 @@ export default class Product extends BaseModel {
 
   @column()
   declare approvals: number
+  
+  @column()
+  declare favorites: number 
+
   @column()
   declare imgSrc: string | null
   

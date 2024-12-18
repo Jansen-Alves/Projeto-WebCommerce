@@ -1,5 +1,6 @@
 import type { HttpContext } from '@adonisjs/core/http'
 import Favorite from '#models/favorites'
+import Product from '#models/product'
 
 export default class FavoritesController {
   // Adiciona um item aos favoritos
@@ -7,13 +8,13 @@ export default class FavoritesController {
     try {
       const user = auth.user
       const previousUrl = request.header('Referer')
-
+       
       if (!user) {
         return response.unauthorized('Usuário não logado')
       }
 
       const productId = params.id
-
+      const product = await Product.findByOrFail('id', productId)
       // Verifica se o produto já está nos favoritos
       const existingFavorite = await Favorite.query()
         .where('user_id', user.id)
@@ -22,10 +23,13 @@ export default class FavoritesController {
 
       if (existingFavorite) {
         await existingFavorite.delete()
+        product.favorites = -1
         return response.redirect().toPath(previousUrl)
       }
 
       // Adiciona aos favoritos
+      product.favorites += 1
+      await product.save()
       await Favorite.create({
         userId: user.id,
         productId: productId,
