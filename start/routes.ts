@@ -19,6 +19,7 @@ const AuthController  = () => import('#controllers/auth_controller')
 const CategoriesController = () => import('#controllers/categories_controller')
 const ShoppingCartController = () => import('#controllers/shopping_carts_controller')
 const ApprovalsController = () => import('#controllers/approvals_controller')
+const FavoritesController = () => import('#controllers/favorites_controller')
 
 router.get('/login', [AuthController, 'create']).as('auth.create')
 router.post('/login', [AuthController, 'store']).as('auth.store')
@@ -82,3 +83,12 @@ router
     })
     .prefix('product')
     .as('products').use(middleware.adm())
+
+  router
+    .group(() => {
+      router.post('store/:id', [FavoritesController, 'store']).as('store')
+      router.get('remove/:id', [FavoritesController, 'remove']).as('remove')
+      router.get('/:id', [FavoritesController, 'show']).as('show')
+    })
+    .prefix('favorites')
+    .as('favorites').use(middleware.auth())

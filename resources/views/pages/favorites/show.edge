@@ -1,0 +1,15 @@
+@layouts.app()
+<div class="pt-[150px]">
+<h1>Seus Favoritos</h1>
+<ul>
+  @each(favorite in favorites)
+    <li>
+      <h2>{{ favorite.product.name }}</h2>
+      <p>{{ favorite.product.description }}</p>
+      <form action="{{ route('favorites.remove', { id: favorite.product.id }) }}" method="DELETE">
+        <button type="submit">Remover</button>
+      </form>
+    </li>
+  @endeach
+</ul>
+@end

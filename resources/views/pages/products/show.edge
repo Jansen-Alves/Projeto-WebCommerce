@@ -10,9 +10,9 @@
             <div class="flex flex-row mb-[7px]">
                 <span class="h-[40px] w-[15px] mr-[15px] bg-orange-500 rounded-[25px]"></span>
                 <h1 class="text-[rgb(64, 64, 64)] text-3xl font-medium text-[25px]">{{product.name}}</h1>
-                <form method="POST" action="{{route('approval.store',{id:product.id})}}" >
+                <form method="POST" action="{{route('favorites.store',{id:product.id})}}" >
                    
-                    <button type="submit" id="like-button" class="flex flex-row ml-[20px] mt-[3px]">
+                    <button type="submit" data-product-id="{{ product.id }}" id="like-button" class="flex flex-row ml-[20px] mt-[3px]">
                     @if(likeexiste)
                         @svg('heroicons:heart-20-solid', {class:'w-7 h-7 ml-3  text-red-500 ', id: 'heart-icon'})
                     @else
@@ -22,8 +22,9 @@
                         <span id="like-count ">{{ product.approvals }}</span>
                     @end
                     </button>
-                   
+        
                 </form>
+                            
             </div>
             <p class="text-gray-500 font-normal text-base my-[10px] mx-0 antialiased">
                 {{product.description}}
