@@ -69,6 +69,24 @@ export default class ShoppingCartsController {
       }
     }
 
+    async cont({params, view}: HttpContext){
+      try{
+        const carts = await ShoppingCart.query().where('userId', params.id).andWhere('active', true).preload('product')
+        let cont = 0
+        
+        //await carts?.load('product')
+        //console.log(carts)
+        for(const cart of carts){
+          cont += cart.quantity || 1; // Soma a quantidade de cada item
+        }
+
+        return { cont }; // Retorna o contador como JSON
+    } catch (error) {
+        console.error('Erro ao buscar o contador:', error);
+        return { cont: 0 }; // Retorno padrão em caso de erro
+    }
+    }
+
     async show({params, view}: HttpContext){
       try{
         const carts = await ShoppingCart.query().where('userId', params.id).andWhere('active', true).preload('product')

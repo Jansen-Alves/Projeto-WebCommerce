@@ -56,6 +56,7 @@ router
   .group(() => {
   router.get('/add/:id', [ShoppingCartController, 'store']).as('add')
   router.get('/remove/:id',[ShoppingCartController,'remove']).as('remove')
+  router.get('/cont/:id', [ShoppingCartController, 'cont']).as('cont')
   router.get('/:id', [ShoppingCartController, 'show']).as('show')
   router.get('/destroy/:id',[ShoppingCartController,'destroy']).as('destroy')
   router.get('/deactive/:id',[ShoppingCartController,'deactive']).as('deactive')

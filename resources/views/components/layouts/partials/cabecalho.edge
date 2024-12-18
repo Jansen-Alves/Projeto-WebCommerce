@@ -13,6 +13,27 @@
                 navBar.style.boxShadow = 'none';
             }
         })
+
+        const userId = {{ auth.user.id }};
+        const spanCarrinho = document.querySelector('#link-carrinho span');
+
+        async function atualizarContadorCarrinho() {
+            try {
+                const response = await fetch(`/shopping-cart/cont/${userId}`);
+                if (response.ok) {
+                    const data = await response.json();
+                    spanCarrinho.textContent = data.cont || 0;
+                } else {
+                    console.error('Erro ao buscar o contador do carrinho:', response.statusText);
+                    spanCarrinho.textContent = 0;
+                }
+            } catch (error) {
+                console.error('Erro ao buscar o contador do carrinho:', error);
+                spanCarrinho.textContent = 0;
+            }
+        }
+
+        atualizarContadorCarrinho();
     })
 </script>
 
@@ -28,9 +49,50 @@
                     <li class="ml-[60px]">
                         <a href="{{route('/index')}}" class="no-underline text-[rgb(64,64,64)] font-medium antialiased text-base transition ease-in-out duration-300 mr-[30px] hover:text-[rgb(251,146,60)]">Página Inicial</a>
                     </li>
-                    <li class="ml-[60px]">
-                        <a href="{{route('products.index')}}" class="no-underline text-[rgb(64,64,64)] font-medium antialiased text-base transition ease-in-out duration-300 mr-[30px] hover:text-[rgb(251,146,60)]">Produtos</a>
-                    </li>
+
+                    <style>
+                    .dropdown:hover > .dropdown-content {
+                        display: block;
+                    }
+                    </style>
+                    
+                    <div class="dropdown inline-block relative ml-[60px]">
+                        <a  href="{{route('products.index')}}"
+                            class="no-underline text-[rgb(64,64,64)] font-medium antialiased text-base transition ease-in-out duration-300 mr-[30px] hover:text-[rgb(251,146,60)]">
+                            Produtos
+                        </a>
+                        <ul class="dropdown-content absolute hidden text-[rgb(64,64,64)] pt-1">
+                            <li class="dropdown">
+                            <a class="border border-orange-500 rounded-t bg-white text-[rgb(64,64,64)] transition hover:text-orange-500 py-2 px-4 block whitespace-no-wrap" href="#">Hardware</a>
+                                <ul class="dropdown-content absolute hidden text-gray-700 w-[175px] pl-7 ml-24 -mt-[42px] w-auto">
+                                    <li><a class="border border-orange-500 rounded-t bg-white text-[rgb(64,64,64)] transition hover:text-orange-500 py-2 px-4 block whitespace-no-wrap" href="#">Coolers</a>
+                                    <li><a class="border border-orange-500 rounded-t bg-white text-[rgb(64,64,64)] transition hover:text-orange-500 py-2 px-4 block whitespace-no-wrap" href="#">Disco Rígido</a>
+                                    <li><a class="border border-orange-500 rounded-t bg-white text-[rgb(64,64,64)] transition hover:text-orange-500 py-2 px-4 block whitespace-no-wrap" href="#">Placa-Mãe</a>
+                                    <li><a class="border border-orange-500 rounded-t bg-white text-[rgb(64,64,64)] transition hover:text-orange-500 py-2 px-4 block whitespace-no-wrap" href="#">Fonte</a>
+                                    <li><a class="border border-orange-500 rounded-t bg-white text-[rgb(64,64,64)] transition hover:text-orange-500 py-2 px-4 block whitespace-no-wrap" href="#">Memória RAM</a>
+                                    <li><a class="border border-orange-500 rounded-t bg-white text-[rgb(64,64,64)] transition hover:text-orange-500 py-2 px-4 block whitespace-no-wrap" href="#">Processador</a>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                            <a class="border border-orange-500 rounded-t bg-white text-[rgb(64,64,64)] transition hover:text-orange-500 py-2 px-4 block whitespace-no-wrap" href="#">Periféricos</a>
+                                <ul class="dropdown-content absolute hidden text-gray-700 w-[195px] pl-7 ml-24 -mt-[42px] w-auto">
+                                    <li><a class="border border-orange-500 rounded-t bg-white text-[rgb(64,64,64)] transition hover:text-orange-500 py-2 px-4 block whitespace-no-wrap" href="#">Teclado/Mouse</a>
+                                    <li><a class="border border-orange-500 rounded-t bg-white text-[rgb(64,64,64)] transition hover:text-orange-500 py-2 px-4 block whitespace-no-wrap" href="#">Mouse Pad</a>
+                                    <li><a class="border border-orange-500 rounded-t bg-white text-[rgb(64,64,64)] transition hover:text-orange-500 py-2 px-4 block whitespace-no-wrap" href="#">Fone</a>
+                                    <li><a class="border border-orange-500 rounded-t bg-white text-[rgb(64,64,64)] transition hover:text-orange-500 py-2 px-4 block whitespace-no-wrap" href="#">Microfone</a>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                            <a class="border border-orange-500 rounded-t bg-white text-[rgb(64,64,64)] transition hover:text-orange-500 py-2 px-4 block whitespace-no-wrap" href="#">Acessórios</a>
+                                <ul class="dropdown-content absolute hidden text-gray-700 w-[175px] pl-7 ml-24 -mt-[42px] w-auto">
+                                    <li><a class="border border-orange-500 rounded-t bg-white text-[rgb(64,64,64)] transition hover:text-orange-500 py-2 px-4 block whitespace-no-wrap" href="#">Cadeira</a>
+                                    <li><a class="border border-orange-500 rounded-t bg-white text-[rgb(64,64,64)] transition hover:text-orange-500 py-2 px-4 block whitespace-no-wrap" href="#">Gabinete</a>
+                                    <li><a class="border border-orange-500 rounded-t bg-white text-[rgb(64,64,64)] transition hover:text-orange-500 py-2 px-4 block whitespace-no-wrap" href="#">Monitor</a>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    
                     <li class="ml-[60px]">
                         <a href="javascript:void(0);" onclick="window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });" class="no-underline text-[rgb(64,64,64)] font-medium antialiased text-base transition ease-in-out duration-300 mr-[30px] hover:text-[rgb(251,146,60)]">Sobre</a>
                     </li>
@@ -88,7 +150,7 @@
                         <div x-cloak x-show="isOpen || openedWithKeyboard" x-transition x-trap="openedWithKeyboard" 
                             @click.outside="isOpen = false, openedWithKeyboard = false" @keydown.down.prevent="$focus.wrap().next()" 
                             @keydown.up.prevent="$focus.wrap().previous()" 
-                            class="absolute top-11 right-0 flex w-auto min-w-[12rem] flex-col overflow-hidden rounded-md border border-orange-500 divide-y divide-orange-500 bg-white py-1.5" role="menu">
+                            class="absolute top-11 right-7 flex w-auto min-w-[12rem] flex-col overflow-hidden rounded-md border border-orange-500 divide-y divide-orange-500 bg-white py-1.5" role="menu">
 
                             <!-- Verificação de Admin ou Cliente -->
                             @if(auth.user.isAdm)
