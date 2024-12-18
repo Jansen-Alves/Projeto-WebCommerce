@@ -48,7 +48,12 @@
                     <button type="submit" class="orange-button">
                         ENTRAR
                     </button>
-                </form>
+                     @flashMessage('errors.login')
+                     <p class="text-sm text-red-500">
+                         {{ $message }}
+                     </p>
+                     @end
+                    </form>
                 <p>
                     <span>Não é Cadastrado?</span>
                 </p>

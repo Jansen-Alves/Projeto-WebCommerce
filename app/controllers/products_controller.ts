@@ -9,6 +9,8 @@ import Approval from '#models/approval'
 
 export default class ProductsController {
   async index({ view,params,request}: HttpContext) {
+    const categories = await Category.query().orderBy('id', 'asc').preload('subCategories')
+    const subcategories = await Subcategory.query().orderBy('category_id', 'asc')
     //console.log("chegou na função")
     const page = request.input('page', 1)
     const limit = 10
@@ -16,16 +18,23 @@ export default class ProductsController {
     //const product = await Product.all()
     //const  = await data.json()
 
-    const payload = request.only(['name'])
+    const payload = request.only(['name','subcategory'])
     const query =  Product.query()
-    const subcategory = params.subcategory
+    const subcategory = params.subcategory || payload.subcategory
     const category = params.category
   
-    console.log("resposta categoria", category)
-    console.log("resposta subcategoria", subcategory)
-  if (payload.name != null && payload.name.length){
-      await query.where('name', 'like', `%${payload.name}%`)
+    console.log("resposta de form", payload)
 
+  if (payload.name != null && payload.name.length){
+      await query.where('name', 'like', `%${payload.name}%`).orWhere('description', 'like', `%${payload.name}%`)
+
+  }else if(payload.name != null && payload.name.length && payload.subcategory != null){
+    await query.where((builder) => {
+      builder
+        .where('name', 'like', `%${payload.name}%`)
+        .orWhere('description', 'like', `%${payload.name}%`);
+    })
+    .andWhere('subcategory', payload.subcategory)
   }else if(category > 0){
     query.where('categoryId',category )
 
@@ -34,7 +43,7 @@ export default class ProductsController {
   }
     await query.preload('category').preload('subCategory')
     const product = await query.paginate(page,limit)
-    return view.render('pages/products/index', {product})
+    return view.render('pages/products/index', {product, subcategories, categories})
   }
 
   async list({ view,request}: HttpContext) {
@@ -56,9 +65,10 @@ export default class ProductsController {
     return view.render('pages/products/create',{categories, subcategories})
   }
 
-  async store({request, response}: HttpContext){
+  async store({request, response, session}: HttpContext){
     const __filename = fileURLToPath(import.meta.url); // Caminho completo do arquivo atual
     const __dirname = path.dirname(__filename); 
+    try{
     //console.log("entrou", request.body())
     const imgSrc = request.file('imagem', {
       extnames: ['jpg', 'png', 'jpeg'],
@@ -80,8 +90,17 @@ export default class ProductsController {
       payload.imgSrc = `/app/uploads/${add.name}/${imgSrc.clientName}`
       }
     console.log(payload)
+    session.flash('sucess.product','Produto cadastrado com sucesso!');
     const product = await Product.create(payload)
     return response.redirect().toRoute('products.show', {id: product.id})
+    }catch(error){
+      console.error(error);
+
+    // Armazena uma mensagem de erro na sessão em caso de falha
+    session.flash({ error: { product: 'Erro ao cadastrar o produto. Verifique os dados e tente novamente.' }});
+//session.flash({ errors: { login: 'Não encontramos nenhuma conta válida' } })
+    return response.redirect('back');
+    }
   }
 
   async show({view, params, auth}: HttpContext) {
@@ -92,6 +111,7 @@ export default class ProductsController {
     const product = await Product.findOrFail(productId)
     await product.load('category')
     await product.load('subCategory')
+    const similars = await Product.query().where('subcategoryId', product.subcategoryId)
     if(user){
         console.log("pegou")
        likeexiste = await like.where('userId', user.id).andWhere('productId', params.id).first()
@@ -99,7 +119,7 @@ export default class ProductsController {
 
     //const product = await data.json()
     
-    return view.render('pages/products/show', {product, likeexiste: !!likeexiste,})
+    return view.render('pages/products/show', {product, likeexiste: !!likeexiste, similars})
   }
 
   

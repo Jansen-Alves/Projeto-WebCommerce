@@ -66,9 +66,6 @@ router
   .prefix('shopping-cart').
   as('shoppingCart').use(middleware.auth())
 
-
-  
-  
     router.get('product/search/:category?/:subcategory?', [ProductsController, 'index']).as('products.index')
     router.get('product/:id', [ProductsController, 'show']).where('id', router.matchers.number()).as('products.show')
   router
