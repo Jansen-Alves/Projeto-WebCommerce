@@ -26,7 +26,8 @@ router.get('/logout', [AuthController, 'destroy']).as('auth.destroy')
 
 router.get('/index', async({view}) =>{
   const perifericos = await Product.query().where('categoryId', 2).orderBy('approvals', 'desc').preload('subCategory').limit(3)
-  return view.render('pages/main', {perifericos})
+  const popular = await Product.query().orderBy('approvals','desc').first()
+  return view.render('pages/main', {perifericos, popular})
 }).as('main')
 
 router.get('/init', async({view}) =>{

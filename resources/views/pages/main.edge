@@ -5,7 +5,7 @@
     <div id="home-top-wrapper" class="flex justify-between flex-row w-[85%] items-center">
         <div id="home-top-text" class="w-[50%]">
             <h1 class="text-[#404040] text-[50px] font-semibold">
-                Monitore Cada Passo com o Estilo do nosso Smartwatch
+                Se surpreenda com o novo Monitor Gamer da Samsumg
             </h1>
             <p class="text-[#757575] text-[18px] font-normal mt-[15px]">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse iaculis porta velit, eu vehicula sem tincidunt sit amet. Integer bibendum lacus eu lorem feugiat.
@@ -15,7 +15,7 @@
             </button>
         </div>
         <div id="home-top-image">
-            <img src="imagens/homepage/topwatch.png" alt="Smartwatch Azul" class="max-w-[450px]" />
+            <img src="{{popular.imgSrc}}" alt="o mais popular" class="max-w-[450px]" />
         </div>
     </div>
 </div>
@@ -88,14 +88,17 @@
                     <span class="produto-title text-[#323232] text-[18px] font-medium">
                        {{item.name}}
                     </span>
-                    <div class="produto-purchase mt-2 w-full">
+                    <div class="flex flex-col produto-purchase mt-2 w-full">
                         <span class="produto-price text-[18px] text-[#fb923c] font-medium">
-                          {{item.price}}
+                          R${{item.price}}
                         </span>
             </a>
-                    <button class="add-to-cart mt-2 px-5 py-2 rounded-lg text-[16px] bg-[#fb923c] text-white  hover:bg-white hover:text-orange-400  transition-all">
-                        Adicionar ao Carrinho
-                    </button>
+            @button({href: route('shoppingCart.add', {id: item.id, mod:0}),
+            class:'mt-2 px-5 py-2 rounded-lg text-[16px] bg-[#fb923c] text-white  hover:bg-white hover:text-orange-400  transition-all',
+            variant: 'new'})
+                  adicionar ao carrinho
+                    @end
+                       
                 </div>
             </div>
         </li>
