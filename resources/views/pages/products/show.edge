@@ -4,7 +4,7 @@
 
     <div class="flex flex-row w-full h-[500px] mt-[110px] mb-[40px] shadow-custom rounded-[5px] overflow-hidden">
         <div class="bg-orange-200 flex justify-center items-center flex-shrink-0 flex-grow-0 w-[470px] h-full py-0 px-[50px]">
-            <img src="{{product.imgSrc}}" alt="Coleção de iPhones" class="max-w-full max-h-full object-cover hover:animate-wiggle">
+            <img src="{{product.imgSrc}}" alt="Produto" class="max-w-full max-h-full object-cover hover:animate-wiggle">
         </div>
         <div class="bg-white flex flex-col justify-center items-start py-0 px-[80px] flex-1">
             <div class="flex flex-row mb-[7px]">
@@ -12,13 +12,13 @@
                 <h1 class="text-[rgb(64, 64, 64)] text-3xl font-medium text-[25px]">{{product.name}}</h1>
                 <form method="POST" action="{{route('approval.store',{id:product.id})}}" >
                    
-                    <button type="submit" id="like-button" class="flex flex-row mt-[5px]">
+                    <button type="submit" id="like-button" class="flex flex-row ml-[20px] mt-[3px]">
                     @if(likeexiste)
                         @svg('heroicons:heart-20-solid', {class:'w-7 h-7 ml-3  text-red-500 ', id: 'heart-icon'})
                     @else
                         @svg('heroicons:heart-20-solid', {class:'w-7 h-7 ml-3  text-gray-400 ', id: 'heart-icon'})
                     @end
-                        <span id="like-count ">{{ product.approvals }}</span>
+                        <span id="like-count" class="pt-[2px] pl-[2px]">{{ product.approvals }}</span>
                     </button>
                    
                 </form>
@@ -31,7 +31,7 @@
                     {{ product.category.name }}
                 </h2>
                 <h3 class="text-gray-600 font-800 text-[16px] mt-0 mb-2 antialiased">
-                    - Vendido e entregue pela <b>Bunga tech</b>| <b class="text-green-600"> Em estoque</b>
+                    - Vendido e entregue pela <b>Bunga Tech</b> | <b class="text-green-600"> Em estoque</b>
                 </h3>
             </div>
             <h3 class="text-[rgb(64, 64, 64)] font-800 text-[25px] mt-0 antialiased">
