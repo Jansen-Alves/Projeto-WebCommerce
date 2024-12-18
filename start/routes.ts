@@ -68,7 +68,7 @@ router
 
   
   
-    router.get('product/', [ProductsController, 'index']).as('products.index')
+    router.get('product/:category?/:subcategory?', [ProductsController, 'index']).as('products.index')
     router.get('product/:id', [ProductsController, 'show']).where('id', router.matchers.number()).as('products.show')
   router
     .group(() => {

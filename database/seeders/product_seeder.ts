@@ -11,7 +11,7 @@ export default class extends BaseSeeder {
       categoryId: 1,
       subcategoryId: 1,
       approvals: 0,
-      imgSrc: '/app/uploads/Gabinetes/kit-fan-com-3-unidades-superframe-cyclone-v2-argb-120mm-preto-sf-fn-cyk12ab_202261.png',
+      imgSrc: '/app/uploads/seed/kit-fan-com-3-unidades-superframe-cyclone-v2-argb-120mm-preto-sf-fn-cyk12ab_202261.png',
       description:'kit fan 3 unidades, SuperFrame Cyclone V2, ARGB, 120mm, preto, SF-FN-CYK12AB' ,
     },{
       name: 'Kit fan 3 unidades',
@@ -47,7 +47,7 @@ export default class extends BaseSeeder {
       categoryId: 1,
       subcategoryId: 2,
       approvals: 0,
-      imgSrc: '/app/uploads/seed/ssd-kingston-nv2-1tb-m2-nvme-2280-leitura-3500mbs-e-gravacao-2100mbs-snv2s1000g_154119.pg',
+      imgSrc: '/app/uploads/seed/ssd-kingston-nv2-1tb-m2-nvme-2280-leitura-3500mbs-e-gravacao-2100mbs-snv2s1000g_154119.png',
       description: 'SSD Kingston NV2, 1TB, M.2 NVMe, 2280, Leitura 3500MBs e Gravação 2100MBs, SNV2S/1000G ',
     },{
       name: 'SSD XPG GAMMMIX 1TB',
@@ -146,7 +146,7 @@ export default class extends BaseSeeder {
       categoryId: 1,
       subcategoryId: 4,
       approvals: 0,
-      imgSrc: '/app/uploads/seed/fonte-be-quiet-pure-power-12-m-1000w-80-plus-gold-pfc-ativo-full-modular-black-bn523_203730',
+      imgSrc: '/app/uploads/seed/fonte-be-quiet-pure-power-12-m-1000w-80-plus-gold-pfc-ativo-full-modular-black-bn523_203730.png',
       description: 'Fonte Be Quiet Pure Power 12 M, 1000W, 80 Plus Gold, PFC Ativo, Full Modular, Black, BN523',
     },{
       name: 'Fonte Cooler Master GX III 850W',
@@ -353,7 +353,7 @@ export default class extends BaseSeeder {
       categoryId: 2,
       subcategoryId: 9,
       approvals: 22,
-      imgSrc: '/app/uploads/seed/headset-gamer-sem-fio-sony-pulse-3d-usb-ps5-cfi-zwh2l_212665.png',
+      imgSrc: '/app/uploads/seed/headset-gamer-sem-fio-sony-pulse-3d-usb-ps5-cfi-zwh2l_212665.jpg',
       description: 'Headset Gamer Sem Fio Sony Pulse 3D, USB, PS5, CFI-ZWH2L',
     },{
       name: 'Microfone Gamer Fifine',
@@ -398,7 +398,7 @@ export default class extends BaseSeeder {
       categoryId: 3,
       subcategoryId: 11,
       approvals: 44,
-      imgSrc: '/app/uploads/seed/cadeira-gamer-ninja-jiraya-branco-e-preto_160279.png',
+      imgSrc: '/app/uploads/seed/cadeira-gamer-ninja-jiraya-branco-e-preto_160279.jpg',
       description: 'Cadeira Gamer Ninja Jiraya, Branco e Preto',
     },{
       name: 'Cadeira Gamer SuperFrame Godzilla',
@@ -407,7 +407,7 @@ export default class extends BaseSeeder {
       categoryId: 3,
       subcategoryId: 11,
       approvals: 0,
-      imgSrc: '/app/uploads/seed/cadeira-gamer-superframe-godzilla-reclinavel-preto-e-vermelho_161027.png',
+      imgSrc: '/app/uploads/seed/cadeira-gamer-superframe-godzilla-reclinavel-preto-e-vermelho_161027.jpg',
       description: 'Cadeira Gamer SuperFrame Godzilla, Reclinável, Preto e Vermelho',
     },{
       name: 'Cadeira Gamer Duex DX9026B',
@@ -425,7 +425,7 @@ export default class extends BaseSeeder {
       categoryId: 3,
       subcategoryId: 11,
       approvals: 2,
-      imgSrc: '/app/uploads/seed/cadeira-gamer-terabyte-vision-reclinavel-2d-preto-e-azul_167274.png',
+      imgSrc: '/app/uploads/seed/cadeira-gamer-terabyte-vision-reclinavel-2d-preto-e-azul_167274.jpg',
       description: 'Cadeira Gamer Terabyte Vision, Reclinável, 2D, Preto e Azul ',
     },{
       name: 'Gabinete Gamer Be Quiet',
@@ -461,7 +461,7 @@ export default class extends BaseSeeder {
       categoryId: 3,
       subcategoryId: 12,
       approvals: 2,
-      imgSrc: '/app/uploads/seed/gabinete-gamer-montech-x3-glass-mid-tower-black-atx_125040 (1).png',
+      imgSrc: '/app/uploads/seed/gabinete-gamer-montech-x3-glass-mid-tower-black-atx_125040 (1).jpg',
       description: 'Gabinete Gamer Montech X3 Glass, Mid Tower, Black, ATX, Com 6 Fans, Vidro Temperado',
     },{
       name: 'Monitor Gamer Acer Nitro 31,5 Pol',

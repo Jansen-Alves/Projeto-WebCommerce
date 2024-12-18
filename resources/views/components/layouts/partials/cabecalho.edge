@@ -63,48 +63,49 @@
                             Produtos
                         </a>
                         <ul class="dropdown-content border border-orange-500 w-[220px] absolute hidden text-[rgb(64,64,64)] ">
+                            
                             <li class="dropdown">
                                 <li class="dropdown relative">
-                                    <a 
+                                    <a  name="category"
                                       class="rounded-t bg-white text-[rgb(64,64,64)] transition hover:text-orange-500 py-2 px-4 w-auto block whitespace-no-wrap" 
-                                      href="#">
+                                      href="{{route('products.index',{category:1})}}">
                                       Hardware <b class="justify-end">></b>
                                     </a>
                                 <ul class="dropdown-content dropdown-content border border-orange-400 absolute hidden left-full text-gray-700 w-[225px]  m-0 -mt-[42px] ">
-                                    <li><a class="rounded-t bg-white text-[rgb(64,64,64)] transition hover:text-orange-500 py-2 px-4 block whitespace-no-wrap" href="#">Coolers</a>
-                                    <li><a class="rounded-t bg-white text-[rgb(64,64,64)] transition hover:text-orange-500 py-2 px-4 block whitespace-no-wrap" href="#">Disco Rígido</a>
-                                    <li><a class="rounded-t bg-white text-[rgb(64,64,64)] transition hover:text-orange-500 py-2 px-4 block whitespace-no-wrap" href="#">Placa-Mãe</a>
-                                    <li><a class="rounded-t bg-white text-[rgb(64,64,64)] transition hover:text-orange-500 py-2 px-4 block whitespace-no-wrap" href="#">Fonte</a>
-                                    <li><a class="rounded-t bg-white text-[rgb(64,64,64)] transition hover:text-orange-500 py-2 px-4 block whitespace-no-wrap" href="#">Memória RAM</a>
-                                    <li><a class="rounded-t bg-white text-[rgb(64,64,64)] transition hover:text-orange-500 py-2 px-4 block whitespace-no-wrap" href="#">Processador</a>
+                                    <li><a class="rounded-t bg-white text-[rgb(64,64,64)] transition hover:text-orange-500 py-2 px-4 block whitespace-no-wrap" href="{{route('products.index',{subcategory:1})}}">Coolers</a>
+                                    <li><a class="rounded-t bg-white text-[rgb(64,64,64)] transition hover:text-orange-500 py-2 px-4 block whitespace-no-wrap" href="{{route('products.index',{subcategory:2})}}">Disco Rígido</a>
+                                    <li><a class="rounded-t bg-white text-[rgb(64,64,64)] transition hover:text-orange-500 py-2 px-4 block whitespace-no-wrap" href="{{route('products.index',{subcategory:3})}}">Placa-Mãe</a>
+                                    <li><a class="rounded-t bg-white text-[rgb(64,64,64)] transition hover:text-orange-500 py-2 px-4 block whitespace-no-wrap" href="{{route('products.index',{subcategory:4})}}">Fonte</a>
+                                    <li><a class="rounded-t bg-white text-[rgb(64,64,64)] transition hover:text-orange-500 py-2 px-4 block whitespace-no-wrap" href="{{route('products.index',{subcategory:5})}}">Memória RAM</a>
+                                    <li><a class="rounded-t bg-white text-[rgb(64,64,64)] transition hover:text-orange-500 py-2 px-4 block whitespace-no-wrap" href="{{route('products.index',{subcategory:6})}}">Processador</a>
                                 </ul>
                             </li>
                             <li class="dropdown">
                                 <li class="dropdown relative">
                                     <a 
                                       class="rounded-t bg-white text-[rgb(64,64,64)] transition hover:text-orange-500 py-2 px-4 w-auto block whitespace-no-wrap" 
-                                      href="#">
+                                      href="{{route('products.index',{category: 2})}}">
                                       Periféricos <b class="justify-end">></b>
                                     </a>
                                 <ul class="dropdown-content dropdown-content border border-orange-400 absolute hidden left-full text-gray-700 w-[225px]  m-0 -mt-[42px] ">
-                                    <li><a class="rounded-t bg-white text-[rgb(64,64,64)] transition hover:text-orange-500 py-2 px-4 block whitespace-no-wrap" href="#">Teclado/Mouse</a>
-                                    <li><a class="rounded-t bg-white text-[rgb(64,64,64)] transition hover:text-orange-500 py-2 px-4 block whitespace-no-wrap" href="#">Mouse Pad</a>
-                                    <li><a class="rounded-t bg-white text-[rgb(64,64,64)] transition hover:text-orange-500 py-2 px-4 block whitespace-no-wrap" href="#">Fone</a>
-                                    <li><a class="rounded-t bg-white text-[rgb(64,64,64)] transition hover:text-orange-500 py-2 px-4 block whitespace-no-wrap" href="#">Microfone</a>
+                                    <li><a class="rounded-t bg-white text-[rgb(64,64,64)] transition hover:text-orange-500 py-2 px-4 block whitespace-no-wrap" href="{{route('products.index',{subcategory:7})}}">Teclado/Mouse</a>
+                                    <li><a class="rounded-t bg-white text-[rgb(64,64,64)] transition hover:text-orange-500 py-2 px-4 block whitespace-no-wrap" href="{{route('products.index',{subcategory:8})}}">Mouse Pad</a>
+                                    <li><a class="rounded-t bg-white text-[rgb(64,64,64)] transition hover:text-orange-500 py-2 px-4 block whitespace-no-wrap" href="{{route('products.index',{subcategory:9})}}">Fone</a>
+                                    <li><a class="rounded-t bg-white text-[rgb(64,64,64)] transition hover:text-orange-500 py-2 px-4 block whitespace-no-wrap" href="{{route('products.index',{subcategory:10})}}">Microfone</a>
                                 </ul>
                             </li>
                             <li class="dropdown">
                                 <li class="dropdown relative">
                                     <a 
                                       class="rounded-t bg-white text-[rgb(64,64,64)] transition hover:text-orange-500 py-2 px-4 w-auto block whitespace-no-wrap" 
-                                      href="#">
+                                      href="{{route('products.index',{category:3})}}">
                                       Acessórios <b class="justify-end">></b>
                                     </a>
                             
                                 <ul class="dropdown-content dropdown-content border border-orange-400 absolute hidden left-full text-gray-700 w-[225px]  m-0 -mt-[42px]">
-                                    <li><a class="rounded-t bg-white text-[rgb(64,64,64)] transition hover:text-orange-500 py-2 px-4 block whitespace-no-wrap" href="#">Cadeira</a>
-                                    <li><a class="rounded-t bg-white text-[rgb(64,64,64)] transition hover:text-orange-500 py-2 px-4 block whitespace-no-wrap" href="#">Gabinete</a>
-                                    <li><a class="rounded-t bg-white text-[rgb(64,64,64)] transition hover:text-orange-500 py-2 px-4 block whitespace-no-wrap" href="#">Monitor</a>
+                                    <li><a class="rounded-t bg-white text-[rgb(64,64,64)] transition hover:text-orange-500 py-2 px-4 block whitespace-no-wrap" href="{{route('products.index',{subcategory:11})}}">Cadeira</a>
+                                    <li><a class="rounded-t bg-white text-[rgb(64,64,64)] transition hover:text-orange-500 py-2 px-4 block whitespace-no-wrap" href="{{route('products.index',{subcategory:12})}}">Gabinete</a>
+                                    <li><a class="rounded-t bg-white text-[rgb(64,64,64)] transition hover:text-orange-500 py-2 px-4 block whitespace-no-wrap" href="{{route('products.index',{subcategory:13})}}">Monitor</a>
                                 </ul>
                             </li>
                         </ul>

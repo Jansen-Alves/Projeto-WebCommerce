@@ -8,7 +8,7 @@ import { fileURLToPath } from 'url';
 import Approval from '#models/approval'
 
 export default class ProductsController {
-  async index({ view,request}: HttpContext) {
+  async index({ view,params,request}: HttpContext) {
     //console.log("chegou na função")
     const page = request.input('page', 1)
     const limit = 10
@@ -18,12 +18,20 @@ export default class ProductsController {
 
     const payload = request.only(['name'])
     const query =  Product.query()
-    if (payload.name != null && payload.name.length){
+    const subcategory = params.subcategory
+    const category = params.category
+  
+    console.log("resposta categoria", category)
+    console.log("resposta subcategoria", subcategory)
+  if (payload.name != null && payload.name.length){
       await query.where('name', 'like', `%${payload.name}%`)
 
-  }/*else if(payload.category != null ){
-    query.where('subcategoryId','like', `${payload.category}`)
-  }*/
+  }else if(category != null ){
+    query.where('categoryId',category )
+
+  }else if(subcategory != null){
+    query.where('subcategoryId', subcategory)
+  }
     await query.preload('category').preload('subCategory')
     const product = await query.paginate(page,limit)
     return view.render('pages/products/index', {product})
