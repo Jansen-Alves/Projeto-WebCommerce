@@ -11,31 +11,77 @@
                 <h1 class="text-gray-700 text-4xl font-medium mb-10">Lista de Produtos</h1>
             </div>
         </div>    
-        <div class="border border-orange-500 p-[50px] rounded-[30px]">
-            <div class="produto-cards-container w-full h-full flex justify-start">
-                <ul class="items-center">
+        <div class="relative overflow-x-auto border border-orange-300 shadow-md sm:rounded-lg">
+            <table class="w-full text-sm text-left rtl:text-right text-gray-700">
+                <thead class="text-xs text-gray-700 border-b border-orange-300 uppercase bg-[#f7b57e34]">
+                    <tr>
+                        <th scope="col" class="px-16 py-3">
+                            <span class="sr-only">Imagem</span>
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Produto
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Preço
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Quantidade
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            <span class="sr-only">Editar</span>
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            <span class="sr-only">Remover</span>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
                     @each(product in product)
-                        <a href="{{route('products.show',{id: product.id}) }}" class="flex flex-row">
-                            <li class="pb-3 sm:pb-4">
-                                    <div class="flex justify-between">
-                                        <img src="{{product.imgSrc}}" alt="produtos" class="w-[60px] h-[60px] object-contain" />
-                                        <h1 class="text-[rgb(64, 64, 64)] text-[15px] font-medium mb-[4px]">{{product.name}}</h1>
-                                        <p class="text-[rgb(64, 64, 64)] text-[15px] font-normal mb-[8px]">R${{product.price}}</p>
-                                        <p class="text-[rgb(64, 64, 64)] text-[15px] font-normal mb-[8px]">Quantidade: {{product.stocked}}</p>
-                                        <div class="pt-[10px]">  
-                                            <a href="{{route('products.alter',{id: product.id}) }}" class="orange-button py-[8px] px-[16px] mr-[15px] rounded-[5px] text-base cursor-pointer bg-orange-500 text-white hover:bg-orange-400">
-                                            Editar
-                                            </a>
-                                            <a href="{{route('products.destroy',{id: product.id})}}" class="orange-button py-[8px] px-[16px] ml-[15px] rounded-[5px] text-base cursor-pointer bg-orange-500 text-white hover:bg-orange-400">
-                                            Remover
-                                            </a>
-                                        </div>
-                                    </div>
-                            </li>
-                        </a>
+                    <tr class="bg-white border-b border-orange-300 text-gray-800 hover:bg-[#f7b57e34]">
+                        <td class="p-4">
+                            <img src="{{product.imgSrc}}" alt="produtos" class="w-[60px] h-[60px] object-contain mr-8" />
+                        </td>
+                        <td class="px-6 py-4 font-semibold text-gray-900">
+                            {{product.name}}
+                        </td>
+                        <td class="px-6 py-4 font-semibold text-gray-900">
+                            R$ {{product.price}}
+                        </td>
+                        <td class="px-6 py-4 font-semibold text-gray-900">
+                            {{product.stocked}}
+                        </td>
+                        <td class="px-6 py-4">
+                            <a href="{{route('products.alter',{id: product.id}) }}" class="font-medium text-orange-600 hover:underline">Editar</a>
+                        </td>
+                        <td class="px-6 py-4">
+                            <a href="{{route('products.destroy',{id: product.id}) }}" class="font-medium text-orange-600 hover:underline">Remover</a>
+                        </td>
+                    </tr>
                     @end
-                </ul>
-            </div>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Paginação -->
+        <div class="flex flex row gap-[20px] mt-[30px] -mb-20 justify-center">
+
+            @if (product.currentPage > 1)
+            <a href="?page={{ product.currentPage - 1 }}&name={{ request.input('name', '') }}" class="mt-[1px] hover:text-orange-600 transition-colors duration-300">
+                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-caret-left-fill" viewBox="0 0 16 16">
+                <path d="m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z"/>
+                </svg>
+            </a>
+            @end
+
+            <p>Página {{ product.currentPage }} de {{ product.lastPage }}</p>
+        
+            @if (product.currentPage < product.lastPage)
+            <a href="?page={{ product.currentPage + 1 }}&name={{ request.input('name', '') }}" class="mt-[1px] hover:text-orange-600 transition-colors duration-300">
+                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-caret-right-fill" viewBox="0 0 16 16">
+                <path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/>
+                </svg>
+            </a>
+            @end
         </div>
     </div>
 </div>

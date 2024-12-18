@@ -2,112 +2,63 @@
 
 
 <div class="py-[100px] px-[150px]">
-   
-    <div class="flex flex-col mt-[100px] ">
-        @flashMessage('sucess.product')
-        <div class="mt-3 bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative text-center" role="alert">
-            <span class="block sm:inline">{{ $message}}</span>
-          </div>
-            @end
-        <div class="flex flex-row w-full h-[500px]  mb-[40px] shadow-custom rounded-[5px] overflow-hidden">
-        
-            <div class="bg-orange-200 flex justify-center items-center flex-shrink-0 flex-grow-0 w-[470px] h-full py-0 px-[50px]">
-                <img src="{{product.imgSrc}}" alt="Coleção de {{product.subCategory.name}}" class="max-w-full max-h-full object-cover hover:animate-wiggle">
+
+    <div class="flex flex-row w-full h-[500px] mt-[110px] mb-[40px] shadow-custom rounded-[5px] overflow-hidden">
+        <div class="bg-orange-200 flex justify-center items-center flex-shrink-0 flex-grow-0 w-[470px] h-full py-0 px-[50px]">
+            <img src="{{product.imgSrc}}" alt="Coleção de {{product.subCategory.name}}" class="max-w-full max-h-full object-cover hover:animate-wiggle">
+        </div>
+        <div class="bg-white flex flex-col justify-center items-start py-0 px-[80px] flex-1">
+            <div class="flex flex-row mb-[7px]">
+                <span class="h-[40px] w-[15px] mr-[15px] bg-orange-500 rounded-[25px]"></span>
+                <h1 class="text-[rgb(64, 64, 64)] text-3xl font-medium text-[25px]">{{product.name}}</h1>
+                <form method="POST" action="{{route('approval.store',{id:product.id})}}" >
+                   
+                    <button type="submit" id="like-button" class="flex flex-row ml-[20px] mt-[3px]">
+                    @if(likeexiste)
+                        @svg('heroicons:heart-20-solid', {class:'w-7 h-7 ml-3  text-red-500 ', id: 'heart-icon'})
+                    @else
+                        @svg('heroicons:heart-20-solid', {class:'w-7 h-7 ml-3  text-gray-400 ', id: 'heart-icon'})
+                    @end
+                    @if(auth.user.isAdm)
+                        <span id="like-count ">{{ product.approvals }}</span>
+                    @end
+                    </button>
+                   
+                </form>
             </div>
-            <div class="bg-white flex flex-col justify-center items-start py-0 px-[80px] flex-1">
-                <div class="flex flex-row mb-[7px]">
-                    <span class="h-[40px] w-[15px] mr-[15px] bg-orange-500 rounded-[25px]"></span>
-                    <h1 class="text-[rgb(64, 64, 64)] text-3xl font-medium text-[25px]">{{product.name}}</h1>
-                    <form method="POST" action="{{route('approval.store',{id:product.id})}}" >
-        
-                        <button type="submit" id="like-button" class="flex flex-row mt-[5px]">
-                        @if(likeexiste)
-                            @svg('heroicons:heart-20-solid', {class:'w-7 h-7 ml-3  text-red-500 ', id: 'heart-icon'})
-                        @else
-                            @svg('heroicons:heart-20-solid', {class:'w-7 h-7 ml-3  text-gray-400 ', id: 'heart-icon'})
-                        @end
-                        @if(auth.user.isAdm)
-                            <span id="like-count ">{{ product.approvals }}</span>
-                        @end
-                        </button>
-        
-                    </form>
-                </div>
-                <p class="text-gray-500 font-normal text-base my-[10px] mx-0 antialiased">
-                    {{product.description}}
-                </p>
-                <div class="">
-                    <h2 class="text-[rgb(64, 64, 64)] font-800 text-[25px] mt-0 antialiased">
-                        {{ product.category.name }}
-                    </h2>
-                    <h3 class="text-gray-600 font-800 text-[16px] mt-0 mb-2 antialiased">
-                        - Vendido e entregue pela <b>Bunga tech</b>| <b class="text-green-600"> Em estoque</b>
-                    </h3>
-                </div>
-                <h3 class="text-[rgb(64, 64, 64)] font-800 text-[25px] mt-0 antialiased">
-                    R$ {{product.price}}
+            <p class="text-gray-500 font-normal text-base my-[10px] mx-0 antialiased">
+                {{product.description}}
+            </p>
+            <div class="">
+                <h2 class="text-[rgb(64, 64, 64)] font-800 text-[25px] mt-0 antialiased">
+                    {{ product.category.name }}
+                </h2>
+                <h3 class="text-gray-600 font-800 text-[16px] mt-0 mb-2 antialiased">
+                    - Vendido e entregue pela <b>Bunga tech</b> | <b class="text-green-600"> Em estoque</b>
                 </h3>
-                <div class="flex flex-row my-3 mr-3 justify-center items-center space-x-4">
-                    @button({href: route('shoppingCart.deactive', {id: product.id}),
-                    class:'orange-button py-[12px] px-[25px] rounded-[5px] text-xl cursor-pointer bg-orange-500 text-white hover:bg-orange-400',
-                    variant: 'new'})
-                               Comprar Agora
-                                @end
-                    <a class="py-[16px] px-[25px] rounded-[5px] text-xl cursor-pointer bg-orange-500 text-white hover:bg-orange-400" id="link-carrinho" href="{{route('shoppingCart.add', {id: product.id})}}" class="flex items-center">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-cart" viewBox="0 0 16 16">
-                          <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M3.102 4l1.313 7h8.17l1.313-7zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2"/>
-                      </svg>
-        
-                    </a>
-        
-                  </div>
-        
-              
             </div>
-            <div class="relative w-64 h-[500px] overflow-hidden">
-                <div class="carousel-track flex flex-col transition-transform duration-500">
-                  @each(item in similars)
-                    <a href="{{route('products.show', {id: item.id})}}" >
-                        <div class="carousel-item flex-shrink-0 w-full h-full">
-                          <img src="{{item.imgSrc}}" alt="coleção {{product.subCategory.name}}" class="w-full h-full object-cover flex justify-center items-center flex-shrink-0 flex-grow-0">
-                        </div>
-                    </a>
-                  @end
-                </div>
-              
-                <!-- Botões para navegação -->
-                <button class="absolute top-1/2 left-0 transform -translate-y-1/2 bg-black text-white px-4 py-2" onclick="scrollCarousel(-1)">↑</button>
-                <button class="absolute top-1/2 right-0 transform -translate-y-1/2 bg-black text-white px-4 py-2" onclick="scrollCarousel(1)">↓</button>
+            <h3 class="text-[rgb(64, 64, 64)] font-800 text-[25px] mt-0 antialiased">
+                R$ {{product.price}}
+            </h3>
+            <div class="flex flex-row my-3 mr-3 justify-center items-center space-x-4">
+                @button({href: route('shoppingCart.deactive', {id: product.id}),
+                class:'orange-button py-[12px] px-[25px] rounded-[5px] text-xl cursor-pointer bg-orange-500 text-white hover:bg-orange-400',
+                variant: 'new'})
+                           Comprar Agora
+                            @end
+                <a class="py-[16px] px-[25px] rounded-[5px] text-xl cursor-pointer bg-orange-500 text-white hover:bg-orange-400" id="link-carrinho" href="{{route('shoppingCart.add', {id: product.id})}}" class="flex items-center">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-cart" viewBox="0 0 16 16">
+                      <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M3.102 4l1.313 7h8.17l1.313-7zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2"/>
+                  </svg>
+                
+                </a>
+             
               </div>
-              
 
-              <script>
-                let currentIndex = 0; // Índice da imagem atual
-                const carouselTrack = document.querySelector('.carousel-track'); // Seleciona o container que move as imagens
-                const carouselItems = document.querySelectorAll('.carousel-item'); // Seleciona todos os itens do carrossel
-                const totalItems = carouselItems.length; // Conta o total de imagens
+             
+           <!-- <button class="">
               
-                function scrollCarousel(direction) {
-                  // Atualiza o índice atual com base na direção do clique (cima ou baixo)
-                  currentIndex += direction;
-              
-                  // Impede que o índice ultrapasse os limites
-                  if (currentIndex < 0) {
-                    currentIndex = totalItems - 1; // Se estiver no primeiro, vai para o último
-                  } else if (currentIndex >= totalItems) {
-                    currentIndex = 0; // Se estiver no último, vai para o primeiro
-                  }
-              
-                  // Calcula a posição do scroll (em porcentagem, cada item ocupa 100% da altura)
-                  const scrollPosition = -currentIndex * 10; // Atualiza a posição do carrossel
-              
-                  // Aplica a transformação de scroll
-                  carouselTrack.style.transform = `translateY(${scrollPosition}%)`;
-                }
-              </script>
-              
-
-              
+            </button>-->
         </div>
     </div>
 </div>
