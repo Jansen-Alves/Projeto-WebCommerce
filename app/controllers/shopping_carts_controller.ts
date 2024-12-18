@@ -2,10 +2,15 @@ import type { HttpContext } from '@adonisjs/core/http'
 import ShoppingCart from '#models/shopping_cart'
 export default class ShoppingCartsController {
 
-    async store({auth, response, params}: HttpContext){
+    async store({auth, request, response, params}: HttpContext){
         try {
             const user = auth.user
             const mod = params.mod
+            const previousUrl =  request.header('Referer')
+
+
+            console.log("header", previousUrl)
+            
             if (!user) {
               return response.unauthorized('Usuário não logado')
             }
@@ -19,14 +24,10 @@ export default class ShoppingCartsController {
               .andWhere('product_id', productId).andWhere('active',true)
               .first()
            
-            if (existingItem && mod == 1) {
+            if (existingItem) {
               existingItem.quantity += 1
               existingItem.save()
-              return response.redirect().toRoute('shoppingCart.show',{id: user.id})
-            }else if(existingItem && mod == 0){
-              existingItem.quantity += 1
-              existingItem.save()
-              return response.redirect().toRoute('products.show',{id: productId})
+              return response.redirect().toPath(previousUrl)
             }
       
             // Adiciona ao carrinho
@@ -35,11 +36,9 @@ export default class ShoppingCartsController {
               productId: productId,
               quantity: 1,
             })
-            if(mod == 1){
-            return response.redirect().toRoute('shoppingCart.show',{id: productId})
-            }else{
-              return response.redirect().toRoute('products.show',{id: productId})
-            }
+            
+            return response.redirect().toPath(previousUrl)
+            
           } catch (error) {
             console.error(error)
             return response.internalServerError('Algo deu errado')

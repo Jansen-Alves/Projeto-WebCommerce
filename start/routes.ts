@@ -55,7 +55,7 @@ router
   router.get('/categorias/:id', [CategoriesController, 'show'])
   router
   .group(() => {
-  router.get('/add/:id/:mod', [ShoppingCartController, 'store']).as('add')
+  router.get('/add/:id', [ShoppingCartController, 'store']).as('add')
   router.get('/remove/:id',[ShoppingCartController,'remove']).as('remove')
   router.get('/cont/:id', [ShoppingCartController, 'cont']).as('cont')
   router.get('/:id', [ShoppingCartController, 'show']).as('show')
@@ -68,7 +68,7 @@ router
 
   
   
-  router.get('product/', [ProductsController, 'index']).as('products.index')
+    router.get('product/search/:category?/:subcategory?', [ProductsController, 'index']).as('products.index')
     router.get('product/:id', [ProductsController, 'show']).where('id', router.matchers.number()).as('products.show')
   router
     .group(() => {

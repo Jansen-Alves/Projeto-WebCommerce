@@ -26,7 +26,7 @@ export default class ProductsController {
   if (payload.name != null && payload.name.length){
       await query.where('name', 'like', `%${payload.name}%`)
 
-  }else if(category != null ){
+  }else if(category > 0){
     query.where('categoryId',category )
 
   }else if(subcategory != null){

@@ -57,7 +57,7 @@
                     }
                     </style>
                     
-                    <div class="dropdown inline-block relative ml-[60px]">
+                    <div class="dropdown inline-block relative ml-[60px] shadow-custom rounded-[5px]">
                         <a  href="{{route('products.index')}}"
                             class="no-underline text-[rgb(64,64,64)] font-medium antialiased text-base transition ease-in-out duration-300 mr-[30px] hover:text-[rgb(251,146,60)]">
                             Produtos
@@ -88,10 +88,10 @@
                                       Periféricos <b class="justify-end">></b>
                                     </a>
                                 <ul class="dropdown-content dropdown-content border border-orange-400 absolute hidden left-full text-gray-700 w-[225px]  m-0 -mt-[42px] ">
-                                    <li><a class="rounded-t bg-white text-[rgb(64,64,64)] transition hover:text-orange-500 py-2 px-4 block whitespace-no-wrap" href="{{route('products.index',{subcategory:7})}}">Teclado/Mouse</a>
-                                    <li><a class="rounded-t bg-white text-[rgb(64,64,64)] transition hover:text-orange-500 py-2 px-4 block whitespace-no-wrap" href="{{route('products.index',{subcategory:8})}}">Mouse Pad</a>
-                                    <li><a class="rounded-t bg-white text-[rgb(64,64,64)] transition hover:text-orange-500 py-2 px-4 block whitespace-no-wrap" href="{{route('products.index',{subcategory:9})}}">Fone</a>
-                                    <li><a class="rounded-t bg-white text-[rgb(64,64,64)] transition hover:text-orange-500 py-2 px-4 block whitespace-no-wrap" href="{{route('products.index',{subcategory:10})}}">Microfone</a>
+                                    <li><a class="rounded-t bg-white text-[rgb(64,64,64)] transition hover:text-orange-500 py-2 px-4 block whitespace-no-wrap" href="{{route('products.index',{category:0, subcategory:7})}}">Teclado/Mouse</a>
+                                    <li><a class="rounded-t bg-white text-[rgb(64,64,64)] transition hover:text-orange-500 py-2 px-4 block whitespace-no-wrap" href="{{route('products.index',{category:0, subcategory:8})}}">Mouse Pad</a>
+                                    <li><a class="rounded-t bg-white text-[rgb(64,64,64)] transition hover:text-orange-500 py-2 px-4 block whitespace-no-wrap" href="{{route('products.index',{category:0, subcategory:9})}}">Fone</a>
+                                    <li><a class="rounded-t bg-white text-[rgb(64,64,64)] transition hover:text-orange-500 py-2 px-4 block whitespace-no-wrap" href="{{route('products.index',{category:0, subcategory:10})}}">Microfone</a>
                                 </ul>
                             </li>
                             <li class="dropdown">
@@ -103,9 +103,9 @@
                                     </a>
                             
                                 <ul class="dropdown-content dropdown-content border border-orange-400 absolute hidden left-full text-gray-700 w-[225px]  m-0 -mt-[42px]">
-                                    <li><a class="rounded-t bg-white text-[rgb(64,64,64)] transition hover:text-orange-500 py-2 px-4 block whitespace-no-wrap" href="{{route('products.index',{subcategory:11})}}">Cadeira</a>
+                                    <li><a class="rounded-t bg-white text-[rgb(64,64,64)] transition hover:text-orange-500 py-2 px-4 block whitespace-no-wrap" href="{{route('products.index',{category:0, subcategory:11})}}">Cadeira</a>
                                     <li><a class="rounded-t bg-white text-[rgb(64,64,64)] transition hover:text-orange-500 py-2 px-4 block whitespace-no-wrap" href="{{route('products.index',{subcategory:12})}}">Gabinete</a>
-                                    <li><a class="rounded-t bg-white text-[rgb(64,64,64)] transition hover:text-orange-500 py-2 px-4 block whitespace-no-wrap" href="{{route('products.index',{subcategory:13})}}">Monitor</a>
+                                    <li><a class="rounded-t bg-white text-[rgb(64,64,64)] transition hover:text-orange-500 py-2 px-4 block whitespace-no-wrap" href="{{route('products.index',{category:0, subcategory:13})}}">Monitor</a>
                                 </ul>
                             </li>
                         </ul>
