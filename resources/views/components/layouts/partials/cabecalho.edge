@@ -1,4 +1,5 @@
 <!-- navbar script -->
+
 <script>
     document.addEventListener('DOMContentLoaded', () => {
         document.addEventListener('scroll', () => {
@@ -14,7 +15,7 @@
             }
         })
 
-        const userId = {{ auth.user.id }};
+        const userId = {{ auth.user?.id ||'null' }}
         const spanCarrinho = document.querySelector('#link-carrinho span');
 
         async function atualizarContadorCarrinho() {

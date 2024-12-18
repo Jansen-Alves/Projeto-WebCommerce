@@ -5,6 +5,7 @@ export default class ShoppingCartsController {
     async store({auth, response, params}: HttpContext){
         try {
             const user = auth.user
+            const mod = params.mod
             if (!user) {
               return response.unauthorized('Usuário não logado')
             }
@@ -17,11 +18,15 @@ export default class ShoppingCartsController {
               .where('user_id', user.id)
               .andWhere('product_id', productId).andWhere('active',true)
               .first()
-      
-            if (existingItem) {
+           
+            if (existingItem && mod == 1) {
               existingItem.quantity += 1
               existingItem.save()
               return response.redirect().toRoute('shoppingCart.show',{id: user.id})
+            }else if(existingItem && mod == 0){
+              existingItem.quantity += 1
+              existingItem.save()
+              return response.redirect().toRoute('products.show',{id: productId})
             }
       
             // Adiciona ao carrinho
@@ -30,8 +35,11 @@ export default class ShoppingCartsController {
               productId: productId,
               quantity: 1,
             })
-      
+            if(mod == 1){
             return response.redirect().toRoute('shoppingCart.show',{id: productId})
+            }else{
+              return response.redirect().toRoute('products.show',{id: productId})
+            }
           } catch (error) {
             console.error(error)
             return response.internalServerError('Algo deu errado')
@@ -131,7 +139,7 @@ export default class ShoppingCartsController {
       }else{
         await ShoppingCart.query().where('userId', user.id).update({ active: false })
       }
-      return response.redirect().toRoute('products.list')
+      return response.redirect().toRoute('products.show', {id: productId})
     }catch{
       return response.internalServerError()
     }

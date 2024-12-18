@@ -20,7 +20,7 @@ export default class extends BaseSeeder {
       categoryId: 1,
       subcategoryId: 1,
       approvals: 0,
-      imgSrc: '',
+      imgSrc: '/app/uploads/seed/',
       description: 'kit fan 3 unidades, Thermaltake Swafan Ex12, ARGB, 120mm, PWM, branco, CL-F169-PL12SW-A',
     },{
       name: 'Water Cooler DeepCool ',
@@ -29,7 +29,7 @@ export default class extends BaseSeeder {
       categoryId: 1,
       subcategoryId: 1,
       approvals: 0,
-      imgSrc: '',
+      imgSrc: '/app/uploads/seed/',
       description: 'Water Cooler DeepCool LT720 WH, ARGB, 360mm, Intel-AMD, White, R-LT720-WHAMNF-G-1',
     },{
       name: 'Water Cooler DeepCool ',
@@ -38,7 +38,7 @@ export default class extends BaseSeeder {
       categoryId: 1,
       subcategoryId: 1,
       approvals: 0,
-      imgSrc: '',
+      imgSrc: '/app/uploads/seed/',
       description: 'Water Cooler DeepCool Mystique 360, 360mm, ARGB, Intel/AMD, Tela LCD, Black, R-LX750-BKDSNMP-G-1',
     },{
       name: 'SSD Kingston NV2 1TB',
@@ -47,7 +47,7 @@ export default class extends BaseSeeder {
       categoryId: 1,
       subcategoryId: 2,
       approvals: 0,
-      imgSrc: '',
+      imgSrc: '/app/uploads/seed/',
       description: 'SSD Kingston NV2, 1TB, M.2 NVMe, 2280, Leitura 3500MBs e Gravação 2100MBs, SNV2S/1000G ',
     },{
       name: 'SSD XPG GAMMMIX 1TB',
@@ -56,7 +56,7 @@ export default class extends BaseSeeder {
       categoryId: 1,
       subcategoryId: 2,
       approvals: 0,
-      imgSrc: '',
+      imgSrc: '/app/uploads/seed/',
       description: 'SSD XPG GAMMMIX S70 BLADE 1TB, M.2 2280 NVMe, Leitura 7400MBs e Gravação 5500MBs, AGAMMIXS70B-1T-CS',
     },{
       name: 'SSD Kingston A400 480GB',
@@ -65,7 +65,7 @@ export default class extends BaseSeeder {
       categoryId: 1,
       subcategoryId: 2,
       approvals: 0,
-      imgSrc: '',
+      imgSrc: '/app/uploads/seed/',
       description: 'SSD Kingston A400, 480GB, Sata III, Leitura 500MBs Gravação 450MBs, SA400S37/480G ',
     },{
       name: 'SSD Adata SU650 240GB',
@@ -74,7 +74,7 @@ export default class extends BaseSeeder {
       categoryId: 1,
       subcategoryId: 2,
       approvals: 31,
-      imgSrc: '',
+      imgSrc: '/app/uploads/seed/',
       description: 'SSD Adata SU650, 240GB, Sata III, Leitura 520MBs e Gravação 450MBs, ASU650SS-240GT-R',
     },{
       name: 'HD Western Digital 8TB',
@@ -83,7 +83,7 @@ export default class extends BaseSeeder {
       categoryId: 1,
       subcategoryId: 2,
       approvals: 0,
-      imgSrc: '',
+      imgSrc: '/app/uploads/seed/',
       description: 'HD Western Digital Purple Surveillance, 8TB, Sata III, 5640RPM, 256MB, WD85PURZ ',
     },{
       name: 'HD Western Digita 1TB',
@@ -92,7 +92,7 @@ export default class extends BaseSeeder {
       categoryId: 1,
       subcategoryId: 2,
       approvals: 0,
-      imgSrc: '',
+      imgSrc: '/app/uploads/seed/',
       description: 'HD Western Digital Blue 1TB, Sata III, 7200RPM, 64MB, WD10EZEX 340reais',
     },{
       name: 'Placa Mãe ASRock B550M',
@@ -101,7 +101,7 @@ export default class extends BaseSeeder {
       categoryId: 1,
       subcategoryId: 3,
       approvals: 0,
-      imgSrc: '',
+      imgSrc: '/app/uploads/seed/',
       description: 'Placa Mãe ASRock B550M Steel Legend, Chipset B550, AMD AM4, MATX, DDR4',
     },{
       name: 'Placa Mãe Asus ROG',
@@ -110,7 +110,7 @@ export default class extends BaseSeeder {
       categoryId: 1,
       subcategoryId: 3,
       approvals: 0,
-      imgSrc: '',
+      imgSrc: '/app/uploads/seed/',
       description: 'Placa Mãe Asus ROG Strix B550-XE Gaming WiFi, Chipset B550, AMD AM4, ATX, DDR4, 90MB17B0-M0EAY0',
     },{
       name: 'Placa Mãe Gigabyte B650M',
@@ -119,7 +119,7 @@ export default class extends BaseSeeder {
       categoryId: 1,
       subcategoryId: 3,
       approvals: 0,
-      imgSrc: '',
+      imgSrc: '/app/uploads/seed/',
       description: 'Placa Mãe Gigabyte B650M Gaming WIFI, Chipset B650, AMD AM5, M-ATX, DDR5',
     },{
       name: 'Placa Mãe Biostar H510MH 2.0',
@@ -128,7 +128,7 @@ export default class extends BaseSeeder {
       categoryId: 1,
       subcategoryId: 3,
       approvals: 0,
-      imgSrc: '',
+      imgSrc: '/app/uploads/seed/',
       description: 'Placa Mãe Biostar H510MH 2.0, Chipset H510, Intel LGA 1200, mATX, DDR4',
     },{
       name: 'Fonte Aerocool KCAS 500W',
@@ -137,7 +137,7 @@ export default class extends BaseSeeder {
       categoryId: 1,
       subcategoryId: 4,
       approvals: 0,
-      imgSrc: '',
+      imgSrc: '/app/uploads/seed/',
       description: 'Fonte Aerocool KCAS 500W, 80 Plus Bronze, PFC Ativo, 59765',
     },{
       name: 'Fonte Be Quiet Pure Power 12 M',
@@ -146,7 +146,7 @@ export default class extends BaseSeeder {
       categoryId: 1,
       subcategoryId: 4,
       approvals: 0,
-      imgSrc: '',
+      imgSrc: '/app/uploads/seed/',
       description: 'Fonte Be Quiet Pure Power 12 M, 1000W, 80 Plus Gold, PFC Ativo, Full Modular, Black, BN523',
     },{
       name: 'Fonte Cooler Master GX III 850W',
@@ -155,7 +155,7 @@ export default class extends BaseSeeder {
       categoryId: 1,
       subcategoryId: 4,
       approvals: 0,
-      imgSrc: '',
+      imgSrc: '/app/uploads/seed/',
       description: 'Fonte Cooler Master GX III 850W, 80 Plus Gold, PCI-E 5.0, PFC Ativo, Full Modular, Black, MPX-8503-AFAG-BWO',
     },{
       name: 'Fonte Corsair RM850x 850W',
@@ -164,7 +164,7 @@ export default class extends BaseSeeder {
       categoryId: 1,
       subcategoryId: 4,
       approvals: 0,
-      imgSrc: '',
+      imgSrc: '/app/uploads/seed/',
       description: 'Fonte Corsair RM850x Shift White, 850W, 80 Plus Gold, Full Modular, Branco, CP-9020274-BR',
     },{
       name: 'Memória DDR4 XPG Gammix 8GB',
@@ -173,7 +173,7 @@ export default class extends BaseSeeder {
       categoryId: 1,
       subcategoryId: 5,
       approvals: 0,
-      imgSrc: '',
+      imgSrc: '/app/uploads/seed/',
       description: 'Memória DDR4 XPG Gammix D10, 8GB 3200Mhz, Black, AX4U32008G16A-SB10',
     },{
       name: 'Memória DDR4 Redragon Solar 16GB, ',
@@ -182,7 +182,7 @@ export default class extends BaseSeeder {
       categoryId: 1,
       subcategoryId: 5,
       approvals: 0,
-      imgSrc: '',
+      imgSrc: '/app/uploads/seed/',
       description: 'Memória DDR4 Redragon Solar, RGB, 16GB, 3600Mhz, Black, GM-806',
     },{
       name: 'Memória DDR4 XPG GAMMIX 8GB',
@@ -191,7 +191,7 @@ export default class extends BaseSeeder {
       categoryId: 1,
       subcategoryId: 5,
       approvals: 0,
-      imgSrc: '',
+      imgSrc: '/app/uploads/seed/',
       description: 'Memória DDR4 XPG GAMMIX D35, 8GB, 3200Mhz, White, AX4U32008G16A-SWHD35',
     },{
       name: 'Memória DDR4 Geil Orion RGB 8GB',
@@ -200,7 +200,7 @@ export default class extends BaseSeeder {
       categoryId: 1,
       subcategoryId: 5,
       approvals: 0,
-      imgSrc: '',
+      imgSrc: '/app/uploads/seed/',
       description: 'Memória DDR4 Geil Orion RGB, 8GB, 3200MHz, Red, GAOSR48GB3200C16BSC',
     },{
       name: 'Memória DDR5 Kingston Fury Beast 32GB',
@@ -209,7 +209,7 @@ export default class extends BaseSeeder {
       categoryId: 1,
       subcategoryId: 5,
       approvals: 0,
-      imgSrc: '',
+      imgSrc: '/app/uploads/seed/',
       description: 'Memória DDR5 Kingston Fury Beast',
     },{
       name: 'Processador AMD Ryzen 9 7900X 4.7GHz',
@@ -218,7 +218,7 @@ export default class extends BaseSeeder {
       categoryId: 1,
       subcategoryId: 6,
       approvals: 0,
-      imgSrc: '',
+      imgSrc: '/app/uploads/seed/processador-amd-ryzen-9-7900x-47ghz-56ghz-turbo-12-cores-24-threads-am5-100-100000589wof_151057.png',
       description: 'Processador AMD Ryzen 9 7900X 4.7GHz (5.6GHz Turbo), 12-Cores 24-Threads, AM5, Sem Cooler, 100-100000589WOF',
     },{
       name: 'Processador AMD Ryzen 7 8700G, 4.2GHz',
@@ -227,7 +227,7 @@ export default class extends BaseSeeder {
       categoryId: 1,
       subcategoryId: 6,
       approvals: 0,
-      imgSrc: '',
+      imgSrc: '/app/uploads/seed/processador-amd-ryzen-7-8700g-42ghz-51ghz-turbo-8-cores-16-threads-am5-com-cooler-amd-wraith-stealth-100-100001236box_186220.png',
       description: 'Processador AMD Ryzen 7 8700G, 4.2GHz (5.1GHz Turbo), 8-Cores 16-Threads, AM5, Com Cooler AMD Wraith Stealth, 100-100001236BOX',
     },{
       name: 'Processador AMD Ryzen 7 5700X3D 3.0GHz',
@@ -236,7 +236,7 @@ export default class extends BaseSeeder {
       categoryId: 1,
       subcategoryId: 6,
       approvals: 0,
-      imgSrc: '',
+      imgSrc: '/app/uploads/seed/processador-amd-ryzen-7-5700x3d-30ghz-41ghz-turbo-8-cores-16-threads-am4-sem-cooler-100-100001503wof_186225 (1).png',
       description: 'Processador AMD Ryzen 7 5700X3D 3.0GHz (4.1GHz Turbo), 8-Cores 16-Threads, AM4, Sem Cooler, 100-100001503WOF',
     },{
       name: 'Processador Intel Core i9 14900KF, 3.6 GHz',
@@ -245,7 +245,7 @@ export default class extends BaseSeeder {
       categoryId: 1,
       subcategoryId: 6,
       approvals: 0,
-      imgSrc: '',
+      imgSrc: '/app/uploads/seed/processador-intel-core-i9-14900kf-36-ghz-60ghz-turbo-14-geracao-24-cores-32-threads-lga-1700-bx8071514900kf_179836.png',
       description: 'Processador Intel Core i9 14900KF, 3.6 GHz (6.0GHz Turbo), 14ª Geração, 24-Cores 32-Threads, LGA 1700, BX8071514900KF',
     },{
       name: 'Teclado Mecânico Gamer MCHOSE K99',
@@ -254,7 +254,7 @@ export default class extends BaseSeeder {
       categoryId: 2,
       subcategoryId: 7,
       approvals: 0,
-      imgSrc: '',
+      imgSrc: '/app/uploads/seed/teclado-mecanico-gamer-mchose-k99-wireless-bluetooth-rgb-switch-hyacinth-ansi-layout-98-cinza-e-azul-celeste-mc-k99-10_209129.png',
       description: 'Teclado Mecânico Gamer MCHOSE K99, Wireless, Bluetooth, RGB, Switch Hyacinth, ANSI, Layout 98%, Cinza E Azul Celeste, MC-K99-10',
     },{
       name: 'teclado Mecânico Logitech MX',
@@ -263,7 +263,7 @@ export default class extends BaseSeeder {
       categoryId: 2,
       subcategoryId: 7,
       approvals: 0,
-      imgSrc: '',
+      imgSrc: '/app/uploads/seed/teclado-mecanico-logitech-mx-mechanical-mini-sem-fio-bluetooth-easy-switch-920-010783_164503.png',
       description: 'Teclado Mecânico Logitech MX Mechanical Mini, Sem Fio, Bluetooth, Easy-Switch, 920-010783',
     },{
       name: 'Mouse Gamer PCYES Zyron RGB',
@@ -272,7 +272,7 @@ export default class extends BaseSeeder {
       categoryId: 1,
       subcategoryId: 7,
       approvals: 0,
-      imgSrc: '',
+      imgSrc: '/app/uploads/seed/mouse-gamer-pcyes-zyron-rgb-6-botoes-12800-dpi-white-pmgzrgbw_146806.png',
       description: 'Mouse Gamer PCYES Zyron, RGB, 6 Botões, 12800 DPI, White, PMGZRGBW',
     },{
       name: 'Mouse Gamer Redragon Plank RGB',
@@ -281,7 +281,7 @@ export default class extends BaseSeeder {
       categoryId: 2,
       subcategoryId: 7,
       approvals: 0,
-      imgSrc: '',
+      imgSrc: '/app/uploads/seed/mouse-gamer-redragon-plank-rgb-16000-dpi-9-botoes-programaveis-black-m812-rgb_216439.png',
       description: 'Mouse Gamer Redragon Plank RGB, 16000 DPI, 9 Botões Programáveis, Black, M812-RGB',
     },{
       name: 'Mousepad Gamer Ninja',
@@ -290,7 +290,7 @@ export default class extends BaseSeeder {
       categoryId: 2,
       subcategoryId: 8,
       approvals: 0,
-      imgSrc: '',
+      imgSrc: '/app/uploads/seed/mousepad-gamer-ninja-control-medio-400x300mm-grey-mpgn-grey-m_147213.png',
       description: 'Mousepad Gamer Ninja, Control, Médio 400x300mm, Grey, MPGN-GREY-M',
     },{
       name: 'Mousepad Gamer Thermaltake Sports',
@@ -299,7 +299,7 @@ export default class extends BaseSeeder {
       categoryId: 2,
       subcategoryId: 8,
       approvals: 0,
-      imgSrc: '',
+      imgSrc: '/app/uploads/seed/mousepad-gamer-thermaltake-sports-draconem-rgb-cloth-edition-preto-mp-dcm-rgbsms-01_208515.png',
       description: 'Mousepad Gamer Thermaltake Sports Draconem RGB Cloth Edition, Preto, MP-DCM-RGBSMS-01',
     },{
       name: 'Mousepad Gamer Marvo RGB',
@@ -308,7 +308,7 @@ export default class extends BaseSeeder {
       categoryId: 2,
       subcategoryId: 8,
       approvals: 0,
-      imgSrc: '',
+      imgSrc: '/app/uploads/seed/mousepad-gamer-marvo-rgb-hub-usb-control-grande-800x300mm-mg011_207597.png',
       description:'Mousepad Gamer Marvo, RGB, Hub USB, Control, Grande, 800x300mm, MG011',
     },{
       name: 'Mousepad Vinik MPG-10P',
@@ -317,7 +317,7 @@ export default class extends BaseSeeder {
       categoryId: 2,
       subcategoryId: 8,
       approvals: 0,
-      imgSrc: '',
+      imgSrc: '/app/uploads/seed/mousepad-vinik-mpg-10p-220x180x3mm-com-apoio-para-o-pulso-feito-em-gel-black-mpg-10p_180311.png',
       description: "Mousepad Vinik MPG-10P, 220X180X3mm, Com Apoio para o Pulso Feito Em Gel, Black, MPG-10P ",
     },{
       name: 'Headset Gamer Fifine H6',
@@ -326,7 +326,7 @@ export default class extends BaseSeeder {
       categoryId: 2,
       subcategoryId: 9,
       approvals: 44,
-      imgSrc: '',
+      imgSrc: '/app/uploads/seed/headset-gamer-fifine-h6-71-surround-drivers-de-50mm-rgb-usb-black_151053 (1).png',
       description: 'Headset Gamer Fifine H6, 7.1 Surround, Drivers de 50mm, RGB, USB, Black',
     },{
       name: 'Headset Gamer Logitech Astro A10',
@@ -335,7 +335,7 @@ export default class extends BaseSeeder {
       categoryId: 2,
       subcategoryId: 9,
       approvals: 22,
-      imgSrc: '',
+      imgSrc: '/app/uploads/seed/headset-gamer-logitech-astro-a10-para-xbox-whitegreen-939-001854_215808.png',
       description: 'Headset Gamer Logitech Astro A10, Para Xbox, White/Green, 939-001854 ',
     },{
       name: 'Fone de Ouvido Marvo BE-889',
@@ -344,7 +344,7 @@ export default class extends BaseSeeder {
       categoryId: 2,
       subcategoryId: 9,
       approvals: 0,
-      imgSrc: '',
+      imgSrc: '/app/uploads/seed/fone-de-ouvido-marvo-be-889-sem-fio-stereo-black_214676.png',
       description: 'Fone de Ouvido Marvo BE-889, Sem Fio, Stereo, Black ',
     },{
       name: 'Headset Gamer Sem Fio Sony',
@@ -353,7 +353,7 @@ export default class extends BaseSeeder {
       categoryId: 2,
       subcategoryId: 9,
       approvals: 22,
-      imgSrc: '',
+      imgSrc: '/app/uploads/seed/headset-gamer-sem-fio-sony-pulse-3d-usb-ps5-cfi-zwh2l_212665.png',
       description: 'Headset Gamer Sem Fio Sony Pulse 3D, USB, PS5, CFI-ZWH2L',
     },{
       name: 'Microfone Gamer Fifine',
@@ -362,7 +362,7 @@ export default class extends BaseSeeder {
       categoryId: 2,
       subcategoryId: 10,
       approvals: 33,
-      imgSrc: '',
+      imgSrc: '/app/uploads/seed/microfone-gamer-fifine-ampligame-a6t-rgb-usb-black-com-braco-articulado_150845.png',
       description: 'Microfone Gamer Fifine Ampligame A6T, RGB, USB, Black, Com Braço Articulado',
     },{
       name: 'Microfone JBL Quantum Stream RGB',
@@ -371,7 +371,7 @@ export default class extends BaseSeeder {
       categoryId: 2,
       subcategoryId: 10,
       approvals: 0,
-      imgSrc: '',
+      imgSrc: '/app/uploads/seed/microfone-jbl-quantum-stream-rgb-otimizado-pra-pcmacps5ps4nintendo-switch-metalico-jblqstreamblk_218783.png',
       description: 'Microfone JBL Quantum Stream, RGB, Otimizado pra PC/MAC/PS5/PS4/Nintendo Switch, Metálico, JBLQSTREAMBLK ',
     },{
       name: 'Microfone Gamer Havit GK58B',
@@ -380,7 +380,7 @@ export default class extends BaseSeeder {
       categoryId: 2,
       subcategoryId: 10,
       approvals: 0,
-      imgSrc:'',
+      imgSrc:'/app/uploads/seed/microfone-gamer-havit-gk58b-rgb-usb-preto_204707.png',
       description: 'Microfone Gamer Havit GK58B, RGB, USB, Preto',
     },{
       name: 'Microfone Gamer Fifine Ampligame',
@@ -389,7 +389,7 @@ export default class extends BaseSeeder {
       categoryId: 2,
       subcategoryId: 10,
       approvals: 0,
-      imgSrc: '',
+      imgSrc: '/app/uploads/seed/microfone-gamer-fifine-ampligame-a8-plus-rgb-usb-black_203041.png',
       description: 'Microfone Gamer Fifine Ampligame A8 Plus, RGB, USB, Black',
     },{
       name: 'Cadeira Gamer Ninja Jiraya',
@@ -398,7 +398,7 @@ export default class extends BaseSeeder {
       categoryId: 3,
       subcategoryId: 11,
       approvals: 44,
-      imgSrc: '',
+      imgSrc: '/app/uploads/seed/cadeira-gamer-ninja-jiraya-branco-e-preto_160279.png',
       description: 'Cadeira Gamer Ninja Jiraya, Branco e Preto',
     },{
       name: 'Cadeira Gamer SuperFrame Godzilla',
@@ -407,7 +407,7 @@ export default class extends BaseSeeder {
       categoryId: 3,
       subcategoryId: 11,
       approvals: 0,
-      imgSrc: '',
+      imgSrc: '/app/uploads/seed/cadeira-gamer-superframe-godzilla-reclinavel-preto-e-vermelho_161027.png',
       description: 'Cadeira Gamer SuperFrame Godzilla, Reclinável, Preto e Vermelho',
     },{
       name: 'Cadeira Gamer Duex DX9026B',
@@ -416,7 +416,7 @@ export default class extends BaseSeeder {
       categoryId: 3,
       subcategoryId: 11,
       approvals: 2,
-      imgSrc: '',
+      imgSrc: '/app/uploads/seed/cadeira-gamer-duex-dx9026b-preto_207363.png',
       description: 'Cadeira Gamer Duex DX9026B',
     },{
       name: 'Cadeira Gamer Terabyte',
@@ -425,7 +425,7 @@ export default class extends BaseSeeder {
       categoryId: 3,
       subcategoryId: 11,
       approvals: 2,
-      imgSrc: '',
+      imgSrc: '/app/uploads/seed/cadeira-gamer-terabyte-vision-reclinavel-2d-preto-e-azul_167274.png',
       description: 'Cadeira Gamer Terabyte Vision, Reclinável, 2D, Preto e Azul ',
     },{
       name: 'Gabinete Gamer Be Quiet',
@@ -434,7 +434,7 @@ export default class extends BaseSeeder {
       categoryId: 3,
       subcategoryId: 12,
       approvals: 44,
-      imgSrc: '',
+      imgSrc: '/app/uploads/seed/gabinete-gamer-be-quiet-pure-base-500-dx-mid-tower-atx-argb-vidro-temperado-com-3-fans-preto-bgw37_203678.png',
       description: 'Gabinete Gamer Be Quiet Pure Base 500 DX, Mid Tower, ATX, ARGB, Vidro Temperado, Com 3 Fans, Preto, BGW37',
     },{
       name: 'Gabinete Gamer Redragon',
@@ -443,7 +443,7 @@ export default class extends BaseSeeder {
       categoryId: 3,
       subcategoryId: 12,
       approvals: 31,
-      imgSrc: '',
+      imgSrc: '/app/uploads/seed/gabinete-gamer-redragon-wideload-pro-mid-tower-vidro-temperado-atx-black-sem-fonte-sem-fan-ca-604b-pro_208944.png',
       description: 'Gabinete Gamer Redragon Wideload Pro, Mid Tower, Vidro Temperado, ATX, Black, Sem Fonte, Sem Fan, CA-604B-PRO',
     },{
       name: 'Gabinete Gamer NZXT',
@@ -452,7 +452,7 @@ export default class extends BaseSeeder {
       categoryId: 3,
       subcategoryId: 12,
       approvals: 12,
-      imgSrc: '',
+      imgSrc: '/app/uploads/seed/gabinete-gamer-nzxt-h9-elite-mid-tower-vidro-temperado-black-atx-sem-fonte-com-4-fans-cm-h91eb-01_161528.png',
       description: 'Gabinete Gamer NZXT H9 Elite, Mid Tower, Vidro Temperado, Black, ATX, Sem Fonte, Com 4 Fans, CM-H91EB-01',
     },{
       name: 'Gabinete Gamer Montech X3',
@@ -461,7 +461,7 @@ export default class extends BaseSeeder {
       categoryId: 3,
       subcategoryId: 12,
       approvals: 2,
-      imgSrc: '',
+      imgSrc: '/app/uploads/seed/gabinete-gamer-montech-x3-glass-mid-tower-black-atx_125040 (1).png',
       description: 'Gabinete Gamer Montech X3 Glass, Mid Tower, Black, ATX, Com 6 Fans, Vidro Temperado',
     },{
       name: 'Monitor Gamer Acer Nitro 31,5 Pol',
@@ -470,7 +470,7 @@ export default class extends BaseSeeder {
       categoryId: 3,
       subcategoryId: 13,
       approvals: 22,
-      imgSrc: '',
+      imgSrc: '/app/uploads/seed/monitor-gamer-acer-nitro-edt320q-315-pol-curvo-fhd-180hz-1ms-freesync-preto-umje0aa305_200222.png',
       description: 'Monitor Gamer Acer Nitro EDT320Q, 31,5 Pol, Curvo, FHD, 180Hz, 1Ms, FreeSync, Preto, UM.JE0AA.305',
     },{
       name: 'Monitor Gamer AOC Agon 4 Pro 27 Pol',
@@ -479,7 +479,7 @@ export default class extends BaseSeeder {
       categoryId: 3,
       subcategoryId: 13,
       approvals: 0,
-      imgSrc: '',
+      imgSrc: '/app/uploads/seed/monitor-gamer-aoc-agon-4-pro-27-pol-4k-uhd-ips-144hz-1ms-hdr600-133-srgb-g-sync-hdmidp-ag274uxp_215445.png',
       description: 'Monitor Gamer AOC Agon 4 Pro, 27 Pol, 4K UHD, IPS, 144Hz, 1ms, HDR600, 133% sRGB, G-Sync, HDMI/DP, AG274UXP',
     },{
       name: 'Monitor Gamer LG 29 Pol ',
@@ -488,7 +488,7 @@ export default class extends BaseSeeder {
       categoryId: 3,
       subcategoryId: 13,
       approvals: 22,
-      imgSrc: '',
+      imgSrc: '/app/uploads/seed/monitor-gamer-lg-29-pol-ultrawide-full-hd-ips-99-srgb-hdr-freesync-29wl500-b_162966.png',
       description: 'Monitor Gamer LG, 29 Pol, UltraWide, Full HD, IPS, 99% sRGB, HDR, FreeSync, 29WL500-B',
     },{
       name: 'Monitor Gamer Samsung T35F 24 Pol',
@@ -497,7 +497,7 @@ export default class extends BaseSeeder {
       categoryId: 3,
       subcategoryId: 13,
       approvals: 46,
-      imgSrc: '',
+      imgSrc: '/app/uploads/seed/monitor-gamer-samsung-t35f-24-pol-full-hd-ips-hdmivga-lf24t350fhlmzd_133382.png',
       description: 'Monitor Gamer Samsung T35F, 24 Pol, Full HD, IPS, HDMI/VGA, LF24T350FHLMZD',
     }])
   }

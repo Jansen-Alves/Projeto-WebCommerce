@@ -36,7 +36,7 @@ export default class ProductsController {
     const payload = request.only(['name'])
     const query = Product.query()
     if (payload.name != null && payload.name.length){
-     query.where('name', 'like', `%${payload.name}%`)
+     query.where('name', 'like', `%${payload.name}%`).orWhere('description','like',`%${payload.name}%`)
   } 
     const product = await query.paginate(page,limit)
     return view.render('pages/products/list', {product})
