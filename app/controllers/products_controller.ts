@@ -26,10 +26,15 @@ export default class ProductsController {
     console.log("resposta de form", payload)
 
   if (payload.name != null && payload.name.length){
-      await query.where('name', 'like', `%${payload.name}%`)
+      await query.where('name', 'like', `%${payload.name}%`).orWhere('description', 'like', `%${payload.name}%`)
 
   }else if(payload.name != null && payload.name.length && payload.subcategory != null){
-    await query.where('name', 'like', `%${payload.name}%`).andWhere('subcategory', payload.subcategory)
+    await query.where((builder) => {
+      builder
+        .where('name', 'like', `%${payload.name}%`)
+        .orWhere('description', 'like', `%${payload.name}%`);
+    })
+    .andWhere('subcategory', payload.subcategory)
   }else if(category > 0){
     query.where('categoryId',category )
 

@@ -64,22 +64,29 @@
               
             </button>-->
         </div>
-        <div class="relative w-64 h-[500px] overflow-hidden">
-            <div class="carousel-track flex flex-col transition-transform duration-500">
-              @each(item in similars)
-                <a href="{{route('products.show',{id: item.id})}}">
-                    <div class="carousel-item flex-shrink-0 w-[90%] h-full">
-                      <img src="{{item.imgSrc}}" alt="coleção {{product.subCategory.name}}" class="w-full h-full object-cover flex justify-center items-center flex-shrink-0 flex-grow-0 object-cover hover:animate-wiggle">
-                    </div>
-                </a>
-              @end
-            </div>
-          
-            <!-- Botões para navegação -->
-            <button class="absolute top-1/2 left-0 transform -translate-y-1/2 bg-black text-white px-4 py-2" onclick="scrollCarousel(-1)">↑</button>
-            <button class="absolute top-1/2 right-0 transform -translate-y-1/2 bg-black text-white px-4 py-2" onclick="scrollCarousel(1)">↓</button>
-          </div>
-    </div>
+
+        <div class="flex flex-col p-4">
+            <div class="flex flex-row text-center text-orange-400 text-xl my-3    ">
+                <svg  class="mx-2"width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="https://www.w3.org/2000/svg" class="IconTag" aria-hidden="true"><path fill-rule="evenodd" clip-rule="evenodd" d="M2 1C1.73478 1 1.48043 1.10536 1.29289 1.29289C1.10536 1.48043 1 1.73478 1 2V6.586C1.00006 6.8512 1.10545 7.10551 1.293 7.293L8.293 14.293C8.48053 14.4805 8.73484 14.5858 9 14.5858C9.26517 14.5858 9.51947 14.4805 9.707 14.293L14.293 9.707C14.4805 9.51947 14.5858 9.26517 14.5858 9C14.5858 8.73484 14.4805 8.48053 14.293 8.293L7.293 1.293C7.10551 1.10545 6.8512 1.00006 6.586 1H2ZM6 4.5C6 4.89783 5.84197 5.27936 5.56066 5.56066C5.27936 5.84197 4.89783 6 4.5 6C4.10218 6 3.72064 5.84197 3.43934 5.56066C3.15804 5.27936 3 4.89783 3 4.5C3 4.10218 3.15804 3.72064 3.43934 3.43934C3.72064 3.15804 4.10218 3 4.5 3C4.89783 3 5.27936 3.15804 5.56066 3.43934C5.84197 3.72064 6 4.10218 6 4.5Z" fill="#FF6500"></path></svg>
+                Produtos relacionado </div>
+            <div class="relative w-64 h-[500px] overflow-hidden">
+            
+                <div class="carousel-track flex flex-col transition-transform duration-500">
+                  @each(item in similars)
+                    <a href="{{route('products.show',{id: item.id})}}">
+                        <div class="carousel-item flex-shrink-0 w-[90%] h-full px-[50px] py-0 m-2">
+                          <img src="{{item.imgSrc}}" alt="coleção {{product.subCategory.name}}" class="w-full h-full object-cover flex justify-center items-center flex-shrink-0 flex-grow-0 object-cover hover:animate-wiggle">
+                        </div>
+                    </a>
+                  @end
+                </div>
+            
+                <!-- Botões para navegação -->
+                <button class="absolute top-1/2 left-0 transform -translate-y-1/2 bg-black text-white px-4 py-2" onclick="scrollCarousel(-1)">↑</button>
+                <button class="absolute top-1/2 right-0 transform -translate-y-1/2 bg-black text-white px-4 py-2" onclick="scrollCarousel(1)">↓</button>
+              </div>
+                </div>
+        </div>
     <script>
         let currentIndex = 0; // Índice da imagem atual
         const carouselTrack = document.querySelector('.carousel-track'); // Seleciona o container que move as imagens
