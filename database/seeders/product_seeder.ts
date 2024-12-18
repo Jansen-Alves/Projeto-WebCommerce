@@ -11,7 +11,7 @@ export default class extends BaseSeeder {
       categoryId: 1,
       subcategoryId: 1,
       approvals: 0,
-      imgSrc: '/app/uploads/Gabinetes/',
+      imgSrc: '/app/uploads/Gabinetes/kit-fan-com-3-unidades-superframe-cyclone-v2-argb-120mm-preto-sf-fn-cyk12ab_202261.png',
       description:'kit fan 3 unidades, SuperFrame Cyclone V2, ARGB, 120mm, preto, SF-FN-CYK12AB' ,
     },{
       name: 'Kit fan 3 unidades',
@@ -20,7 +20,7 @@ export default class extends BaseSeeder {
       categoryId: 1,
       subcategoryId: 1,
       approvals: 0,
-      imgSrc: '/app/uploads/seed/',
+      imgSrc: '/app/uploads/seed/kit-fan-com-3-unidades-thermaltake-swafan-ex12-argb-120mm-pwm-branco-cl-f169-pl12sw-a_219080.png',
       description: 'kit fan 3 unidades, Thermaltake Swafan Ex12, ARGB, 120mm, PWM, branco, CL-F169-PL12SW-A',
     },{
       name: 'Water Cooler DeepCool ',
@@ -29,7 +29,7 @@ export default class extends BaseSeeder {
       categoryId: 1,
       subcategoryId: 1,
       approvals: 0,
-      imgSrc: '/app/uploads/seed/',
+      imgSrc: '/app/uploads/seed/water-cooler-deepcool-le500-led-6-cores-240mm-intel-amd-r-le500-bklnmc-g-1_149803 (1).png',
       description: 'Water Cooler DeepCool LT720 WH, ARGB, 360mm, Intel-AMD, White, R-LT720-WHAMNF-G-1',
     },{
       name: 'Water Cooler DeepCool ',
@@ -38,7 +38,7 @@ export default class extends BaseSeeder {
       categoryId: 1,
       subcategoryId: 1,
       approvals: 0,
-      imgSrc: '/app/uploads/seed/',
+      imgSrc: '/app/uploads/seed/water-cooler-deepcool-lt720-wh-argb-360mm-intel-amd-white-r-lt720-whamnf-g-1_175979.png',
       description: 'Water Cooler DeepCool Mystique 360, 360mm, ARGB, Intel/AMD, Tela LCD, Black, R-LX750-BKDSNMP-G-1',
     },{
       name: 'SSD Kingston NV2 1TB',
@@ -47,7 +47,7 @@ export default class extends BaseSeeder {
       categoryId: 1,
       subcategoryId: 2,
       approvals: 0,
-      imgSrc: '/app/uploads/seed/',
+      imgSrc: '/app/uploads/seed/ssd-kingston-nv2-1tb-m2-nvme-2280-leitura-3500mbs-e-gravacao-2100mbs-snv2s1000g_154119.pg',
       description: 'SSD Kingston NV2, 1TB, M.2 NVMe, 2280, Leitura 3500MBs e Gravação 2100MBs, SNV2S/1000G ',
     },{
       name: 'SSD XPG GAMMMIX 1TB',
@@ -56,7 +56,7 @@ export default class extends BaseSeeder {
       categoryId: 1,
       subcategoryId: 2,
       approvals: 0,
-      imgSrc: '/app/uploads/seed/',
+      imgSrc: '/app/uploads/seed/ssd-xpg-gammmix-s70-blade-1tb-m2-2280-nvme-leitura-7400mbs-e-gravacao-5500mbs-agammixs70b-1t-cs_175503.png',
       description: 'SSD XPG GAMMMIX S70 BLADE 1TB, M.2 2280 NVMe, Leitura 7400MBs e Gravação 5500MBs, AGAMMIXS70B-1T-CS',
     },{
       name: 'SSD Kingston A400 480GB',
@@ -65,7 +65,7 @@ export default class extends BaseSeeder {
       categoryId: 1,
       subcategoryId: 2,
       approvals: 0,
-      imgSrc: '/app/uploads/seed/',
+      imgSrc: '/app/uploads/seed/ssd-kingston-a400-480gb-sata-iii-leitura-500mbs-gravacao-450mbs-sa400s37480g-imp_129879.png',
       description: 'SSD Kingston A400, 480GB, Sata III, Leitura 500MBs Gravação 450MBs, SA400S37/480G ',
     },{
       name: 'SSD Adata SU650 240GB',
@@ -74,7 +74,7 @@ export default class extends BaseSeeder {
       categoryId: 1,
       subcategoryId: 2,
       approvals: 31,
-      imgSrc: '/app/uploads/seed/',
+      imgSrc: '/app/uploads/seed/ssd-adata-su650-240gb-asu650ss-240gt-r-sata-6gbs-25-pol-leitura-520mbs-gravacao-450mbs_188689.png',
       description: 'SSD Adata SU650, 240GB, Sata III, Leitura 520MBs e Gravação 450MBs, ASU650SS-240GT-R',
     },{
       name: 'HD Western Digital 8TB',
@@ -83,7 +83,7 @@ export default class extends BaseSeeder {
       categoryId: 1,
       subcategoryId: 2,
       approvals: 0,
-      imgSrc: '/app/uploads/seed/',
+      imgSrc: '/app/uploads/seed/hd-western-digital-purple-surveillance-8tb-sata-iii-5640rpm-256mb-wd85purz_215835.png',
       description: 'HD Western Digital Purple Surveillance, 8TB, Sata III, 5640RPM, 256MB, WD85PURZ ',
     },{
       name: 'HD Western Digita 1TB',
@@ -92,7 +92,7 @@ export default class extends BaseSeeder {
       categoryId: 1,
       subcategoryId: 2,
       approvals: 0,
-      imgSrc: '/app/uploads/seed/',
+      imgSrc: '/app/uploads/seed/hd-western-digital-caviar-blue-wd10ezex-1tb-7200rpm-64mb-sata-iii_198643.png',
       description: 'HD Western Digital Blue 1TB, Sata III, 7200RPM, 64MB, WD10EZEX 340reais',
     },{
       name: 'Placa Mãe ASRock B550M',
@@ -101,7 +101,7 @@ export default class extends BaseSeeder {
       categoryId: 1,
       subcategoryId: 3,
       approvals: 0,
-      imgSrc: '/app/uploads/seed/',
+      imgSrc: '/app/uploads/seed/placa-mae-asrock-b550m-steel-legend-chipset-b550-amd-am4-matx-ddr4_105494.png',
       description: 'Placa Mãe ASRock B550M Steel Legend, Chipset B550, AMD AM4, MATX, DDR4',
     },{
       name: 'Placa Mãe Asus ROG',
@@ -110,7 +110,7 @@ export default class extends BaseSeeder {
       categoryId: 1,
       subcategoryId: 3,
       approvals: 0,
-      imgSrc: '/app/uploads/seed/',
+      imgSrc: '/app/uploads/seed/placa-mae-asus-rog-strix-b550-xe-gaming-wifi-chipset-b550-amd-am4-atx-ddr4-90mb17b0-m0eay0_136521.png',
       description: 'Placa Mãe Asus ROG Strix B550-XE Gaming WiFi, Chipset B550, AMD AM4, ATX, DDR4, 90MB17B0-M0EAY0',
     },{
       name: 'Placa Mãe Gigabyte B650M',
@@ -119,7 +119,7 @@ export default class extends BaseSeeder {
       categoryId: 1,
       subcategoryId: 3,
       approvals: 0,
-      imgSrc: '/app/uploads/seed/',
+      imgSrc: '/app/uploads/seed/placa-mae-gigabyte-b650m-gaming-wifi-chipset-b650-amd-am5-m-atx-ddr5_194205.png',
       description: 'Placa Mãe Gigabyte B650M Gaming WIFI, Chipset B650, AMD AM5, M-ATX, DDR5',
     },{
       name: 'Placa Mãe Biostar H510MH 2.0',
@@ -128,7 +128,7 @@ export default class extends BaseSeeder {
       categoryId: 1,
       subcategoryId: 3,
       approvals: 0,
-      imgSrc: '/app/uploads/seed/',
+      imgSrc: '/app/uploads/seed/placa-mae-maxsun-challenger-b650m-wi-fi-chipset-b650-amd-am5-matx-ddr5-ms-challenger-b650m-wifi_198508.png',
       description: 'Placa Mãe Biostar H510MH 2.0, Chipset H510, Intel LGA 1200, mATX, DDR4',
     },{
       name: 'Fonte Aerocool KCAS 500W',
@@ -137,7 +137,7 @@ export default class extends BaseSeeder {
       categoryId: 1,
       subcategoryId: 4,
       approvals: 0,
-      imgSrc: '/app/uploads/seed/',
+      imgSrc: '/app/uploads/seed/fonte-aerocool-kcas-500w-80-plus-bronze-pfc-ativo_71894.png',
       description: 'Fonte Aerocool KCAS 500W, 80 Plus Bronze, PFC Ativo, 59765',
     },{
       name: 'Fonte Be Quiet Pure Power 12 M',
@@ -146,7 +146,7 @@ export default class extends BaseSeeder {
       categoryId: 1,
       subcategoryId: 4,
       approvals: 0,
-      imgSrc: '/app/uploads/seed/',
+      imgSrc: '/app/uploads/seed/fonte-be-quiet-pure-power-12-m-1000w-80-plus-gold-pfc-ativo-full-modular-black-bn523_203730',
       description: 'Fonte Be Quiet Pure Power 12 M, 1000W, 80 Plus Gold, PFC Ativo, Full Modular, Black, BN523',
     },{
       name: 'Fonte Cooler Master GX III 850W',
@@ -155,7 +155,7 @@ export default class extends BaseSeeder {
       categoryId: 1,
       subcategoryId: 4,
       approvals: 0,
-      imgSrc: '/app/uploads/seed/',
+      imgSrc: '/app/uploads/seed/fonte-cooler-master-gx-iii-850w-80-plus-gold-pci-e-50-pfc-ativo-full-modular-black-mpx-8503-afag-bwo_197838.png',
       description: 'Fonte Cooler Master GX III 850W, 80 Plus Gold, PCI-E 5.0, PFC Ativo, Full Modular, Black, MPX-8503-AFAG-BWO',
     },{
       name: 'Fonte Corsair RM850x 850W',
@@ -164,7 +164,7 @@ export default class extends BaseSeeder {
       categoryId: 1,
       subcategoryId: 4,
       approvals: 0,
-      imgSrc: '/app/uploads/seed/',
+      imgSrc: '/app/uploads/seed/fonte-corsair-rm850x-shift-white-850w-80-plus-gold-full-modular-banco-cp-9020274-br_206333.png',
       description: 'Fonte Corsair RM850x Shift White, 850W, 80 Plus Gold, Full Modular, Branco, CP-9020274-BR',
     },{
       name: 'Memória DDR4 XPG Gammix 8GB',
@@ -172,8 +172,8 @@ export default class extends BaseSeeder {
       stocked: 130,
       categoryId: 1,
       subcategoryId: 5,
-      approvals: 0,
-      imgSrc: '/app/uploads/seed/',
+      approvals: 21,
+      imgSrc: '/app/uploads/seed/memoria-ddr4-xpg-gammix-d10-8gb-3200mhz-cl16-black-ax4u32008g16a-sb10_121055.png',
       description: 'Memória DDR4 XPG Gammix D10, 8GB 3200Mhz, Black, AX4U32008G16A-SB10',
     },{
       name: 'Memória DDR4 Redragon Solar 16GB, ',
@@ -182,7 +182,7 @@ export default class extends BaseSeeder {
       categoryId: 1,
       subcategoryId: 5,
       approvals: 0,
-      imgSrc: '/app/uploads/seed/',
+      imgSrc: '/app/uploads/seed/memoria-ddr4-redragon-solar-rgb-16gb-3600mhz-black-gm-806_212779.png',
       description: 'Memória DDR4 Redragon Solar, RGB, 16GB, 3600Mhz, Black, GM-806',
     },{
       name: 'Memória DDR4 XPG GAMMIX 8GB',
@@ -191,7 +191,7 @@ export default class extends BaseSeeder {
       categoryId: 1,
       subcategoryId: 5,
       approvals: 0,
-      imgSrc: '/app/uploads/seed/',
+      imgSrc: '/app/uploads/seed/memoria-ddr4-xpg-gammix-d35-8gb-3200mhz-white-ax4u32008g16a-swhd35_178832.png',
       description: 'Memória DDR4 XPG GAMMIX D35, 8GB, 3200Mhz, White, AX4U32008G16A-SWHD35',
     },{
       name: 'Memória DDR4 Geil Orion RGB 8GB',
@@ -200,7 +200,7 @@ export default class extends BaseSeeder {
       categoryId: 1,
       subcategoryId: 5,
       approvals: 0,
-      imgSrc: '/app/uploads/seed/',
+      imgSrc: '/app/uploads/seed/memoria-ddr4-geil-orion-rgb-edicao-amd-8gb-3200mhz-red-gaosr48gb3200c16bsc_115366.png',
       description: 'Memória DDR4 Geil Orion RGB, 8GB, 3200MHz, Red, GAOSR48GB3200C16BSC',
     },{
       name: 'Memória DDR5 Kingston Fury Beast 32GB',
@@ -209,8 +209,8 @@ export default class extends BaseSeeder {
       categoryId: 1,
       subcategoryId: 5,
       approvals: 0,
-      imgSrc: '/app/uploads/seed/',
-      description: 'Memória DDR5 Kingston Fury Beast',
+      imgSrc: '/app/uploads/seed/memoria-ddr5-kingston-fury-beast-rgb-32gb-5600mhz-white-kf556c40bwa-32_169359.png',
+      description: 'Memória DDR5 Kingston Fury Beast RGB 32GB, 5600mhz white',
     },{
       name: 'Processador AMD Ryzen 9 7900X 4.7GHz',
       price: 299.99,
