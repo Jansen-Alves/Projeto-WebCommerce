@@ -114,8 +114,9 @@ export default class ShoppingCartsController {
       }
     }
 
-    async deactive({response, params,auth}: HttpContext){
+    async deactive({response, request, params,auth, session}: HttpContext){
       try{
+        const previousUrl =  request.header('Referer')
         const user = auth.user
         const productId = params.id
         if (!user) {
@@ -139,7 +140,8 @@ export default class ShoppingCartsController {
       }else{
         await ShoppingCart.query().where('userId', user.id).update({ active: false })
       }
-      return response.redirect().toRoute('products.show', {id: productId})
+      session.flash('sucess.cart','compra efetuada com sucessos!');
+      return response.redirect().toPath(previousUrl)
     }catch{
       return response.internalServerError()
     }
