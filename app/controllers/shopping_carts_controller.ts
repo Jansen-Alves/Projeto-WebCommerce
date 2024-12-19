@@ -59,7 +59,7 @@ export default class ShoppingCartsController {
         // Verifica se o produto já está no carrinho
         const existingItem = await ShoppingCart.query()
           .where('user_id', user.id)
-          .andWhere('product_id', productId)
+          .andWhere('product_id', productId).andWhere('active', true)
           .first()
   
         if (existingItem) {
@@ -98,14 +98,15 @@ export default class ShoppingCartsController {
       try{
         const carts = await ShoppingCart.query().where('userId', params.id).andWhere('active', true).preload('product')
         let somatorio = 0
-        
+        let peso = 0
         //await carts?.load('product')
         //console.log(carts)
         for(const cart of carts){
           somatorio += cart.product.price * cart.quantity
+          peso += cart.quantity
         }
         const formatado = somatorio.toFixed(2);
-        const frete = Math.trunc((somatorio* 0.15)*100)/100 
+        const frete = Math.trunc((somatorio* (0.15 / peso))*100)/100 
         return view.render('pages/cart/show',{carts, somatorio, formatado, frete})
 
       }catch{
