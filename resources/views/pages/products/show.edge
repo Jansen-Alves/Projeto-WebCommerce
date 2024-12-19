@@ -8,8 +8,8 @@
           </div>
                          @end
     <div class="flex flex-row w-full h-[500px]  mb-[40px] shadow-custom rounded-[5px] overflow-hidden">
-        <div class="bg-orange-200 flex justify-center items-center flex-shrink-0 flex-grow-0 w-[470px] h-full py-0 px-[50px]">
-            <img src="{{product.imgSrc}}" alt="Coleção de {{product.subCategory.name}}" class="max-w-full max-h-full object-cover hover:animate-wiggle">
+        <div class="bg-orange-200 flex justify-center items-center relative overflow-hidden  flex-shrink-0 flex-grow-0 w-[470px] h-full py-0 px-[50px]">
+            <img src="{{product.imgSrc}}" id="image" alt="Coleção de {{product.subCategory.name}}" class="max-w-full max-h-full  zoomable object-cover ">
         </div>
         <div class="bg-white flex flex-col justify-center items-start py-0 px-[80px] flex-1">
             <div class="flex flex-row mb-[7px]">
@@ -88,6 +88,29 @@
               </div>
                 </div>
         </div>
+        <script>
+            const image = document.getElementById('image');
+            const container = image.parentElement;
+    
+            container.addEventListener('click', (event) => {
+                const rect = container.getBoundingClientRect();
+                const offsetX = event.clientX - rect.left;
+                const offsetY = event.clientY - rect.top;
+    
+                const originX = (offsetX / container.offsetWidth) * 100;
+                const originY = (offsetY / container.offsetHeight) * 100;
+    
+                if (image.style.transform) {
+                    image.style.transform = '';
+                    image.style.transformOrigin = '';
+                    image.style.cursor = 'zoom-in';
+                } else {
+                    image.style.transform = 'scale(2)';
+                    image.style.transformOrigin = `${originX}% ${originY}%`;
+                    image.style.cursor = 'zoom-out';
+                }
+            });
+        </script>
     <script>
         let currentIndex = 0; // Índice da imagem atual
         const carouselTrack = document.querySelector('.carousel-track'); // Seleciona o container que move as imagens

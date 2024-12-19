@@ -41,6 +41,7 @@ export default class ProductsController {
   }else if(subcategory != null){
     query.where('subcategoryId', subcategory)
   }
+    query.orderBy('approvals', 'desc')
     await query.preload('category').preload('subCategory')
     const product = await query.paginate(page,limit)
     return view.render('pages/products/index', {product, subcategories, categories})

@@ -8,7 +8,13 @@
     @vite(['resources/js/app.js','resources/css/app.css'])
 
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.2/dist/cdn.min.js" defer></script>
-
+    <style>
+      /* Adiciona a transição e o cursor para o zoom */
+      .zoomable {
+          transition: transform 0.3s ease, transform-origin 0.3s ease;
+          cursor: zoom-in;
+      }
+  </style>
   </head>
 
   <body class="min-h-screen flex flex-col flex-grow font-poppins">
