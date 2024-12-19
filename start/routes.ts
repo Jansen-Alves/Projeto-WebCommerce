@@ -19,7 +19,6 @@ const AuthController  = () => import('#controllers/auth_controller')
 const CategoriesController = () => import('#controllers/categories_controller')
 const ShoppingCartController = () => import('#controllers/shopping_carts_controller')
 const ApprovalsController = () => import('#controllers/approvals_controller')
-const FavoritesController = () => import('#controllers/favorites_controller')
 
 router.get('/login', [AuthController, 'create']).as('auth.create')
 router.post('/login', [AuthController, 'store']).as('auth.store')
@@ -39,7 +38,6 @@ router.get('/adm', async ({ view }) =>{
   return view.render('pages/adm')
 }).as('auth.adm').use(middleware.auth())
 
-router.post('/approval/:id', [ApprovalsController, 'store']).as('approval.store').use(middleware.auth())
 router
   .group(() => {
     router.get('/', [UsersController, 'index']).as('index').use(middleware.adm())
@@ -83,9 +81,10 @@ router
 
   router
     .group(() => {
-      router.post('/store/:id', [FavoritesController, 'store']).as('store')
-      router.get('/remove/:id', [FavoritesController, 'remove']).as('remove')
-      router.get('/:id', [FavoritesController, 'show']).as('show')
+      router.post('/store/:id', [ApprovalsController, 'store']).as('store')
+      router.get('/remove/:id', [ApprovalsController, 'remove']).as('remove')
+      router.get('/cont/:id', [ApprovalsController, 'cont']).as('cont')
+      router.get('/:id', [ApprovalsController, 'show']).as('show')
     })
-    .prefix('favorites')
-    .as('favorites').use(middleware.auth())
+    .prefix('approval')
+    .as('approval').use(middleware.auth())

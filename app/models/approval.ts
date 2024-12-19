@@ -21,6 +21,9 @@ export default class Approval extends BaseModel {
   @belongsTo(()=> Product)
   declare product: BelongsTo <typeof Product>
 
+  @column()
+  declare active: boolean
+
   @column.dateTime({ autoCreate: true })
   declare createdAt: DateTime
 

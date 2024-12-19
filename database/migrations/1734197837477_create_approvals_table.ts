@@ -8,6 +8,7 @@ export default class extends BaseSchema {
       table.increments('id')
       table.integer('user_id').unsigned().notNullable().references('id').inTable('users').onDelete('CASCADE')
       table.integer('product_id').unsigned().notNullable().references('id').inTable('products').onDelete('CASCADE')
+      table.boolean('active').defaultTo(true)
       table.timestamp('created_at')
       table.timestamp('updated_at')
     })

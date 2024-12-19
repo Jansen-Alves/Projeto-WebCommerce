@@ -6,7 +6,6 @@ import Subcategory from '#models/subcategory'
 import path from 'path'
 import { fileURLToPath } from 'url';
 import Approval from '#models/approval'
-import Favorite from '#models/favorites'
 
 export default class ProductsController {
   async index({ view,params,request}: HttpContext) {
@@ -115,7 +114,7 @@ export default class ProductsController {
     const similars = await Product.query().where('subcategoryId', product.subcategoryId)
     if(user){
         console.log("pegou")
-       likeexiste = await Favorite.query().where('userId', user.id).andWhere('productId', params.id).first()
+       likeexiste = await Approval.query().where('userId', user.id).andWhere('productId', params.id).first()
     }
 
     //const product = await data.json()
