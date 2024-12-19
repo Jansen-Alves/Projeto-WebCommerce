@@ -24,6 +24,8 @@ export default class ProductsController {
     const category = params.category
   
     console.log("resposta de form", payload)
+    console.log("categoria", category)
+    console.log("subcategoria", subcategory)
 
   if(payload.name != null && payload.name.length && payload.subcategory != null && payload.subcategory.length){
     await query.where((builder) => {
@@ -38,9 +40,10 @@ export default class ProductsController {
     console.log('busca2')
   }else if(category > 0){
     query.where('categoryId',category )
-
+    console.log('busca3')
   }else if(subcategory != null){
     query.where('subcategoryId', subcategory)
+    console.log('busca4')
   }
     query.orderBy('approvals', 'desc')
     await query.preload('category').preload('subCategory')
