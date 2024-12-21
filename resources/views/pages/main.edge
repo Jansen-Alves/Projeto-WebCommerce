@@ -1,7 +1,123 @@
 @layouts.app() 
-    <section >
-        <h1>pagina inicial</h1>
-        
-    </section>
+
+<!-- top section -->
+<div id="home-top-container" class="bg-[#f7b57e34] px-5 pt-[150px] pb-[30px] flex justify-center">
+    <div id="home-top-wrapper" class="flex justify-between flex-row w-[85%] items-center">
+        <div id="home-top-image">
+            <img src="{{popular.imgSrc}}" alt="o mais popular" class="max-w-[450px]" />
+        </div>
+        <div id="home-top-text" class="w-[50%]">
+            <h1 class="text-[#404040] text-[50px] font-semibold">
+                Se surpreenda com o novo Monitor Gamer da Samsumg
+            </h1>
+            <p class="text-[#757575] text-[18px] font-normal my-[15px] mb-[60px]">
+                Design minimalista, concentração máxima. A tela com 3 lados sem borda traz uma estética limpa e moderna para qualquer ambiente de trabalho. Em um setup com vários monitores, se alinham perfeitamente para uma visualização praticamente sem espaços e sem distrações.
+            </p>
+            <a href="{{route('products.show',{id: 55}) }}" class="px-[45px] py-[17px] rounded-[30px] text-[17px] mt-[30px] bg-orange-400 text-white hover:bg-white hover:text-orange-400 transition duration-300 ease-in-out">
+                Comprar Agora
+            </a>
+        </div>
+    </div>
+</div>
+
+<!-- coleção -->
+<div id="collection-container" class="bg-[#8d3f0050] flex flex-col items-center p-5">
+    <h1 class="text-[#404040] font-medium text-[50px] mt-[40px]">Nossa Coleção</h1>
+    <div id="collection-items-wrapper" class="flex justify-around w-[70%] p-[50px]">
+        <div class="collection-item flex flex-col items-center">
+            <a href="{{route('products.index',{category:1})}}" class="collection-icon bg-white h-[100px] w-[100px] rounded-full shadow-[0px_5px_25px_rgba(0,0,0,0.3)] text-[#404040] flex items-center justify-center transition-all duration-300 ease-in-out hover:bg-[#fb923c] hover:text-white">
+                <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-motherboard" viewBox="0 0 16 16">
+                <path d="M11.5 2a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5m2 0a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5m-10 8a.5.5 0 0 0 0 1h6a.5.5 0 0 0 0-1zm0 2a.5.5 0 0 0 0 1h6a.5.5 0 0 0 0-1zM5 3a1 1 0 0 0-1 1h-.5a.5.5 0 0 0 0 1H4v1h-.5a.5.5 0 0 0 0 1H4a1 1 0 0 0 1 1v.5a.5.5 0 0 0 1 0V8h1v.5a.5.5 0 0 0 1 0V8a1 1 0 0 0 1-1h.5a.5.5 0 0 0 0-1H9V5h.5a.5.5 0 0 0 0-1H9a1 1 0 0 0-1-1v-.5a.5.5 0 0 0-1 0V3H6v-.5a.5.5 0 0 0-1 0zm0 1h3v3H5zm6.5 7a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h2a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5z"/>
+                <path d="M1 2a2 2 0 0 1 2-2h11a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-2H.5a.5.5 0 0 1-.5-.5v-1A.5.5 0 0 1 .5 9H1V8H.5a.5.5 0 0 1-.5-.5v-1A.5.5 0 0 1 .5 6H1V5H.5a.5.5 0 0 1-.5-.5v-2A.5.5 0 0 1 .5 2zm1 11a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1z"/>
+                </svg>
+            </a>
+            <span class="collection-item-name mt-[20px] text-[#404040] font-medium">Hardware</span>
+        </div>
+        <div class="collection-item flex flex-col items-center">
+            <a href="{{route('products.index',{category:2})}}" class="collection-icon bg-white h-[100px] w-[100px] rounded-full shadow-[0px_5px_25px_rgba(0,0,0,0.3)] text-[#404040] flex items-center justify-center transition-all duration-300 ease-in-out hover:bg-[#fb923c] hover:text-white">
+                <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-headset" viewBox="0 0 16 16">
+                <path d="M8 1a5 5 0 0 0-5 5v1h1a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a6 6 0 1 1 12 0v6a2.5 2.5 0 0 1-2.5 2.5H9.366a1 1 0 0 1-.866.5h-1a1 1 0 1 1 0-2h1a1 1 0 0 1 .866.5H11.5A1.5 1.5 0 0 0 13 12h-1a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h1V6a5 5 0 0 0-5-5"/>
+                </svg>
+            </a>
+            <span class="collection-item-name mt-[20px] text-[#404040] font-medium">Periféricos</span>
+        </div>
+        <div class="collection-item flex flex-col items-center">
+            <a href="{{route('products.index',{category:3})}}" class="collection-icon bg-white h-[100px] w-[100px] rounded-full shadow-[0px_5px_25px_rgba(0,0,0,0.3)] text-[#404040] flex items-center justify-center transition-all duration-300 ease-in-out hover:bg-[#fb923c] hover:text-white">
+                <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-pc-display" viewBox="0 0 16 16">
+                <path d="M8 1a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1zm1 13.5a.5.5 0 1 0 1 0 .5.5 0 0 0-1 0m2 0a.5.5 0 1 0 1 0 .5.5 0 0 0-1 0M9.5 1a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1zM9 3.5a.5.5 0 0 0 .5.5h5a.5.5 0 0 0 0-1h-5a.5.5 0 0 0-.5.5M1.5 2A1.5 1.5 0 0 0 0 3.5v7A1.5 1.5 0 0 0 1.5 12H6v2h-.5a.5.5 0 0 0 0 1H7v-4H1.5a.5.5 0 0 1-.5-.5v-7a.5.5 0 0 1 .5-.5H7V2z"/>
+                </svg>
+            </a>
+            <span class="collection-item-name mt-[20px] text-[#404040] font-medium">Acessórios</span>
+        </div>
+    </div>
+</div>
+<!-- promo -->
+<div class="mt-10 p-10 flex flex-col items-center">
+    <h1 class="text-[#404040] font-medium text-[45px]">Mais Vendidos</h1>
+    <span class="produto-section-desc text-[#757575] text-center w-[45%] mt-2">
+        Confira os Produtos Mais Populares da Semana
+    </span>
+    <ul class="produto-section-items-wrapper list-none flex justify-around flex-row mt-14 w-[70%]">
+       
+           
+            @each(item in perifericos)
+            <li class="produto-item max-w-[280px] rounded-lg m-5 overflow-hidden shadow-[0_30px_50px_rgba(0,0,0,0.15)]">
+            <a href="{{route('products.show', {id: item.id})}}">
+                <div class="produto-image bg-[#f7b57e34] h-[210px] flex justify-center items-center p-8">
+                    <img src="{{item.imgSrc}}" alt="" class="h-full">
+                </div>
+                <div class="produto-text text-center p-5">
+                    <span class="produto-title text-[#323232] text-[18px] font-medium">
+                       {{item.name}}
+                    </span>
+                    <div class="flex flex-col produto-purchase mt-2 w-full">
+                        <span class="produto-price text-[18px] text-[#fb923c] font-medium">
+                          R${{item.price}}
+                        </span>
+            </a>
+            @button({href: route('shoppingCart.add', {id: item.id}),
+            class:'mt-2 px-5 py-2 rounded-lg text-[16px] bg-[#fb923c] text-white  hover:bg-white hover:text-orange-400  transition-all',
+            variant: 'new'})
+                  Adicionar ao Carrinho
+                    @end
+                       
+                </div>
+            </div>
+        </li>
+            @end
+            
+            
+      
+    </ul>
+</div>
+
+<!-- Promo -->
+<div class="promo-container w-full mt-8 mb-12 flex justify-center">
+    <div class="promo-box w-[75%] h-[40%] flex flex-row justify-center rounded-lg m-12 overflow-hidden">
+        <div class="promo-image bg-[#f5af7596] flex justify-center items-center p-10 w-full">
+            <img src="imagens/homepage/gabinete-gamer-nzxt-h9-elite-mid-tower-vidro-temperado-black-atx-sem-fonte-com-4-fans-cm-h91eb-01_161528.png" alt="Gabinete Gamer NZXT" class="w-[70%]">
+        </div>
+        <div class="promo-content p-16 justify-center w-full h-[500px] bg-[#fb923c]">
+            <h1 class="text-white text-[20px] font-medium antialiased">Novidade</h1>
+            <h2 class="text-white text-[40px] font-semibold antialiased mb-2">
+                Gabinete Gamer NZXT
+            </h2>
+            <p class="text-white font-smalltext-[18px] mb-8 antialiased">
+                O H9 Elite foi projetado para mostrar todos os ângulos de sua construção.
+                Com um Painel de vidro ininterrupto exclusivo para uma visão clara do interior
+                Gerenciamento intuitivo de cabos e design de câmara dupla
+                Espaço para dez ventiladores ou três radiadores de 360 ​​mm ele é um produto premium perfeito para
+                estar na sua mesa.
+                
+            </p>
+            <a href="{{route('products.show',{id: 50}) }}" class="px-[45px] py-[17px] rounded-[30px] text-[17px] mt-[30px] bg-orange-700 text-white hover:bg-white hover:text-orange-400 transition duration-300 ease-in-out">
+                Comprar Agora
+            </a>
+        </div>
+    </div>
+</div>
 
 @end
+
+
+

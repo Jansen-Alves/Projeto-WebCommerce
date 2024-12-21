@@ -1,22 +1,34 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-br">
   <head>
-    <title>HTML app</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meu Site</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     @vite(['resources/js/app.js','resources/css/app.css'])
+
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.2/dist/cdn.min.js" defer></script>
+    <style>
+      /* Adiciona a transição e o cursor para o zoom */
+      .zoomable {
+          transition: transform 0.3s ease, transform-origin 0.3s ease;
+          cursor: zoom-in;
+      }
+  </style>
   </head>
-<body class="">
-<div class="min-h-screen flex flex-col">
-  <main class="flex-grow">
-    <section class="w-full pb-12 antialiased bg-white">
-      <div class="mx-auto max-w-7xl ">
-        @include('components/layouts/partials/cabecalho')
-        <div class="flex items-center justify-center h-screens">
-          {{{ await $slots.main() }}}
+
+  <body class="min-h-screen flex flex-col flex-grow font-poppins">
+    @include('components/layouts/partials/cabecalho')
+    <main class="flex-grow">
+      <section>
+        <div class="mx-auto">
+            {{{ await $slots.main() }}}
         </div>
-      </div>
-    </section>
-  </main>
-    @include('components/layouts/partials/footer')
-  </div>
-</body>
+      </section>
+    </main>
+
+    <!-- Rodapé -->
+  
+  </body>
+  @include('components/layouts/partials/footer')  
 </html>

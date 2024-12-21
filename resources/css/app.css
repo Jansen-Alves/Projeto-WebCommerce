@@ -1,3 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@import './styles-index.css';
+@import './styles-products.css';
+
+@layer utilities {
+    .produto-card-active {
+      @apply w-[260px] h-[379px];
+    }
+}
+  

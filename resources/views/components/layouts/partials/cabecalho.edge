@@ -1,88 +1,243 @@
-<nav class="relative z-50 h-20   select-none bg-orange-400">
-  <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-    <a href="https://flowbite.com/" class="flex items-center space-x-3 rtl:space-x-reverse">
+<!-- navbar script -->
 
-        <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">OsterVendas</span>
-    </a>
-    <div class="flex items-center md:order-2 space-x-3 md:space-x-2 rtl:space-x-reverse">
-      @if(auth.isAuthenticated)
-        @if(auth.user.isAdm )
-      <p> Admin {{ auth.user.fullName }} </p>
-        @else
-        <p> Cliente {{ auth.user.fullName }} </p>
-        @end
-        <a href="{{route('auth.destroy')}}"> Sair </a>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        document.addEventListener('scroll', () => {
+            let navBar = document.querySelector('nav');
+            if (window.scrollY > 0) {
+                navBar.style.zIndex = '1000';
+                navBar.style.background = 'white';
+                navBar.style.boxShadow = '0 5px 20px rgba(190, 190, 190, 0.15)';
+            }
+            else {
+                navBar.style.background = 'transparent';
+                navBar.style.boxShadow = 'none';
+            }
+        })
 
-      @else
-      @button({
-        href: route('users.create'),
-        variant: 'ghost'
-      })
-        Sign In
-      @end
-      @button({
-        href: route('auth.create'),
-        variant:'default',
-        class:'bg-gray-300  '
-      }) 
-        Login
-      @end
-      @end
-        <button type="button" class="flex text-sm bg-gray-800 rounded-full md:me-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600" id="user-menu-button" aria-expanded="false" data-dropdown-toggle="user-dropdown" data-dropdown-placement="bottom">
-          <span class="sr-only">Open user menu</span>
-          <!-- <img class="w-8 h-8 rounded-full" src="#" alt="user photo"> -->
-        </button>
-        <!-- Dropdown menu 
-        <div class="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600" id="user-dropdown">
-          <div class="px-4 py-3">
-            <span class="block text-sm text-gray-900 dark:text-white">Bonnie Green</span>
-            <span class="block text-sm  text-gray-500 truncate dark:text-gray-400">name@flowbite.com</span>
-          </div>
-          <ul class="py-2" aria-labelledby="user-menu-button">
-            <li>
-              <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Dashboard</a>
-            </li>
-            <li>
-              <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Settings</a>
-            </li>
-            <li>
-              <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Earnings</a>
-            </li>
-            <li>
-              <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Sign out</a>
-            </li>
-          </ul>
-        </div>-->
-        <button data-collapse-toggle="navbar-user" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-user" aria-expanded="false">
-          <span class="sr-only">Open main menu</span>
-          <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
-              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"/>
-          </svg>
-      </button>
-    </div>
-    <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-user">
-      <ul class="flex flex-col relative font-medium p-3 md:p-0 mt-4 border border-gray-100 rounded-lg bg-orange-400 md:space-x-14 textrtl:space-x-reverse md:flex-row md:mt-0 md:border-0">
-        <li>
-          @button({href:route('/index'), variant:"default", class:"block py-2 px-3 text-white bg-tranparent rounded md:bg-transparent md:text-white-700 md:p-0"}) 
-            Pagina inicial
-          @end
-        </li>
-        <li>
-          @button({href:route('products.index'), variant:"default", class:"block py-2 px-3 text-white bg-transparent  rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"}) 
-            Produtos
-          @end
-        </li>
-        <li>
-          @button({href:route('/adm'), variant:"default", class:"block py-2 px-3 text-white bg-transparent  rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"}) 
-            Gerencia
-          @end
-        </li> 
-        <li>
-          @button({href:"#",variant:"default",  class:"block py-2 px-3 text-white bg-transparent  rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"}) 
-            Sobre
-          @end
-        
-      </ul>
-    </div>
-    </div>
+        const userId = {{ auth.user?.id ||'null' }}
+        const spanCarrinho = document.querySelector('#link-carrinho span');
+        const spanApproval = document.querySelector('#link-approval span');
+        console.log('userId:', userId);
+
+
+        async function atualizarContadorCarrinho() {
+            try {
+                const response = await fetch(`/shopping-cart/cont/${userId}`);
+                if (response.ok) {
+                    const data = await response.json();
+                    spanCarrinho.textContent = data.cont || 0;
+                } else {
+                    console.error('Erro ao buscar o contador do carrinho:', response.statusText);
+                    spanCarrinho.textContent = 0;
+                }
+            } catch (error) {
+                console.error('Erro ao buscar o contador do carrinho:', error);
+                spanCarrinho.textContent = 0;
+            }
+        }
+
+        atualizarContadorCarrinho();
+
+        async function atualizarContadorApproval() {
+            try {
+                const response = await fetch(`/approval/cont/${userId}`);
+                if (response.ok) {
+                    const data = await response.json();
+                    spanApproval.textContent = data.cont || 0;
+                } else {
+                    console.error('Erro ao buscar o contador do approval:', response.statusText);
+                    spanApproval.textContent = 0;
+                }
+            } catch (error) {
+                console.error('Erro ao buscar o contador do approval:', error);
+                spanApproval.textContent = 0;
+            }
+        }
+
+        atualizarContadorApproval();
+    })
+</script>
+
+<!-- navbar -->
+<nav class="bg-transparent w-full z-1000 font-semibold transition duration-500 ease-in-out fixed">
+    <div id="navbar" class="flex flex-row justify-between place-items-center w-[85%] m-auto p-[15px] ">
+        <a href="{{route('/index')}}">
+            <div id="navbar-logo" >
+                <img src="/imagens/BungaTech.png" alt="Bunga Tech" class="w-[200px] h-[90px] ">
+            </div>
+        </a>
+        <div id="navbar-links" class="flex flex-row gap-[50px] justify-center items-center">
+            <div clas="flex flex-row items-center">
+                <ul class="flex flex-row list-none">
+                    <li class="ml-[60px]">
+                        <a href="{{route('/index')}}" class="no-underline text-[rgb(64,64,64)] font-medium antialiased text-base transition ease-in-out duration-300 mr-[30px] hover:text-[rgb(251,146,60)]">Página Inicial</a>
+                    </li>
+
+                    <style>
+                    .dropdown:hover > .dropdown-content {
+                        display: block;
+                    }
+                    </style>
+                    
+                    <div class="dropdown inline-block relative ml-[60px] rounded-[5px]">
+                        <a  href="{{route('products.index')}}"
+                            class="no-underline text-[rgb(64,64,64)] font-medium antialiased text-base transition ease-in-out duration-300 mr-[30px] hover:text-[rgb(251,146,60)]">
+                            Produtos
+                        </a>
+                        <ul class="dropdown-content border border-orange-500 w-[160px] absolute hidden text-[rgb(64,64,64)] ">
+                            
+                            <li class="dropdown">
+                                <li class="dropdown relative">
+                                    <a  name="category"
+                                      class="rounded-t bg-white text-[rgb(64,64,64)] transition hover:text-orange-500 py-2 px-4 w-auto block whitespace-no-wrap" 
+                                      href="{{route('products.index',{category:1})}}">
+                                      Hardware <b class="justify-end">></b>
+                                    </a>
+                                <ul class="dropdown-content dropdown-content border border-orange-400 absolute hidden left-full text-gray-700 w-[225px]  m-0 -mt-[41px] ">
+                                    <li><a class="rounded-t bg-white text-[rgb(64,64,64)] transition hover:text-orange-500 py-2 px-4 block whitespace-no-wrap" href="{{route('products.index',{category: 0, subcategory:1})}}">Coolers</a>
+                                    <li><a class="rounded-t bg-white text-[rgb(64,64,64)] transition hover:text-orange-500 py-2 px-4 block whitespace-no-wrap" href="{{route('products.index',{category: 0, subcategory:2})}}">Disco Rígido</a>
+                                    <li><a class="rounded-t bg-white text-[rgb(64,64,64)] transition hover:text-orange-500 py-2 px-4 block whitespace-no-wrap" href="{{route('products.index',{category: 0, subcategory:3})}}">Placa-Mãe</a>
+                                    <li><a class="rounded-t bg-white text-[rgb(64,64,64)] transition hover:text-orange-500 py-2 px-4 block whitespace-no-wrap" href="{{route('products.index',{category: 0,subcategory:4})}}">Fonte</a>
+                                    <li><a class="rounded-t bg-white text-[rgb(64,64,64)] transition hover:text-orange-500 py-2 px-4 block whitespace-no-wrap" href="{{route('products.index',{category: 0,subcategory:5})}}">Memória RAM</a>
+                                    <li><a class="rounded-t bg-white text-[rgb(64,64,64)] transition hover:text-orange-500 py-2 px-4 block whitespace-no-wrap" href="{{route('products.index',{category: 0,subcategory:6})}}">Processador</a>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <li class="dropdown relative">
+                                    <a 
+                                      class="rounded-t bg-white text-[rgb(64,64,64)] transition hover:text-orange-500 py-2 px-4 w-auto block whitespace-no-wrap" 
+                                      href="{{route('products.index',{category: 2})}}">
+                                      Periféricos <b class="justify-end">></b>
+                                    </a>
+                                <ul class="dropdown-content dropdown-content border border-orange-400 absolute hidden left-full text-gray-700 w-[225px]  m-0 -mt-[42px] ">
+                                    <li><a class="rounded-t bg-white text-[rgb(64,64,64)] transition hover:text-orange-500 py-2 px-4 block whitespace-no-wrap" href="{{route('products.index',{category:0, subcategory:7})}}">Teclado/Mouse</a>
+                                    <li><a class="rounded-t bg-white text-[rgb(64,64,64)] transition hover:text-orange-500 py-2 px-4 block whitespace-no-wrap" href="{{route('products.index',{category:0, subcategory:8})}}">Mouse Pad</a>
+                                    <li><a class="rounded-t bg-white text-[rgb(64,64,64)] transition hover:text-orange-500 py-2 px-4 block whitespace-no-wrap" href="{{route('products.index',{category:0, subcategory:9})}}">Fone</a>
+                                    <li><a class="rounded-t bg-white text-[rgb(64,64,64)] transition hover:text-orange-500 py-2 px-4 block whitespace-no-wrap" href="{{route('products.index',{category:0, subcategory:10})}}">Microfone</a>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <li class="dropdown relative">
+                                    <a 
+                                      class="rounded-t bg-white text-[rgb(64,64,64)] transition hover:text-orange-500 py-2 px-4 w-auto block whitespace-no-wrap" 
+                                      href="{{route('products.index',{category:3})}}">
+                                      Acessórios <b class="justify-end">></b>
+                                    </a>
+                            
+                                <ul class="dropdown-content dropdown-content border border-orange-400 absolute hidden left-full text-gray-700 w-[225px]  m-0 -mt-[42px]">
+                                    <li><a class="rounded-t bg-white text-[rgb(64,64,64)] transition hover:text-orange-500 py-2 px-4 block whitespace-no-wrap" href="{{route('products.index',{category:0, subcategory:11})}}">Cadeira</a>
+                                    <li><a class="rounded-t bg-white text-[rgb(64,64,64)] transition hover:text-orange-500 py-2 px-4 block whitespace-no-wrap" href="{{route('products.index',{category: 0, subcategory:12})}}">Gabinete</a>
+                                    <li><a class="rounded-t bg-white text-[rgb(64,64,64)] transition hover:text-orange-500 py-2 px-4 block whitespace-no-wrap" href="{{route('products.index',{category:0, subcategory:13})}}">Monitor</a>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <li class="ml-[60px]">
+                        <a href="javascript:void(0);" onclick="window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });" class="no-underline text-[rgb(64,64,64)] font-medium antialiased text-base transition ease-in-out duration-300 mr-[30px] hover:text-[rgb(251,146,60)]">Sobre</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="flex flex-row my-[20px] bg-slate-100 p-[14px] items-center w-[max-content] rounded-[28px]">
+                <!-- Formulário de busca -->
+                <form method="GET" action="{{route('products.index')}}">
+                    <div class="flex flex-row">
+                    <input type="text" id="name" name="name" placeholder="Pesquise" class="ml-[14px] w-[350px] outline-none bg-transparent border-none" value="{{ request.input('name', '') }}" /> 
+                    <button type="submit"> 
+                    @svg('heroicons:magnifying-glass-20-solid', {class:'w-6 h-6 mx-1'})
+                    </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div id="navbar-auth" class="flex flex-row place-items-center">
+            @if(auth.isAuthenticated)
+                <div id="navbar-ferramentas" class="flex flex-row ml-[60px]">   
+                    <a id="link-carrinho" href="{{route('shoppingCart.show', {id: auth.user.id})}}" class="flex items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-cart" viewBox="0 0 16 16">
+                            <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M3.102 4l1.313 7h8.17l1.313-7zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2"/>
+                        </svg>
+                        <span class="bg-[rgb(251,146,60)] w-[17px] h-[17px] rounded-full text-white text-[13px] flex justify-center items-center relative bottom-[10px] right-[6px]">0</span>
+                    </a>
+
+                    <a id="link-approval" href="{{route('approval.show', {id: auth.user.id})}}" class="flex items-center ml-[10px]">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16">
+                            <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143q.09.083.176.171a3 3 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15"/>
+                        </svg>
+                        <span class="bg-[rgb(251,146,60)] w-[17px] h-[17px] rounded-full text-white text-[13px] flex justify-center items-center relative bottom-[10px] right-[6px]">0</span>
+                    </a>
+                   
+
+                    <!-- Dropdown Profile Section -->
+                    <div x-data="{ isOpen: false, openedWithKeyboard: false, leaveTimeout: null }" 
+                        @mouseleave.prevent="leaveTimeout = setTimeout(() => { isOpen = false }, 250)" 
+                        @mouseenter="leaveTimeout ? clearTimeout(leaveTimeout) : true" 
+                        @keydown.esc.prevent="isOpen = false, openedWithKeyboard = false" 
+                        @click.outside="isOpen = false, openedWithKeyboard = false" class="relative">
+                        
+                        <a id="link-perfil" href="#" @mouseover="isOpen = true" @keydown.space.prevent="openedWithKeyboard = true" 
+                        @keydown.enter.prevent="openedWithKeyboard = true" @keydown.down.prevent="openedWithKeyboard = true" 
+                        class="text-[rgb(64,64,64)] flex items-center ml-[50px] mr-[30px] mb-[5px] transition hover:text-orange-500">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-person-circle" 
+                                viewBox="0 0 16 16">
+                                <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
+                                <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"/>
+                            </svg>
+                        </a>
+
+                        <div x-cloak x-show="isOpen || openedWithKeyboard" x-transition x-trap="openedWithKeyboard" 
+                            @click.outside="isOpen = false, openedWithKeyboard = false" @keydown.down.prevent="$focus.wrap().next()" 
+                            @keydown.up.prevent="$focus.wrap().previous()" 
+                            class="absolute top-11 right-7 flex w-auto min-w-[12rem] flex-col overflow-hidden rounded-md border border-orange-500 divide-y divide-orange-500 bg-white py-1.5" role="menu">
+
+                            <!-- Verificação de Admin ou Cliente -->
+                            @if(auth.user.isAdm)
+                                <div class="flex flex-col py-1.5"> 
+                                    <span class="block px-4 py-2 text-[rgb(117,117,117)] whitespace-nowrap">Olá, {{ auth.user.fullName }}!</span>
+                                </div>    
+                                <div>
+                                    <a href="{{route('users.index') }}" class="block px-4 py-2 text-[rgb(64,64,64)] transition hover:text-orange-500">
+                                        Listar Usuários
+                                    </a>
+                                    <a href="{{route('products.create') }}" class="block px-4 py-2 text-[rgb(64,64,64)] transition hover:text-orange-500">
+                                        Criar Produtos
+                                    </a>
+                                    <a href="{{route('products.list') }}" class="block px-4 py-2 text-[rgb(64,64,64)] transition hover:text-orange-500">
+                                        Listar Produtos
+                                    </a>
+                                </div>
+                            @else
+                                <span class="block px-4 py-2 text-[rgb(117,117,117)] whitespace-nowrap">Olá, {{ auth.user.fullName }}!</span>
+                            @endif
+                            <div class="pt-[10px]">
+                                <a href="{{ route('users.alter', { id: auth.user.id }) }}" class="block px-4 py-2 text-[rgb(64,64,64)] transition hover:text-orange-500">
+                                    Editar Perfil
+                                </a>
+                                <a href="{{route('auth.destroy')}}" class="block px-4 py-2 text-[rgb(64,64,64)] transition hover:text-orange-500">
+                                    Sair
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @else
+                @button({
+                    href: route('users.create'),
+                    class: 'px-[15px] py-[7px] rounded-[3px] no-underline bg-white text-orange-400 text-[16px] font-medium antialiased transition duration-300 ease-in-out mr-[20px] hover:bg-orange-400 hover:text-white',
+                    variant:'new'
+                })
+                    Sign In
+                @end
+                @button({
+                    href: route('auth.create'),
+                    class:'px-[15px] py-[7px] rounded-[3px] no-underline bg-orange-400 text-white text-[16px] font-medium antialiased transition duration-300 ease-in-out ml-[20px] hover:bg-white hover:text-orange-400',
+                    variant:'new'
+                }) 
+                    Login
+                @end
+            @end
+        </div>
+    </div>    
 </nav>

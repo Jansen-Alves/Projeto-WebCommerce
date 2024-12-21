@@ -1,34 +1,88 @@
 @layouts.app()
-   
-    <main class="mx-5">
-      <div>
-        Lista de Produtos
-      </div>
-      
-      <div>
-        <div>
-          <a href="{{ route('products.create') }}"> Criar produtos </a>
+<!-- Main Body -->
+<div class="py-0 py-[150px] px-[150px]">  
+   <div class="produto-section">
+        <div class="produto-section-top-container flex justify-between items-center">
+            <div class="section-categoria-container">
+                <div class="section-categoria-type flex items-center">
+                <span class="h-[40px] w-[15px] mr-[15px] bg-orange-500 rounded-[25px]"></span>
+                <span class="text-[rgb(64, 64, 64)] font-medium text-[25px]">Estoque</span>
+                </div>
+                <h1 class="text-gray-700 text-4xl font-medium mb-10">Lista de Produtos</h1>
+            </div>
+        </div>    
+        <div class="relative overflow-x-auto border border-orange-300 shadow-md sm:rounded-lg">
+            <table class="w-full text-sm text-left rtl:text-right text-gray-700">
+                <thead class="text-xs text-gray-700 border-b border-orange-300 uppercase bg-[#f7b57e34]">
+                    <tr>
+                        <th scope="col" class="px-16 py-3">
+                            <span class="sr-only">Imagem</span>
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Produto
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Preço
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Quantidade
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            <span class="sr-only">Editar</span>
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            <span class="sr-only">Remover</span>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @each(product in product)
+                    <tr class="bg-white border-b border-orange-300 text-gray-800 hover:bg-[#f7b57e34]">
+                        <td class="p-4">
+                            <img src="{{product.imgSrc}}" alt="produtos" class="w-[60px] h-[60px] object-contain mr-8" />
+                        </td>
+                        <td class="px-6 py-4 font-semibold text-gray-900">
+                            {{product.name}}
+                        </td>
+                        <td class="px-6 py-4 font-semibold text-gray-900">
+                            R$ {{product.price}}
+                        </td>
+                        <td class="px-6 py-4 font-semibold text-gray-900">
+                            {{product.stocked}}
+                        </td>
+                        <td class="px-6 py-4">
+                            
+                        </td><a href="{{route('products.alter',{id: product.id}) }}" class="font-medium text-orange-600 hover:underline">Editar</a>
+                        <td class="px-6 py-4">
+                            <a href="{{route('products.destroy',{id: product.id}) }}" class="font-medium text-orange-600 hover:underline">Remover</a>
+                        </td>
+                    </tr>
+                    @end
+                </tbody>
+            </table>
         </div>
-       
-        <ul>
-          
-          @each(product in product)
-          
-            <li class="flex flex-row">
-            
-              <a href="{{route('products.show',{id: product.id}) }}">{{product.name}} - {{product.price}} -</a> 
-              <a href="{{route('products.alter',{id: product.id}) }}">
-                @svg('heroicons:arrow-right-end-on-rectangle-solid', {class:"text-blue-300 mr-1"})
-              </a>
-              <a href="{{route('products.destroy',{id: product.id})}}">Remover</a>
-            </li>
-          @end
-        </ul>
-        @button({name: 'escreva', classe:'rounded-full bg-slate-300 px-2', type: 'submit'})
-        enviar
-        @end
-        
-      </div>
-      </main>
 
+        <!-- Paginação -->
+        <div class="flex flex row gap-[20px] mt-[30px] -mb-20 justify-center">
+
+            @if (product.currentPage > 1)
+            <a href="?page={{ product.currentPage - 1 }}&name={{ request.input('name', '') }}" class="mt-[1px] hover:text-orange-600 transition-colors duration-300">
+                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-caret-left-fill" viewBox="0 0 16 16">
+                <path d="m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z"/>
+                </svg>
+            </a>
+            @end
+
+            <p>Página {{ product.currentPage }} de {{ product.lastPage }}</p>
+        
+            @if (product.currentPage < product.lastPage)
+            <a href="?page={{ product.currentPage + 1 }}&name={{ request.input('name', '') }}" class="mt-[1px] hover:text-orange-600 transition-colors duration-300">
+                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-caret-right-fill" viewBox="0 0 16 16">
+                <path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/>
+                </svg>
+            </a>
+            @end
+        </div>
+    </div>
+</div>
 @end

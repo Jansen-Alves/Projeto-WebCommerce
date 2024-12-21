@@ -1,42 +1,97 @@
-@layouts.app()
-<div class="flex min-h-[40vh]  justify-center py-12 sm:px-6 lg:px-8">
-    @formProd({action: route('users.store'), method: 'POST', class: 'space-y-6'})
-        <div>
-            <div>
-                <label for="fullName" > Nome completo</label>
-                @!input({ name:'fullName', type:'text', required:'true'})
+<!DOCTYPE html>
+
+<html lang="pt">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Sign Up</title>
+        <link rel="stylesheet" href="/resources/css/index.css">
+        <link rel="stylesheet" href="/resources/css/signup.css">
+        
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                const cpfInput = document.getElementById('cpf-input');
+        
+                cpfInput.addEventListener('input', (event) => {
+                    let value = event.target.value.replace(/\D/g, ''); // Remove caracteres não numéricos
+                    if (value.length > 3) value = value.replace(/^(\d{3})(\d)/, '$1.$2');
+                    if (value.length > 7) value = value.replace(/^(\d{3})\.(\d{3})(\d)/, '$1.$2.$3');
+                    if (value.length > 11) value = value.replace(/^(\d{3})\.(\d{3})\.(\d{3})(\d)/, '$1.$2.$3-$4');
+                    event.target.value = value;
+                });
+            });
+        </script>
+    </head>
+
+    <body>
+        <nav>
+            <div class="container">
+                <div class="item">
+                   <a href="{{ route('/index') }}"><img src="/imagens/BT.png" width="80px" height="80px"></a>
+                </div>
             </div>
-            <div>
-                <label for="email"> e-mail </label>
-                @!input({name:'email', type:'email', required:'true'})
+        </nav>
+        <div class="white-box center">
+            <div class="back-button-container">
+                <button onclick="window.history.length > 1 ? history.back() : window.location.href = '/'" 
+                    class="back-button">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-arrow-left-short" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M12 8a.5.5 0 0 1-.5.5H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5a.5.5 0 0 1 .5.5"/>
+                    </svg>
+                </button>
             </div>
-            <div>
-                <label for="sex">Genero</label>
-                <select class='block text-sm font-medium leading-6 text-gray-900 bg-blue-100' name="sex">
-                      <option value="Masculino">Masculino</option>                      
-                      <option value="Feminino">Feminino</option>
-                      <option value="X">Não declarar</option>
-                  </select>
+            <div id="form-box" class="center">
+                <h1>
+                    SIGN UP
+                </h1>
+                <form action="{{ route('users.store') }}" method="POST" style="width: 300px;">
+                    <div class="input-box">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
+                            <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
+                        </svg>
+                        <input type="text" name="fullName" autofocus="on" placeholder="Nome Completo" required>
+                    </div>
+                    <div class="input-box">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-envelope-fill" viewBox="0 0 16 16">
+                            <path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414zM0 4.697v7.104l5.803-3.558zM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586zm3.436-.586L16 11.801V4.697z"/>
+                        </svg>
+                        <input type="email" name="email" autofocus="on" placeholder="Email" required>
+                    </div>
+                    <div class="input-box">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-calendar-event-fill" viewBox="0 0 16 16">
+                            <path d="M4 .5a.5.5 0 0 0-1 0V1H2a2 2 0 0 0-2 2v1h16V3a2 2 0 0 0-2-2h-1V.5a.5.5 0 0 0-1 0V1H4zM16 14V5H0v9a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2m-3.5-7h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5"/>
+                        </svg>
+                        <input type="text" name="cpf" id="cpf-input" maxlength="14" placeholder="xxx.xxx.xxx-xx" required/>
+                    </div>
+                    <div class="input-box">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-calendar-event-fill" viewBox="0 0 16 16">
+                            <path d="M4 .5a.5.5 0 0 0-1 0V1H2a2 2 0 0 0-2 2v1h16V3a2 2 0 0 0-2-2h-1V.5a.5.5 0 0 0-1 0V1H4zM16 14V5H0v9a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2m-3.5-7h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5"/>
+                        </svg>
+                        <input type="date" name="birthday" autofocus="on" placeholder="Data de Nascimento" required>
+                    </div>
+                    <div class="input-box">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-lock-fill" viewBox="0 0 16 16">
+                            <path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2m3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2"/>
+                        </svg>
+                        <input type="password" name="password" autofocus="on" placeholder="Senha" required>
+                    </div>
+                     <div class="input-box">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-lock-fill" viewBox="0 0 16 16">
+                            <path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2m3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2"/>
+                        </svg>
+                        <input type="password" name="password_confirmation" autofocus="on" placeholder="Confirmar Senha" required>
+                    </div>
+                    <button type="submit" class="orange-button">
+                        CRIAR CONTA
+                    </button>
+
+                </form>
+                <p>
+                    <span>Já é Cadastrado?</span>
+                    <a href="{{ route('auth.create') }}">Clique aqui</a>
+                    <span>para logar!</span>
+                </p>
             </div>
-            <div>
-                <label for="birthday">Data de nascimento</label>
-                @!input({name:'birthday', type:'date', required:'true'})
-            </div>
-            <div>
-                <label for="password" > Senha</label>
-                @!input({name:'password', type:'password', required:'true'})
-            </div>
-            
-            <div>
-                <label for="password_confirmation"> Confirme senha</label>
-                @!input({name:'password_confirmation', type:'password', required:'true'})
-            </div>
-    
-            @button({type:"submit"})
-            Cadastrar
-            @end
-            
         </div>
-    @end
-</div>
-@end
+    </body>
+</html>

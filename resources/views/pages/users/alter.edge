@@ -1,26 +1,46 @@
 @layouts.app()
-@formProd({action: route('users.update', {id: user.id})})
-    <div>
-        <div>
+<div class="bg-[#f7b57e34] min-h-screen flex items-center justify-center">
+    <div class="bg-white max-w-md w-4/5 h-[450px] text-center rounded-lg shadow-md flex flex-col">
+        <div class="flex justify-start p-2">
+            <button onclick="window.history.length > 1 ? history.back() : window.location.href = '/'" 
+                class="text-orange-400">
+                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-arrow-left-short" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M12 8a.5.5 0 0 1-.5.5H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5a.5.5 0 0 1 .5.5"/>
+                </svg>
+            </button>
+        </div>
+        <div id="form-box" class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+            <h1 class="text-orange-500 font-extrabold text-4xl mb-6">
+                EDITAR USUÁRIO
+            </h1>
 
-            @!input({type:'hidden', name:'id', value: user.id})
-            <label > Nome </label>
-            
-            @!input({ name:'fullName', type:'text',  placeholder:user.fullName})
+            <form action="{{ route('users.update', {id:user.id}) }}" method="POST" class="w-[300px] mx-auto">
+                <div class="flex items-center rounded-md bg-gray-200/50 px-4 py-2 mt-4 mx-auto w-4/5">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="text-orange-400" viewBox="0 0 16 16">
+                        <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6" />
+                    </svg>
+                    <input type="text" name="fullName" placeholder="Nome" required 
+                        class="ml-2 bg-transparent outline-none border-none w-full text-gray-700" />
+                </div>
+                <div class="flex items-center rounded-md bg-gray-200/50 px-4 py-2 mt-4 mx-auto w-4/5">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="text-orange-400" viewBox="0 0 16 16">
+                        <path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414zM0 4.697v7.104l5.803-3.558zM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586zm3.436-.586L16 11.801V4.697z" />
+                    </svg>
+                    <input type="email" name="email" placeholder="Email" required 
+                        class="ml-2 bg-transparent outline-none border-none w-full text-gray-700" />
+                </div>
+                <div class="flex items-center rounded-md bg-gray-200/50 px-4 py-2 mt-4 mx-auto w-4/5">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="text-orange-400" viewBox="0 0 16 16">
+                        <path d="M4 .5a.5.5 0 0 0-1 0V1H2a2 2 0 0 0-2 2v1h16V3a2 2 0 0 0-2-2h-1V.5a.5.5 0 0 0-1 0V1H4zM16 14V5H0v9a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2m-3.5-7h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5" />
+                    </svg>
+                    <input type="date" name="birthday" placeholder="Data de Nascimento" required 
+                        class="ml-2 bg-transparent outline-none border-none w-full text-gray-700" />
+                </div>
+                <button type="submit" class="orange-button mt-[20px] py-[8px] px-[16px] rounded-[5px] text-base cursor-pointer bg-orange-500 text-white hover:bg-orange-400">
+                    EDITAR
+                </button>
+            </form>
         </div>
-        <div>
-            <label > email</label>
-            @!input({name:'email', type:'email', placeholder:user.email, class:'block text-sm font-medium leading-6 text-gray-900 bg-slate-100'})
-        </div>
-        <div>
-            <label > data de nascimento </label>
-            @!input({name:'birthday', type:'text', placeholder:user.birthday, class:'block text-sm font-medium leading-6 text-gray-900 bg-slate-100'})
-        </div>
-        
-
-        @button({type:"submit", variant:"shop"})
-        Enviar
-        @end
     </div>
-@end
+</div>
 @end

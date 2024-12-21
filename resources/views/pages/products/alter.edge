@@ -1,25 +1,64 @@
-@layouts.app()
-@formProd({action: route('products.update', {id: product.id})})
-    <div>
-        <div>
+@layouts.app()    
+    <div class="bg-[#f7b57e34] min-h-screen flex flex-col items-center justify-center ">
+        <div class="bg-white max-w-md w-4/5 h-auto text-center rounded-lg shadow-md flex flex-col">
+            <div class="flex justify-start p-2">
+                <button onclick="window.history.length > 1 ? history.back() : window.location.href = '/'" 
+                    class="text-orange-400">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-arrow-left-short" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M12 8a.5.5 0 0 1-.5.5H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5a.5.5 0 0 1 .5.5"/>
+                    </svg>
+                </button>
+            </div>
 
-            @!input({type:'hidden', name:'id', value: product.id})
-            <label > Nome </label>
-            
-            @!input({ name:'name', type:'text',  placeholder:product.nome})
-        </div>
-        <div>
-            <label > Preço </label>
-            @!input({name:'price', type:'text', class:'block text-sm font-medium leading-6 text-gray-900 bg-slate-100'})
-        </div>
-        <div>
-            <label > Descricao</label>
-            @!input({name:'description', type:'text', class:'block text-sm font-medium leading-6 text-gray-900 bg-slate-100'})
-        </div>
+            <div id="form-box" class="pt-[20px]">
+                <h1 class="text-orange-500 font-extrabold pb-[10px] text-4xl">EDITAR PRODUTO</h1>
+                <form action="{{ route('products.update', {id:product.id}) }}" method="POST" class="w-[300px] mx-auto">
+                    <div class="flex items-center rounded-md bg-gray-200/50 px-4 py-2 mt-4 mx-auto w-4/5">
+                        <input type="text" name="name" placeholder="{{product.name}}" value="" autofocus
+                            class="ml-2 bg-transparent outline-none border-none w-full text-gray-700" />
+                    </div>
+                    <div class="flex items-center rounded-md bg-gray-200/50 px-4 py-2 mt-4 mx-auto w-4/5">
+                        <input type="text" name="price" autofocus placeholder="{{product.price}}"
+                            class="ml-2 bg-transparent outline-none border-none w-full text-gray-700" />
+                    </div>
 
-        @button({type:"submit", variant:"shop"})
-        Enviar
-        @end
-    </div>
-@end
+                    <div class="flex items-center rounded-md bg-gray-200/50 px-4 py-2 mt-4 mx-auto w-4/5">
+                        <input type="text" class="ml-2 bg-transparent outline-none border-none w-full text-gray-700" name="stocked" autofocus="on" placeholder="{{product.stocked}}" >
+                    </div>
+
+                    <div>
+                        <label for="subcategoryId" class="block mt-4 text-sm font-medium text-gray-900"></label>
+                        <select name="subcategoryId" 
+                            class="outline-none border-none w-4/5 text-gray-400 bg-gray-200/50 rounded-md px-4 py-2">
+                            <option value="" disabled selected> Selecione categoria</option>
+                            @each(category in categories)
+                                <option value="" disabled selected> {{category.name}}</option>
+                                @each(subcategory in subcategories)
+                                    @if(subcategory.categoryId == category.id)
+                                        <option value="{{ subcategory.id }}">{{ subcategory.name}}</option>
+                                    @endif
+                                @end
+                            @end
+                        </select>
+                    </div>
+                
+                    <div class="flex items-center rounded-md bg-gray-200/50 px-4 py-2 mt-4 mx-auto w-4/5">
+                        <textarea type="text" name="description" class="ml-2 bg-transparent outline-none border-none w-full text-gray-700" autofocus="on" 
+                        placeholder="{{product.description}}"></textarea>
+                    </div>
+
+                    <!--
+                    <div>
+                        <label for="image-input" class="flex mt-4 pl-8 text-[rgb(64,64,64)]">Carregar Imagem:</label>
+                            <input class="block w-4/5 text-sm py-[3px] mx-auto text-gray-700 bg-gray-200/50 rounded-md cursor-pointer focus:outline-none" type="file" aria-describedby="file_input_help" id="image-input" name="imagem" accept="image/*"  required>
+                            <p class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="file_input_help">SVG, PNG, JPG or GIF (MAX. 800x400px).</p>
+                    </div> -->
+
+                    <button type="submit" class="orange-button mb-6 mt-[20px] py-[8px] px-[16px] rounded-[5px] text-base cursor-pointer bg-orange-500 text-white hover:bg-orange-400">
+                        EDITAR
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div> 
 @end
